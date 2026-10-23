@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA'RIFA - Заставка</title>
+    
+    <!-- Подключение шрифтов из Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Сброс стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Настройка экрана 16:9 (Full HD) */
+        body {
+            background-color: #F7F4EF; /* Нежный молочный фон */
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Скрываем полосы прокрутки */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Контейнер для композиции */
+        .intro-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0; /* Изначально скрыт для анимации */
+            
+            /* Анимация: Длительность 7 секунд, без рывков, заканчивается плавным исчезновением */
+            animation: introAnimation 7s ease-in-out forwards;
+        }
+
+        /* Главный заголовок */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem; /* Крупный размер */
+            color: #3D2C2E;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        /* Подзаголовок */
+        .subtitle {
+            font-size: 1.8rem;
+            color: #4A3B3D;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* Стек */
+        .stack {
+            font-size: 1.3rem;
+            color: #B88282; /* Пудрово-розовый */
+            font-weight: 400;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* Разделитель (Линия) */
+        .divider {
+            width: 120px;
+            height: 2px;
+            background-color: #D4A5A5;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Блок с автором */
+        .author-block {
+            font-size: 1.1rem;
+            color: #4A3B3D;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* --- CSS АНИМАЦИЯ --- */
+        @keyframes introAnimation {
+            /* 0s - 1.5s: Плавное появление (Fade-In) */
+            0% {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+            21.4% {
+                opacity: 1;
+            }
+            
+            /* 1.5s - 5.5s: Медленное приближение (Scale) */
+            78.5% {
+                opacity: 1;
+                transform: scale(1.025);
+            }
+            
+            /* 5.5s - 7s: Плавное затухание и небольшое увеличение */
+            100% {
+                opacity: 0;
+                transform: scale(1.035);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="intro-container">
+        <h1>MA'RIFA</h1>
+        <div class="subtitle">Демонстрация работы базы данных</div>
+        <div class="stack">(Node.js + SQLite)</div>
+        
+        <div class="divider"></div>
+        
+        <div class="author-block">
+            <div>Выполнила: Диана</div>
+            <div>3 курс, Тииад</div>
+        </div>
+    </div>
+
+    <!-- Скрипт для авто-перезапуска (чтобы не нажимать F5 при записи) -->
+    <script>
+        // Функция для перезапуска анимации
+        function restartAnimation() {
+            const container = document.querySelector('.intro-container');
+            // Отключаем анимацию
+            container.style.animation = 'none';
+            // Эта строчка заставляет браузер применить изменения (магия)
+            void container.offsetWidth; 
+            // Включаем анимацию заново
+            container.style.animation = 'introAnimation 7s ease-in-out forwards';
+        }
+
+        // Запускаем функцию каждые 7.5 секунд
+        setInterval(restartAnimation, 7500);
+    </script>
+
+</body>
+</html>
