@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Домашние задания</title>
+
+    <!-- Основные стили сайта -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Стили для домашних заданий -->
+    <link rel="stylesheet" href="homework.css" />
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Иконки -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Фоновые элементы как на главной -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Основной контейнер -->
+    <div class="homework-container">
+      <!-- ===== БОКОВАЯ ПАНЕЛЬ ===== -->
+      <aside class="hw-sidebar">
+        <!-- Логотип и навигация назад -->
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="back-to-dashboard">
+            <i class="fas fa-arrow-left"></i>
+            <span>В личный кабинет</span>
+          </a>
+
+          <div class="sidebar-logo">
+            <div class="arabic-logo">وَاجِبَاتِي</div>
+            <div class="latin-logo">Мои задания</div>
+          </div>
+        </div>
+
+        <!-- Меню разделов -->
+        <nav class="hw-menu">
+          <div class="menu-section">
+            <h3 class="section-title">
+              <i class="fas fa-tasks"></i>
+              Домашние задания
+            </h3>
+
+            <a href="#checked" class="menu-item active" data-filter="checked">
+              <i class="fas fa-check-circle"></i>
+              <span>Проверенные</span>
+              <span class="menu-badge">3</span>
+            </a>
+
+            <a href="#pending" class="menu-item" data-filter="pending">
+              <i class="fas fa-clock"></i>
+              <span>На проверке</span>
+              <span class="menu-badge">2</span>
+            </a>
+
+            <a href="#resubmit" class="menu-item" data-filter="resubmit">
+              <i class="fas fa-redo"></i>
+              <span>Пересдача</span>
+              <span class="menu-badge">1</span>
+            </a>
+
+            <a href="#errors" class="menu-item" data-filter="errors">
+              <i class="fas fa-exclamation-circle"></i>
+              <span>С ошибками</span>
+              <span class="menu-badge">2</span>
+            </a>
+          </div>
+
+          <div class="menu-section">
+            <h3 class="section-title">
+              <i class="fas fa-file-alt"></i>
+              Тесты и контрольные
+            </h3>
+
+            <a href="#tests" class="menu-item" data-filter="tests">
+              <i class="fas fa-question-circle"></i>
+              <span>Тесты</span>
+              <span class="menu-badge">4</span>
+            </a>
+
+            <a href="#exams" class="menu-item" data-filter="exams">
+              <i class="fas fa-clipboard-check"></i>
+              <span>Контрольные</span>
+              <span class="menu-badge">2</span>
+            </a>
+          </div>
+
+          <div class="menu-section">
+            <h3 class="section-title">
+              <i class="fas fa-exchange-alt"></i>
+              Навигация
+            </h3>
+
+            <a href="study.html" class="menu-item nav-link">
+              <i class="fas fa-book-open"></i>
+              <span>К теории</span>
+            </a>
+
+            <a href="class.html" class="menu-item nav-link">
+              <i class="fas fa-comments"></i>
+              <span>К чату с учителем</span>
+            </a>
+          </div>
+        </nav>
+
+        <!-- Вдохновляющая заметка -->
+        <div class="inspiration-note">
+          <div class="note-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h4>Напоминание о намерении</h4>
+          <p>
+            «Знание, которое не приносит пользы, подобно дереву, не приносящему
+            плодов»
+          </p>
+          <p class="note-arabic">إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ</p>
+          <small>Делайте каждое задание искренне, ради довольства Аллаха</small>
+        </div>
+      </aside>
+
+      <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+      <main class="hw-main">
+        <!-- Шапка с заголовком и фильтрами -->
+        <header class="hw-header">
+          <div class="header-left">
+            <h1 class="page-title">
+              <span class="arabic-title">الواجبات المنزلية</span>
+              <span class="latin-title">Домашние задания</span>
+            </h1>
+            <p class="page-subtitle">Ваш прогресс в изучении таджвида</p>
+          </div>
+
+          <div class="header-right">
+            <div class="stats-card">
+              <i class="fas fa-chart-line"></i>
+              <div class="stats-content">
+                <div class="stats-value">67%</div>
+                <div class="stats-label">Общий прогресс</div>
+              </div>
+            </div>
+
+            <div class="filter-buttons">
+              <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-layer-group"></i> Все
+              </button>
+              <button class="filter-btn" data-filter="recent">
+                <i class="fas fa-history"></i> Недавние
+              </button>
+              <button class="filter-btn" data-filter="important">
+                <i class="fas fa-star"></i> Важные
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Статистика и прогресс -->
+        <div class="progress-section">
+          <div class="progress-card">
+            <h3><i class="fas fa-calendar-check"></i> Статистика месяца</h3>
+            <div class="progress-grid">
+              <div class="progress-item">
+                <div class="progress-circle" data-percent="75">
+                  <span>75%</span>
+                </div>
+                <div class="progress-info">
+                  <h4>Выполнено</h4>
+                  <p>9 из 12 заданий</p>
+                </div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-circle" data-percent="90">
+                  <span>90%</span>
+                </div>
+                <div class="progress-info">
+                  <h4>Качество</h4>
+                  <p>Средняя оценка: 4.5</p>
+                </div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-circle" data-percent="60">
+                  <span>60%</span>
+                </div>
+                <div class="progress-info">
+                  <h4>Своевременность</h4>
+                  <p>6 заданий в срок</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="motivation-card">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Совет от учителя</h3>
+            <p>
+              «Регулярно повторяйте пройденные правила. Лучше уделять 15 минут
+              ежедневно, чем 3 часа раз в неделю»
+            </p>
+            <div class="teacher-info">
+              <alt ="Учитель" />
+              <span>Тамила</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Сетка заданий -->
+        <section class="assignments-grid">
+          <h2 class="section-title">
+            <i class="fas fa-th-large"></i>
+            Все задания
+            <span class="assignments-count">8 заданий</span>
+          </h2>
+
+          <!-- Здесь будут динамически добавляться карточки заданий -->
+          <div class="assignments-container" id="assignmentsContainer">
+            <!-- Карточки будут добавляться через JavaScript -->
+            <div class="loading-state">
+              <i class="fas fa-spinner fa-spin"></i>
+              <p>Загружаем ваши задания...</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Модальное окно для просмотра задания -->
+    <div class="hw-modal" id="assignmentModal">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <div class="modal-body" id="modalBody">
+          <!-- Контент будет добавляться через JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Подключаем скрипты -->
+    <script src="script.js"></script>
+    <script src="homework.js"></script>
+  </body>
+</html>

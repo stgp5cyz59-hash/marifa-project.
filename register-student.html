@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Регистрация ученика</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .register-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .register-container {
+        width: 100%;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 25px;
+        padding: 50px 40px;
+        box-shadow: 0 25px 60px rgba(138, 74, 95, 0.25);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .register-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .register-arabic {
+        font-family: "Noto Naskh Arabic", serif;
+        font-size: 3.5rem;
+        color: #2d1b4e;
+        margin-bottom: 15px;
+      }
+
+      .register-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        color: #8a4a5f;
+        margin-bottom: 10px;
+      }
+
+      .student-badge {
+        background: linear-gradient(135deg, #8a4a5f, #6d394a);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 50px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+
+      .register-form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-group label {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        color: #4a4048;
+        font-size: 0.95rem;
+      }
+
+      .register-form input,
+      .register-form select {
+        padding: 16px 20px;
+        border: 2px solid rgba(138, 74, 95, 0.2);
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        background: white;
+        transition: all 0.3s ease;
+      }
+
+      .register-form input:focus,
+      .register-form select:focus {
+        outline: none;
+        border-color: #8a4a5f;
+        box-shadow: 0 0 0 3px rgba(138, 74, 95, 0.1);
+      }
+
+      .submit-btn {
+        padding: 18px;
+        background: linear-gradient(135deg, #8a4a5f, #6d394a);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(138, 74, 95, 0.3);
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .back-link a {
+        color: #8a4a5f;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+      }
+
+      .back-link a:hover {
+        text-decoration: underline;
+      }
+
+      .student-quote {
+        background: rgba(138, 74, 95, 0.1);
+        padding: 20px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #8a4a5f;
+      }
+
+      .student-quote p {
+        font-style: italic;
+        font-size: 1.1rem;
+        color: #4a4048;
+        line-height: 1.6;
+      }
+
+      .student-quote .quote-source {
+        text-align: right;
+        color: #8a4a5f;
+        font-weight: 500;
+        margin-top: 10px;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ФОН -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- РЕГИСТРАЦИЯ УЧЕНИКА -->
+    <div class="register-page">
+      <div class="register-container">
+        <div class="register-header">
+          <div class="register-arabic">تَسْجِيل</div>
+          <h1 class="register-title">Регистрация ученика</h1>
+          <div class="student-badge">
+            <i class="fas fa-user-graduate"></i>
+            <span>طَالِبُ الْعِلْمِ | Ищущий знания</span>
+          </div>
+
+          <div class="student-quote">
+            <p>"Стремящийся к знанию подобен воину на пути Аллаха"</p>
+            <div class="quote-source">— Ибн Маджа</div>
+          </div>
+        </div>
+
+        <form id="registerForm" class="register-form">
+          <div class="form-group">
+            <label>Ваше полное имя</label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Введите ваше имя"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Email адрес</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="example@mail.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Пароль</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Минимум 6 символов"
+              required
+              minlength="6"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Уровень подготовки</label>
+            <select id="level" required>
+              <option value="">Выберите ваш уровень</option>
+              <option value="beginner">Начинающий (только начинаю)</option>
+              <option value="intermediate">Продолжающий (знаю основы)</option>
+              <option value="advanced">
+                Продвинутый (хочу совершенствоваться)
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Цель обучения</label>
+            <select id="goal">
+              <option value="">Выберите цель</option>
+              <option value="reading">Научиться правильно читать Коран</option>
+              <option value="memorization">Заучивание Корана (Хифз)</option>
+              <option value="improvement">Совершенствование таджвида</option>
+              <option value="teaching">Для дальнейшего преподавания</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <i class="fas fa-user-graduate"></i> Создать аккаунт ученика
+          </button>
+
+          <div class="back-link">
+            <a href="index.html"
+              ><i class="fas fa-arrow-left"></i> Вернуться на главную</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("📝 Регистрация ученика загружена (с базой данных)");
+        const registerForm = document.getElementById("registerForm");
+        const submitBtn = document.getElementById("submitBtn");
+
+        registerForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const password = document.getElementById("password").value;
+          if (password.length < 6) {
+            alert("Пароль должен быть минимум 6 символов");
+            return;
+          }
+
+          // Собираем данные для отправки на сервер
+          const userData = {
+            name: document.getElementById("fullName").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            password: password,
+            role: "student",
+          };
+
+          // Меняем кнопку, пока идет запрос
+          submitBtn.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+          submitBtn.disabled = true;
+
+          // ОТПРАВЛЯЕМ НА СЕРВЕР (В БАЗУ ДАННЫХ)
+          fetch("http://localhost:3000/api/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Сохраняем пользователя в браузере (чтобы дашборд знал, кто вошел)
+                localStorage.setItem("marifa_user", JSON.stringify(data.user));
+
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Успешно!';
+                submitBtn.style.background =
+                  "linear-gradient(135deg, #4CAF50, #2E7D32)";
+
+                setTimeout(() => {
+                  window.location.href = "onboarding-student.html";
+                }, 1000);
+              } else {
+                alert("Ошибка: " + data.error);
+                submitBtn.innerHTML =
+                  '<i class="fas fa-user-graduate"></i> Создать аккаунт ученика';
+                submitBtn.disabled = false;
+              }
+            })
+            .catch((error) => {
+              console.error("Ошибка:", error);
+              alert(
+                "Не удалось связаться с сервером. Убедись, что он запущен (node server.js).",
+              );
+              submitBtn.innerHTML =
+                '<i class="fas fa-user-graduate"></i> Создать аккаунт ученика';
+              submitBtn.disabled = false;
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

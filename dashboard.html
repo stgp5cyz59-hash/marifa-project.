@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Личный кабинет</title>
+
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="dashboard.css" />
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Иконки -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Светящиеся линии по бокам сайта -->
+    <div class="side-glow-lines">
+      <div class="glow-line left"></div>
+      <div class="glow-line right"></div>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="dashboard-container">
+      <!-- БОКОВАЯ ПАНЕЛЬ -->
+      <aside class="sidebar" id="sidebar">
+        <!-- Верхний логотип / заголовок -->
+        <div class="sidebar-header">
+          <h1 class="logo-arabic">مَعْرِفَة</h1>
+          <p class="logo-subtitle">ЛИЧНЫЙ КАБИНЕТ</p>
+        </div>
+
+        <!-- Центральный круглый аватар -->
+        <div class="avatar-section">
+          <div class="avatar-container">
+            <div class="avatar-circle" id="userAvatar">
+              <span class="avatar-initials" id="userInitials">أ</span>
+            </div>
+            <div class="online-status"></div>
+          </div>
+
+          <!-- Имя пользователя -->
+          <div class="user-info">
+            <div class="user-name" id="userName">Абдуллах Ибрагимов</div>
+            <div class="user-name-arabic" id="userNameArabic">
+              عَبْدُ الله إِبْرَاهِيمُوف
+            </div>
+            <div class="user-role">Ученик</div>
+          </div>
+        </div>
+
+        <!-- Индикатор конца прокрутки -->
+        <div class="scroll-end-indicator" id="scrollIndicator"></div>
+
+        <!-- Раздел меню навигации -->
+        <nav class="sidebar-nav" id="sidebarNav">
+          <!-- Звездочка для скроллбара -->
+          <div class="scroll-star" id="scrollStar">★</div>
+
+          <!-- 11 разделов -->
+          <a href="study.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Теория</span>
+              <span class="nav-subtitle">النَّظَرِيَّة</span>
+            </div>
+          </a>
+
+          <a href="koran.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-book-quran"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Коран</span>
+              <span class="nav-subtitle">القُرْآن</span>
+            </div>
+          </a>
+
+          <a href="homework.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Домашнее задание</span>
+              <span class="nav-subtitle">الواجِب</span>
+            </div>
+          </a>
+
+          <a href="progress.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Прогресс</span
+              ><span class="nav-subtitle">التَّقَدُّم</span>
+            </div>
+          </a>
+
+          <a href="game.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Мини-игры</span>
+              <span class="nav-subtitle">الأَلْعَاب</span>
+            </div>
+          </a>
+
+          <a href="class.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Общение</span>
+              <span class="nav-subtitle">المُحَادَثَة</span>
+            </div>
+          </a>
+
+          <a href="infa-class.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Мой класс</span>
+              <span class="nav-subtitle">الفَصْل</span>
+            </div>
+          </a>
+
+          <a href="izbr.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Избранное</span>
+              <span class="nav-subtitle">المُفَضَّل</span>
+            </div>
+          </a>
+
+          <a href="nastroy.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-cog"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Настройки</span>
+              <span class="nav-subtitle">الإِعْدَادَات</span>
+            </div>
+          </a>
+
+          <a href="profile.html" class="nav-item">
+            <div class="nav-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Мой профиль</span>
+              <span class="nav-subtitle">الْمِلْف</span>
+            </div>
+          </a>
+
+          <!-- Кнопка выхода -->
+          <a
+            href="register-student.html"
+            class="nav-item logout-item"
+            onclick="clearLocalStorage()"
+          >
+            <div class="nav-icon">
+              <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <div class="nav-text">
+              <span class="nav-title">Выход</span>
+              <span class="nav-subtitle">الْخُرُوج</span>
+            </div>
+          </a>
+
+          <!-- Хадис внизу (часть потока) -->
+          <div class="sidebar-hadith" id="sidebarHadith">
+            <p class="hadith-arabic">
+              خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ
+            </p>
+            <p class="hadith-translation">
+              "Лучший из вас тот, кто изучает Коран и обучает ему других"
+            </p>
+            <p class="hadith-source">аль-Бухари</p>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- ОСНОВНОЙ КОНТЕНТ -->
+      <div class="main-wrapper">
+        <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
+        <header class="top-bar">
+          <div class="top-content">
+            <div class="greeting-wrapper">
+              <div class="greeting-text">
+                <h1 class="arabic-greeting" id="arabicGreeting">
+                  سَلَامٌ عَلَيْكَ
+                </h1>
+                <p class="greeting-subtitle" id="greetingSubtitle">
+                  Добро пожаловать в личный кабинет
+                </p>
+              </div>
+            </div>
+
+            <div class="top-actions">
+              <!-- Кнопка меню для мобильных -->
+              <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+              </button>
+              <div class="top-action">
+                <i class="fas fa-bell"></i>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- КОНТЕНТНАЯ ОБЛАСТЬ -->
+        <main class="content-area" id="contentArea">
+          <!-- Фон контента -->
+          <div class="content-background">
+            <div class="bg-image"></div>
+            <div class="bg-overlay"></div>
+            <div class="bg-particles" id="bgParticles"></div>
+          </div>
+
+          <!-- Контейнер для будущего контента -->
+          <div class="content-wrapper">
+            <!-- БЛОК "СУРА ДНЯ" -->
+            <section class="daily-surah" id="dailySurahBlock">
+              <!-- Левая акцентная линия -->
+              <div class="surah-accent-line"></div>
+
+              <!-- Заголовок -->
+              <div class="surah-title-section">
+                <div class="surah-main-title">
+                  <span class="arabic-title">سورة اليوم</span>
+                  <span class="divider">·</span>
+                  <span class="russian-title">СУРА ДНЯ</span>
+                </div>
+              </div>
+
+              <!-- Арабский текст суры -->
+              <div class="surah-arabic-wrapper">
+                <div class="arabic-text" id="dailySurahArabic">
+                  قُلْ هُوَ ٱللَّهُ أَحَدٌ<br />
+                  ٱللَّهُ ٱلصَّمَدُ<br />
+                  لَمْ يَلِدْ وَلَمْ يُولَدْ<br />
+                  وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ
+                </div>
+              </div>
+
+              <!-- Перевод -->
+              <div class="surah-translation">
+                <div class="translation-text" id="dailySurahTranslation">
+                  Скажи: «Он – Аллах Единый, Аллах Самодостаточный. Он не родил
+                  и не был рожден, и нет никого равного Ему».
+                </div>
+              </div>
+
+              <!-- Мета-информация -->
+              <div class="surah-meta">
+                <span class="meta-item" id="dailySurahName">Al-Ikhlās</span>
+                <span class="meta-divider">·</span>
+                <span class="meta-item" id="dailySurahNumber">112</span>
+                <span class="meta-divider">·</span>
+                <span class="meta-item" id="dailySurahVerses">4 аятов</span>
+              </div>
+
+              <!-- Панель управления -->
+              <div class="surah-controls">
+                <!-- Кнопка избранного -->
+                <button
+                  class="control-btn favorite-btn"
+                  id="dailyFavoriteBtn"
+                  title="В избранное"
+                >
+                  <i class="far fa-heart"></i>
+                </button>
+
+                <!-- Кнопка аудио -->
+                <button
+                  class="control-btn audio-btn"
+                  id="dailyAudioBtn"
+                  title="Слушать суру"
+                >
+                  <i class="fas fa-volume-up"></i>
+                </button>
+
+                <!-- Кнопка тафсира -->
+                <button
+                  class="control-btn tafsir-btn"
+                  id="dailyTafsirBtn"
+                  title="Тафсир"
+                >
+                  <i class="fas fa-book-open"></i>
+                </button>
+
+                <!-- Кнопка случайной суры -->
+                <button
+                  class="control-btn random-btn"
+                  id="dailyRandomBtn"
+                  title="Случайная сура"
+                >
+                  <i class="fas fa-random"></i>
+                </button>
+              </div>
+            </section>
+
+            <!-- Модальное окно тафсира -->
+            <div class="tafsir-overlay" id="tafsirOverlay">
+              <div class="tafsir-modal">
+                <!-- Заголовок -->
+                <div class="tafsir-header">
+                  <h4 class="tafsir-title">
+                    <i class="fas fa-book-open"></i>
+                    <span id="tafsirModalTitle">Тафсир суры Аль-Ихляс</span>
+                  </h4>
+                  <button
+                    class="close-tafsir"
+                    id="closeTafsirBtn"
+                    title="Закрыть"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+
+                <!-- Содержимое тафсира -->
+                <div class="tafsir-content">
+                  <div id="tafsirContent">
+                    <p>
+                      <strong>Сура "Аль-Ихляс" (Очищение веры)</strong> — 112-я
+                      сура Корана. Ниспослана в Мекке. Состоит из 4 аятов.
+                    </p>
+                    <p>
+                      Сура утверждает абсолютную единственность Аллаха, Его
+                      независимость от всего творения и отсутствие у Него
+                      каких-либо подобий или сотоварищей.
+                    </p>
+                    <p>
+                      Чтение этой суры приравнивается к чтению трети Корана.
+                      Защищает от многобожия (ширка).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- БОЛЬШОЙ ОТСТУП И ПЕРЕХОД -->
+            <div class="content-divider" style="margin: 60px auto 50px">
+              <div class="wave-container">
+                <div class="wave-dot"></div>
+                <div class="wave-dot"></div>
+                <div class="wave-dot"></div>
+                <div class="wave-heart">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="wave-dot"></div>
+                <div class="wave-dot"></div>
+                <div class="wave-dot"></div>
+              </div>
+            </div>
+            <!-- НОВЫЕ БЛОКИ: ПРОДОЛЖЕНИЕ СТРАНИЦЫ -->
+
+            <!-- СЕТКА ИЗ ТРЕХ БЛОКОВ -->
+            <div class="three-blocks-grid">
+              <!-- БЛОК 1: ОБЪЯВЛЕНИЯ ОТ ТАМИЛЫ (широкий) -->
+              <section class="announcements-block wide-block">
+                <!-- Левая акцентная линия -->
+                <div class="section-accent-line"></div>
+
+                <!-- Заголовок -->
+                <div class="section-header">
+                  <div class="section-main-title">
+                    <span class="arabic-title">إعلانات المعلمة</span>
+                    <span class="divider">·</span>
+                    <span class="russian-title">ОБЪЯВЛЕНИЯ ОТ ТАМИЛЫ</span>
+                  </div>
+                  <span class="section-subtitle">Учитель арабского языка</span>
+                </div>
+
+                <!-- Объявление 1 -->
+                <article class="announcement-item">
+                  <div class="announcement-header">
+                    <h3 class="announcement-title">
+                      Изменение расписания на следующую неделю
+                    </h3>
+                    <div class="announcement-date">Сегодня, 14:30</div>
+                  </div>
+
+                  <div class="announcement-content">
+                    <p>
+                      Дорогие ученики! Обратите внимание, в следующую среду (20
+                      марта) занятие переносится с 19:00 на 20:00 в связи с
+                      проведением собрания преподавателей.
+                    </p>
+                    <p>
+                      Все остальные дни по расписанию. Не забудьте подготовить
+                      домашнее задание по суре "Аль-Фатиха".
+                    </p>
+                  </div>
+
+                  <div class="announcement-actions">
+                    <button
+                      class="action-btn read-btn"
+                      title="Отметить как прочитанное"
+                    >
+                      <i class="far fa-check-circle"></i>
+                    </button>
+                    <a
+                      href="class.html"
+                      class="action-btn question-btn"
+                      title="Задать вопрос учителю"
+                    >
+                      <i class="far fa-question-circle"></i>
+                    </a>
+                  </div>
+
+                  <!-- Комментарии учеников -->
+                  <div class="announcement-comments">
+                    <div class="comments-toggle" data-comments="announcement1">
+                      <i class="fas fa-user"></i>
+                      <span class="comments-count">2 комментария</span>
+                      <i class="fas fa-chevron-down"></i>
+                    </div>
+
+                    <div class="comments-content" id="comments-announcement1">
+                      <div class="comment-item">
+                        <div class="comment-author">
+                          <i class="fas fa-user-circle"></i>
+                          <span>Ахмад</span>
+                        </div>
+                        <p class="comment-text">
+                          Понял, спасибо за информацию! А домашнее задание нужно
+                          сдать до среды?
+                        </p>
+                      </div>
+                      <div class="comment-item">
+                        <div class="comment-author">
+                          <i class="fas fa-user-circle"></i>
+                          <span>Марьям</span>
+                        </div>
+                        <p class="comment-text">
+                          Можно ли прислать аудио с чтением суры для проверки?
+                        </p>
+                      </div>
+
+                      <!-- Форма нового комментария -->
+                      <div class="new-comment">
+                        <textarea
+                          placeholder="Добавить комментарий..."
+                          rows="1"
+                        ></textarea>
+                        <button class="send-comment-btn">
+                          <i class="fas fa-paper-plane"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- КРАСИВЫЙ РАЗДЕЛИТЕЛЬ С АРАБСКОЙ БУКВОЙ М -->
+                <div class="announcement-divider">
+                  <div class="divider-line"></div>
+                  <div class="divider-center">
+                    <span class="arabic-letter-m">م</span>
+                  </div>
+                  <div class="divider-line"></div>
+                </div>
+
+                <!-- Объявление 2 -->
+                <article class="announcement-item">
+                  <div class="announcement-header">
+                    <h3 class="announcement-title">
+                      Конкурс на лучшее чтение Корана
+                    </h3>
+                    <div class="announcement-date">Вчера, 11:15</div>
+                  </div>
+
+                  <div class="announcement-content">
+                    <p>
+                      Объявляется конкурс среди учащихся на лучшее чтение суры
+                      "Аль-Ихляс". Участникам нужно записать аудио или видео
+                      своего чтения и отправить до 25 марта.
+                    </p>
+                    <p>
+                      Победитель получит специальный приз и будет освобожден от
+                      домашнего задания на неделю!
+                    </p>
+                  </div>
+
+                  <div class="announcement-actions">
+                    <button
+                      class="action-btn read-btn active"
+                      title="Прочитано"
+                    >
+                      <i class="fas fa-check-circle"></i>
+                    </button>
+                    <a
+                      href="class.html"
+                      class="action-btn question-btn"
+                      title="Задать вопрос учителю"
+                    >
+                      <i class="far fa-question-circle"></i>
+                    </a>
+                  </div>
+
+                  <!-- Комментарии учеников -->
+                  <div class="announcement-comments">
+                    <div class="comments-toggle" data-comments="announcement2">
+                      <i class="fas fa-user"></i>
+                      <span class="comments-count">1 комментарий</span>
+                      <i class="fas fa-chevron-down"></i>
+                    </div>
+
+                    <div class="comments-content" id="comments-announcement2">
+                      <div class="comment-item">
+                        <div class="comment-author">
+                          <i class="fas fa-user-circle"></i>
+                          <span>Ислам</span>
+                        </div>
+                        <p class="comment-text">
+                          Какие критерии оценки чтения? Только таджвид или также
+                          выразительность?
+                        </p>
+                      </div>
+
+                      <!-- Форма нового комментария -->
+                      <div class="new-comment">
+                        <textarea
+                          placeholder="Добавить комментарий..."
+                          rows="1"
+                        ></textarea>
+                        <button class="send-comment-btn">
+                          <i class="fas fa-paper-plane"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </section>
+              <!-- ПРАВАЯ КОЛОНКА: 2 ВЕРТИКАЛЬНЫХ БЛОКА -->
+              <div class="right-column">
+                <!-- БЛОК 2: ДОГОВОР (верхний компактный) -->
+                <section class="contract-block compact-block">
+                  <!-- Левая акцентная линия -->
+                  <div class="section-accent-line"></div>
+
+                  <!-- Заголовок -->
+                  <div class="section-header">
+                    <div class="section-main-title">
+                      <span class="arabic-title">العقد</span>
+                      <span class="divider">·</span>
+                      <span class="russian-title">ДОГОВОР</span>
+                    </div>
+                  </div>
+
+                  <!-- Содержимое договора -->
+                  <div class="contract-content">
+                    <div class="contract-rules">
+                      <div class="rule-item">
+                        <span class="rule-number">1</span>
+                        <span class="rule-text">Уважение к учителю</span>
+                      </div>
+                      <div class="rule-item">
+                        <span class="rule-number">2</span>
+                        <span class="rule-text">Выполнение ДЗ</span>
+                      </div>
+                      <div class="rule-item">
+                        <span class="rule-number">3</span>
+                        <span class="rule-text">Активность на уроках</span>
+                      </div>
+                      <div class="rule-item more-rules" id="showFullContract">
+                        <span class="dots">...</span>
+                        <span class="more-text">ещё 12 правил</span>
+                      </div>
+                    </div>
+
+                    <!-- Подпись -->
+                    <div class="contract-signature">
+                      <div class="signature-line"></div>
+                      <div class="signature-info">
+                        <span class="student-name">Абдуллах Ибрагимов</span>
+                        <span class="signature-date">15.03.2024</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- БЛОК 3: КАЛЕНДАРЬ И РАСПИСАНИЕ (нижний компактный) -->
+                <section class="calendar-block compact-block">
+                  <!-- Левая акцентная линия -->
+                  <div class="section-accent-line"></div>
+
+                  <!-- Заголовок -->
+                  <div class="section-header">
+                    <div class="section-main-title">
+                      <span class="arabic-title">الجدول</span>
+                      <span class="divider">·</span>
+                      <span class="russian-title">РАСПИСАНИЕ</span>
+                    </div>
+                  </div>
+
+                  <!-- Календарь -->
+                  <div class="calendar-content">
+                    <div class="current-date">
+                      <div class="date-day" id="currentDay">19</div>
+                      <div class="date-month" id="currentMonth">Март</div>
+                      <div class="date-weekday" id="currentWeekday">
+                        Вторник
+                      </div>
+                    </div>
+
+                    <!-- Расписание уроков -->
+                    <div class="lesson-schedule">
+                      <h4>Уроки:</h4>
+                      <div class="schedule-days">
+                        <div class="day-item active">
+                          <span class="day-name">ВТ</span>
+                          <span class="day-time">19:00</span>
+                        </div>
+                        <div class="day-item">
+                          <span class="day-name">ЧТ</span>
+                          <span class="day-time">19:00</span>
+                        </div>
+                        <div class="day-item">
+                          <span class="day-name">СБ</span>
+                          <span class="day-time">19:00</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Ссылка на урок -->
+                    <div class="lesson-link-container">
+                      <a href="#" class="lesson-link disabled" id="lessonLink">
+                        <i class="fas fa-video"></i>
+                        <span>Присоединиться к уроку</span>
+                        <span class="link-timer" id="linkTimer">–</span>
+                      </a>
+                      <div class="lesson-note" id="lessonNote">
+                        Активна за 5 мин до начала
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <!-- МОДАЛЬНОЕ ОКНО ПОЛНОГО ДОГОВОРА -->
+            <div class="contract-modal-overlay" id="contractModal">
+              <div class="contract-modal">
+                <div class="modal-header">
+                  <h3>
+                    <i class="fas fa-scroll"></i>
+                    <span>Полный договор ученика</span>
+                  </h3>
+                  <button class="close-modal" id="closeContractModal">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+
+                <div class="modal-content">
+                  <div class="contract-full-rules">
+                    <div class="full-rule-item">
+                      <span class="rule-num">1.</span>
+                      <div class="rule-details">
+                        <h4>Уважение к учителю</h4>
+                        <p>
+                          Ученик обязуется проявлять уважение к учителю, не
+                          перебивать, внимательно слушать объяснения и следовать
+                          указаниям.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="full-rule-item">
+                      <span class="rule-num">2.</span>
+                      <div class="rule-details">
+                        <h4>Выполнение домашних заданий</h4>
+                        <p>
+                          Все задания должны быть выполнены своевременно и в
+                          полном объеме. При невозможности выполнить задание -
+                          сообщить учителю заранее.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="full-rule-item">
+                      <span class="rule-num">3.</span>
+                      <div class="rule-details">
+                        <h4>Активность на уроках</h4>
+                        <p>
+                          Ученик должен активно участвовать в уроке, задавать
+                          вопросы при необходимости и выполнять все упражнения.
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- Еще 12 правил... -->
+                    <div class="full-rule-item">
+                      <span class="rule-num">4.</span>
+                      <div class="rule-details">
+                        <h4>Своевременная посещаемость</h4>
+                        <p>
+                          Приходить на уроки вовремя. Опоздание не должно
+                          превышать 5 минут без уважительной причины.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="full-rule-item">
+                      <span class="rule-num">5.</span>
+                      <div class="rule-details">
+                        <h4>Честность и ответственность</h4>
+                        <p>
+                          Быть честным при выполнении заданий и нести
+                          ответственность за свои успехи и неудачи.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="contract-full-signature">
+                    <div class="signature-wrapper">
+                      <div class="signature-line-long"></div>
+                      <div class="signature-full-info">
+                        <div class="signature-name">Абдуллах Ибрагимов</div>
+                        <div class="signature-full-date">
+                          15 марта 2024 года
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button class="modal-close-btn" id="modalCloseBtn">
+                    <i class="fas fa-check"></i>
+                    Закрыть
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ЗАКЛЮЧИТЕЛЬНЫЙ ПЕРЕХОД -->
+            <div class="content-divider" style="margin: 70px auto 30px">
+              <div class="wave-container">
+                <div class="wave-dot"></div>
+                <div class="wave-dot"></div>
+                <div class="wave-dot"></div>
+                <div class="wave-heart">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="wave-dot"></div>
+                <div class="wave-dot"></div>
+                <div class="wave-dot"></div>
+              </div>
+              <p class="divider-text">Продолжайте свой путь знаний</p>
+            </div>
+
+            <!-- Пусто - контент будет добавляться при переходе по разделам -->
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Скрипт личного кабинета -->
+    <script src="dashboard.js"></script>
+
+    <!-- Функция для очистки localStorage при выходе -->
+    <script>
+      function clearLocalStorage() {
+        localStorage.removeItem("marifa_user");
+        localStorage.removeItem("marifa_student_password");
+        console.log("Данные пользователя очищены");
+      }
+    </script>
+  </body>
+</html>

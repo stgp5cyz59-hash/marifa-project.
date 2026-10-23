@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Мой класс</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+            /* ===== СТИЛИ СТРАНИЦЫ "МОЙ КЛАСС" ===== */
+
+            /* ФОН С РАЗМЫТИЕМ */
+            .class-background {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: -2;
+            }
+
+            .class-background-image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-image: url("images/nebo11.jpg");
+              background-size: cover;
+              background-position: center;
+              background-attachment: fixed;
+              filter: blur(12px) brightness(0.85);
+              transform: scale(1.1);
+            }
+
+            .class-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(
+                135deg,
+                rgba(80, 69, 105, 0.9) 0%,
+                rgba(93, 61, 79, 0.85) 50%,
+                rgba(68, 48, 72, 0.95) 100%
+              );
+              backdrop-filter: blur(3px);
+            }
+
+            /* ПЛАВНЫЙ ПЕРЕХОД К ФУТЕРУ */
+            .footer-transition {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 200px;
+              pointer-events: none;
+              z-index: 1;
+            }
+
+            .transition-wave {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(15, 10, 26, 0.3),
+                rgba(15, 10, 26, 0.6),
+                rgba(15, 10, 26, 0.9)
+              );
+              animation: waveFloat 20s infinite linear;
+            }
+
+            .wave-2 {
+              animation-delay: 7s;
+              opacity: 0.5;
+            }
+
+            .wave-3 {
+              animation-delay: 14s;
+              opacity: 0.3;
+            }
+
+            @keyframes waveFloat {
+              0% {
+                transform: translateY(0) scale(1);
+              }
+              50% {
+                transform: translateY(-20px) scale(1.05);
+              }
+              100% {
+                transform: translateY(0) scale(1);
+              }
+            }
+
+            /* ГЛАВНЫЙ ЗАГОЛОВОК */
+            .class-hero {
+              text-align: center;
+              padding: 120px 20px 60px;
+              position: relative;
+              z-index: 10;
+            }
+
+            .class-title-arabic {
+              font-family: "Amiri", serif;
+              font-size: 4.2rem;
+              color: #f5d5a6;
+              margin-bottom: 20px;
+              text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+              line-height: 1.2;
+            }
+
+            .class-title-latin {
+              font-family: "Cormorant Garamond", serif;
+              font-size: 2.8rem;
+              color: #ffffff;
+              letter-spacing: 3px;
+              margin-bottom: 15px;
+              font-weight: 600;
+              text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            }
+
+            .class-subtitle {
+              font-family: "Inter", sans-serif;
+              font-size: 1.3rem;
+              color: rgba(255, 255, 255, 0.85);
+              max-width: 800px;
+              margin: 0 auto;
+              line-height: 1.7;
+              font-weight: 400;
+            } /* ОСНОВНОЙ КОНТЕЙНЕР */
+            .class-container {
+              max-width: 1400px;
+              margin: 0 auto 100px;
+              padding: 0 20px;
+              position: relative;
+              z-index: 10;
+            }
+
+            /* КАРТОЧКА УЧИТЕЛЯ */
+            .teacher-card {
+              background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 253, 250, 0.98) 100%
+              );
+              border-radius: 30px;
+              padding: 50px;
+              margin-bottom: 60px;
+              box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(212, 165, 116, 0.2), 0 0 30px rgba(138, 74, 95, 0.15);
+              border: 2px solid rgba(212, 165, 116, 0.3);
+              position: relative;
+              overflow: hidden;
+            }
+
+            .teacher-card::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 8px;
+              height: 100%;
+              background: linear-gradient(to bottom, #8a4a5f, #d4a574);
+            }
+
+            .teacher-header {
+              display: flex;
+              align-items: center;
+              gap: 35px;
+              margin-bottom: 40px;
+              flex-wrap: wrap;
+            }
+
+            .teacher-avatar {
+              width: 140px;
+              height: 140px;
+              background: linear-gradient(135deg, #8a4a5f, #d4a574);
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 4rem;
+              font-family: "Amiri", serif;
+              box-shadow: 0 10px 30px rgba(138, 74, 95, 0.3);
+              flex-shrink: 0;
+            }
+
+            .teacher-info {
+              flex: 1;
+              min-width: 300px;
+            }
+
+            .teacher-name {
+              font-family: "Cormorant Garamond", serif;
+              font-size: 2.5rem;
+              color: #6d394a;
+              margin-bottom: 10px;
+              font-weight: 700;
+            }
+
+            .teacher-title {
+              font-family: "Amiri", serif;
+              font-size: 1.8rem;
+              color: #8a4a5f;
+              margin-bottom: 15px;
+              direction: rtl;
+              font-weight: 600;
+            }
+
+            .teacher-experience {
+              display: flex;
+              gap: 30px;
+              margin-top: 20px;
+              flex-wrap: wrap;
+            }
+
+            .experience-item {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: 15px 25px;
+              background: rgba(138, 74, 95, 0.08);
+              border-radius: 15px;
+              border: 1px solid rgba(138, 74, 95, 0.15);
+              min-width: 140px;
+            }
+
+            .exp-number {
+              font-family: "Cormorant Garamond", serif;
+              font-size: 2.2rem;
+              color: #8a4a5f;
+              font-weight: 700;
+              line-height: 1;
+            }
+
+            .exp-label {
+              font-family: "Inter", sans-serif;
+              font-size: 0.95rem;
+              color: #666;
+              margin-top: 5px;
+              text-align: center;
+            }
+
+            /* ОПИСАНИЕ УЧИТЕЛЯ */
+            .teacher-description {
+              background: rgba(138, 74, 95, 0.05);
+              border-radius: 20px;
+              padding: 30px;
+              margin-top: 30px;
+              border-left: 4px solid #d4a574;
+            }
+
+            .desc-title {
+              font-family: "Cormorant Garamond", serif;
+              font-size: 1.8rem;
+              color: #6d394a;
+              margin-bottom: 20px;
+              font-weight: 600;
+            }
+
+            .desc-item {
+              display: flex;
+              align-items: flex-start;
+              gap: 15px;
+              margin-bottom: 18px;
+            }
+
+            .desc-item i {
+              color: #8a4a5f;
+              font-size: 1.1rem;
+              margin-top: 4px;
+              flex-shrink: 0;
+            }
+
+            .desc-text {
+              font-family: "Inter", sans-serif;
+              font-size: 1.1rem;
+              color: #4a4048;
+              line-height: 1.6;
+            }
+
+            .important-note {
+              background: rgba(212, 165, 116, 0.1);
+              border-radius: 15px;
+              padding: 25px;
+              margin-top: 25px;
+              border: 2px solid rgba(212, 165, 116, 0.3);
+              position: relative;
+            }
+
+            .note-title {
+              font-family: "Cormorant Garamond", serif;
+              font-size: 1.5rem;
+              color: #c1955e;
+              margin-bottom: 15px;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+
+            .note-title i {
+              color: #d4a574;
+            }
+
+            .note-text {
+              font-family: "Inter", sans-serif;
+              font-size: 1.05rem;
+              color: #4a4048;
+              line-height: 1.7;
+            }
+
+            /* ЗАГОЛОВОК УЧЕНИКОВ */
+            .students-header {
+              text-align: center;
+              margin: 70px 0 40px;
+              position: relative;
+            }
+
+            .students-title {
+              font-family: "Cormorant Garamond", serif;
+              font-size: 2.5rem;
+              color: #ffffff;
+              margin-bottom: 15px;
+              font-weight: 600;
+              text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .students-subtitle {
+              font-family: "Inter", sans-serif;
+              font-size: 1.2rem;
+              color: rgba(255, 255, 255, 0.8);
+              max-width: 600px;
+              margin: 0 auto;
+            }
+
+            .students-divider {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 25px;
+              margin: 40px auto;
+              max-width: 400px;
+            }
+
+            .divider-line {
+              height: 2px;
+              flex: 1;
+              background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(245, 213, 166, 0.6),
+                transparent
+              );
+            }
+
+            .divider-star {
+              color: #f5d5a6;
+              font-size: 1.3rem;
+              animation: starSpin 10s infinite linear;
+            }
+
+            @keyframes starSpin {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(360deg);
+              }
+            }
+
+            /* СЕТКА УЧЕНИКОВ */
+            .students-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+              gap: 25px;
+              margin-bottom: 60px;
+            }
+
+            .student-card {
+              background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(255, 253, 250, 0.95) 100%
+              );
+              border-radius: 20px;
+              padding: 30px;
+              box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(138, 74, 95, 0.1);
+              border: 2px solid rgba(212, 165, 116, 0.2);
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              position: relative;
+              overflow: hidden;
+              cursor: pointer;
+              min-height: 180px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
+
+            .student-card::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(
+                135deg,
+                rgba(138, 74, 95, 0.05) 0%,
+                rgba(212, 165, 116, 0.05) 100%
+              );
+              opacity: 0;
+              transition: opacity 0.3s ease;
+              z-index: 1;
+            }
+
+            .student-card:hover {
+              transform: translateY(-10px);
+              box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(138, 74, 95, 0.2), 0 0 30px rgba(212, 165, 116, 0.2);
+              border-color: rgba(138, 74, 95, 0.4);
+            }
+
+            .student-card:hover::before {
+              opacity: 1;
+            }
+
+            .student-card.current {
+              border-color: #8a4a5f;
+              background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(245, 240, 235, 0.95) 100%
+              );
+            }
+
+            .student-card.current::before {
+              background: linear-gradient(
+                135deg,
+                rgba(138, 74, 95, 0.1) 0%,
+                rgba(212, 165, 116, 0.1) 100%
+              );
+            }
+
+            .student-letter {
+              font-family: "Amiri", serif;
+              font-size: 4.5rem;
+              color: #8a4a5f;
+              margin-bottom: 15px;
+              line-height: 1;
+              position: relative;
+              z-index: 2;
+              transition: all 0.3s ease;
+            }
+
+            .student-card:hover .student-letter {
+              transform: scale(1.1);
+              color: #6d394a;
+            }
+
+            .student-name {
+              font-family: "Cormorant Garamond", serif;
+              font-size: 1.6rem;
+              color: #4a4048;
+              margin-bottom: 8px;
+              font-weight: 600;
+              position: relative;
+              z-index: 2;
+            }
+
+            .student-arabic-name {
+              font-family: "Amiri", serif;
+              font-size: 1.3rem;
+              color: #a86c82;
+              direction: rtl;
+              margin-bottom: 5px;
+              position: relative;
+              z-index: 2;
+            }
+
+            .student-status {
+              font-family: "Inter", sans-serif;
+              font-size: 0.9rem;
+              color: #666;
+              padding: 5px 15px;
+              background: rgba(138, 74, 95, 0.1);
+              border-radius: 12px;
+              display: inline-block;
+              margin-top: 10px;
+              position: relative;
+              z-index: 2;
+            }
+
+            /* ДЕКОРАТИВНЫЕ ЗВЕЗДЫ */
+            .class-decoration {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              pointer-events: none;
+              z-index: 1;
+              overflow: hidden;
+            }
+
+            .floating-star {
+              position: absolute;
+              width: 3px;
+              height: 3px;
+              background: #d4a574;
+              border-radius: 50%;
+              animation: starFloat 15s infinite linear;
+            }
+
+            .star-1 {
+              top: 20%;
+              left: 15%;
+              animation-delay: 0s;
+            }
+            .star-2 {
+              top: 60%;
+              right: 20%;
+              animation-delay: 3s;
+            }
+            .star-3 {
+              top: 40%;
+              left: 20%;
+              animation-delay: 6s;
+            }
+            .star-4 {
+              top: 80%;
+              right: 15%;
+              animation-delay: 9s;
+            }
+
+            @keyframes starFloat {
+              0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+              }
+              25% {
+                transform: translate(20px, 30px) scale(1.5);
+                opacity: 0.7;
+              }
+              50% {
+                transform: translate(0, 60px) scale(1);
+                opacity: 0.3;
+              }
+              75% {
+                transform: translate(-20px, 30px) scale(0.5);
+                opacity: 0.7;
+              }
+              100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+              }
+            }
+
+            /* КНОПКА НАЗАД */
+            .back-to-dashboard {
+              position: fixed;
+              top: 30px;
+              left: 30px;
+              z-index: 1000;
+            }
+
+            .back-btn {
+              padding: 12px 25px;
+              background: rgba(255, 255, 255, 0.9);
+              border: 2px solid rgba(138, 74, 95, 0.3);
+              border-radius: 50px;
+              color: #8a4a5f;
+              text-decoration: none;
+              font-family: "Inter", sans-serif;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              transition: all 0.3s ease;
+              backdrop-filter: blur(10px);
+            }
+
+            .back-btn:hover {
+              background: rgba(138, 74, 95, 0.1);
+              transform: translateX(-5px);
+            }
+
+            /* АДАПТИВНОСТЬ */
+            @media (max-width: 992px) {
+              .students-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+              }
+
+              .teacher-card {
+                padding: 40px 30px;
+              }
+
+              .teacher-header {
+                gap: 25px;
+              }
+            }
+
+            @media (max-width: 768px) {
+              .class-title-arabic {
+                font-size: 3.2rem;
+              }
+
+              .class-title-latin {
+                font-size: 2.2rem;
+              }
+
+              .teacher-header {
+                flex-direction: column;
+                text-align: center;
+              }
+
+              .teacher-info {
+                min-width: 100%;
+              }
+
+              .teacher-experience {
+                justify-content: center;
+              }
+
+              .experience-item {
+                min-width: 120px;
+              }
+
+              .students-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+              }
+
+              .back-btn span {
+                display: none;
+              }
+
+              .back-btn {
+                padding: 10px;
+                width: 45px;
+                height: 45px;
+                justify-content: center;
+              }
+
+              .teacher-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 3.5rem;
+              }
+            }
+
+            @media (max-width: 480px) {
+              .class-hero {
+                padding: 100px 15px 40px;
+              }
+
+              .class-title-arabic {
+                font-size: 2.8rem;
+              }
+
+              .class-title-latin {
+                font-size: 1.8rem;
+              }
+
+              .teacher-name {
+                font-size: 2rem;
+              }
+
+              .teacher-title {
+                font-size: 1.5rem;
+              }
+
+              .exp-number {
+                font-size: 1.8rem;
+              }
+
+              .students-title {
+                font-size: 2rem;
+              }
+
+              .students-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+              }
+
+              .student-letter {
+                font-size: 4rem;
+              }
+            }
+            /* УБИРАЕМ HOVER-ЭФФЕКТЫ С КАРТОЧКИ УЧИТЕЛЯ */
+            .teacher-card {
+              transition: none !important; /* Убираем анимацию */
+            }
+
+            .teacher-card:hover {
+              transform: none !important; /* Не двигается */
+              box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(212, 165, 116, 0.2), 0 0 30px rgba(138, 74, 95, 0.15) !important; /* Оставляем тень как есть */
+              border-color: rgba(
+                212,
+                165,
+                116,
+                0.3
+              ) !important; /* Оставляем цвет рамки */
+              background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 253, 250, 0.98) 100%
+              ) !important; /* Оставляем фон как есть */
+            }
+
+            /* Если есть внутренние элементы с hover - тоже убираем */
+            .teacher-card *:hover {
+              transform: none !important;
+              background: none !important;
+            }
+            /* ИСПРАВЛЕНИЕ: Карточки учеников не сливаются с фоном при наведении */
+      .student-card:hover {
+          background: linear-gradient(
+              145deg,
+              rgba(255, 255, 255, 1) 0%,      /* Убираем прозрачность */
+              rgba(250, 248, 245, 0.98) 100%  /* Делаем почти непрозрачным */
+          ) !important;
+          transform: translateY(-10px) !important;
+          box-shadow:
+              0 25px 50px rgba(138, 74, 95, 0.25), /* Усиливаем тень */
+              0 0 0 2px #8a4a5f,                   /* Бордовая рамка */
+              0 0 40px rgba(212, 165, 116, 0.3) !important; /* Сильнее свечение */
+          border-color: #8a4a5f !important; /* Яркая рамка */
+      }
+
+      /* Убираем прозрачный слой при наведении */
+      .student-card::before {
+          display: none !important; /* Полностью убираем прозрачный слой */
+      }
+
+      /* Альтернативно: делаем ::before видимым, но другим цветом */
+      /* .student-card::before {
+          background: linear-gradient(
+              135deg,
+              rgba(138, 74, 95, 0.1) 0%,
+              rgba(212, 165, 116, 0.15) 100%
+          ) !important;
+          opacity: 0.5 !important; /* Полупрозрачный, но видимый */
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- ФОН С РАЗМЫТИЕМ -->
+    <div class="class-background">
+      <div class="class-background-image"></div>
+      <div class="class-overlay"></div>
+    </div>
+
+    <!-- КНОПКА НАЗАД -->
+    <div class="back-to-dashboard">
+      <a href="dashboard.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        <span>В кабинет</span>
+      </a>
+    </div>
+
+    <!-- ГЛАВНЫЙ ЗАГОЛОВОК -->
+    <header class="class-hero">
+      <h1 class="class-title-arabic">فَصْلِي</h1>
+      <h2 class="class-title-latin">Мой класс</h2>
+      <p class="class-subtitle">
+        Знакомьтесь с Устазой и вашими сокурсницами в этом благословенном
+        путешествии к знанию
+      </p>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР -->
+    <main class="class-container">
+      <!-- ДЕКОРАТИВНЫЕ ЗВЕЗДЫ -->
+      <div class="class-decoration">
+        <div class="floating-star star-1"></div>
+        <div class="floating-star star-2"></div>
+        <div class="floating-star star-3"></div>
+        <div class="floating-star star-4"></div>
+      </div>
+
+      <!-- КАРТОЧКА УЧИТЕЛЯ -->
+      <div class="teacher-card">
+        <div class="teacher-header">
+          <div class="teacher-avatar">ط</div>
+          <div class="teacher-info">
+            <h3 class="teacher-name">Устаза Тамила</h3>
+            <div class="teacher-title">أستاذة تميلة</div>
+            <p
+              style="
+                font-family: 'Inter', sans-serif;
+                color: #666;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                margin-top: 10px;
+              "
+            >
+              Преподаватель хифза, тасхиха и таджвида с 3-летним опытом
+            </p>
+          </div>
+        </div>
+
+        <!-- ОПЫТ -->
+        <div class="teacher-experience">
+          <div class="experience-item">
+            <div class="exp-number">3</div>
+            <div class="exp-label">года преподавания</div>
+          </div>
+          <div class="experience-item">
+            <div class="exp-number">7</div>
+            <div class="exp-label">выпущенных групп</div>
+          </div>
+          <div class="experience-item">
+            <div class="exp-number">21</div>
+            <div class="exp-label">учениц в классе</div>
+          </div>
+        </div>
+
+        <!-- ОПИСАНИЕ -->
+        <div class="teacher-description">
+          <h4 class="desc-title">Направления преподавания</h4>
+          <div class="desc-item">
+            <i class="fas fa-book-quran"></i>
+            <div class="desc-text">
+              <strong>Хифз</strong> — полное заучивание Корана с соблюдением
+              всех правил
+            </div>
+          </div>
+          <div class="desc-item">
+            <i class="fas fa-microphone-alt"></i>
+            <div class="desc-text">
+              <strong>Тасхих</strong> — исправление ошибок в чтении и
+              произношении
+            </div>
+          </div>
+          <div class="desc-item">
+            <i class="fas fa-star"></i>
+            <div class="desc-text">
+              <strong>Таджвид</strong> — совершенное чтение с соблюдением всех
+              правил
+            </div>
+          </div>
+
+          <!-- ВАЖНОЕ ПРИМЕЧАНИЕ -->
+          <div class="important-note">
+            <h5 class="note-title">
+              <i class="fas fa-exclamation-circle"></i> Важно знать перед
+              началом:
+            </h5>
+            <p class="note-text">
+              1. Перед началом обучения необходимо подписать договор и соблюдать
+              его условия.<br />
+              2. Сохранять аманат (доверенное) и быть искренним в обучении.<br />
+              3. Очистить намерение (ният) перед началом каждого урока ради
+              довольства Аллаха.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- УЧЕНИКИ -->
+      <div class="students-header">
+        <h2 class="students-title">Мои сокурсницы</h2>
+        <p class="students-subtitle">
+          21 ученица, вместе идущие по пути знаний
+        </p>
+        <div class="students-divider">
+          <div class="divider-line"></div>
+          <div class="divider-star">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="divider-line"></div>
+        </div>
+      </div>
+
+      <!-- СЕТКА УЧЕНИКОВ -->
+      <div class="students-grid" id="studentsGrid">
+        <!-- Карточки будут добавлены через JavaScript -->
+      </div>
+    </main>
+
+    <!-- ПЛАВНЫЙ ПЕРЕХОД К ФУТЕРУ
+    <div class="footer-transition">
+      <div class="transition-wave wave-1"></div>
+      <div class="transition-wave wave-2"></div>
+      <div class="transition-wave wave-3"></div>
+    </div>
+     ФУТЕР 
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <span class="footer-arabic">مَعْرِفَة</span>
+          <span class="footer-latin">MA'RIFA</span>
+        </div>
+        <div class="footer-text">
+          <p>Вместе к совершенству в чтении Слова Всевышнего</p>
+        </div>
+        <div class="footer-divider">
+          <div class="footer-line"></div>
+          <div class="footer-dot"></div>
+          <div class="footer-line"></div>
+        </div>
+        <div class="footer-copyright">
+          © 2024 MA'RIFA. Искусство Таджвида. Все права сохранены.
+        </div>
+      </div>
+    </footer>-->
+
+    <!-- СКРИПТ -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log('👩‍🎓 Страница "Мой класс" загружена');
+
+        // ДАННЫЕ УЧЕНИКОВ
+        const students = [
+          {
+            name: "Дина",
+            arabicLetter: "د",
+            arabicName: "دينا",
+            isCurrent: true,
+          },
+          { name: "Диана", arabicLetter: "د", arabicName: "ديانا" },
+          { name: "Хава", arabicLetter: "ح", arabicName: "حواء" },
+          { name: "Сабрина", arabicLetter: "ص", arabicName: "صابرينة" },
+          { name: "Аиша", arabicLetter: "ع", arabicName: "عائشة" },
+          { name: "Асма", arabicLetter: "ا", arabicName: "أسماء" },
+          { name: "Фатима", arabicLetter: "ف", arabicName: "فاطمة" },
+          { name: "Аделька", arabicLetter: "ا", arabicName: "عادلة" },
+          { name: "Алина", arabicLetter: "ا", arabicName: "ألينا" },
+          { name: "Бану", arabicLetter: "ب", arabicName: "بانو" },
+          { name: "Зульфия", arabicLetter: "ز", arabicName: "زلفية" },
+          { name: "Марьям", arabicLetter: "م", arabicName: "مريم" },
+          { name: "Самира", arabicLetter: "س", arabicName: "سميرة" },
+          { name: "Нурай", arabicLetter: "ن", arabicName: "نوراي" },
+          { name: "Лейла", arabicLetter: "ل", arabicName: "ليلى" },
+          { name: "Камила", arabicLetter: "ك", arabicName: "كميلة" },
+          { name: "Рания", arabicLetter: "ر", arabicName: "رانية" },
+          { name: "Ясмин", arabicLetter: "ي", arabicName: "ياسمين" },
+          { name: "Халима", arabicLetter: "خ", arabicName: "حليمة" },
+          { name: "Салима", arabicLetter: "س", arabicName: "سليمة" },
+          { name: "Амина", arabicLetter: "ا", arabicName: "آمنة" },
+        ];
+
+        // ФУНКЦИЯ ДЛЯ ГЕНЕРАЦИИ КАРТОЧЕК
+        function generateStudentCards() {
+          const grid = document.getElementById("studentsGrid");
+          if (!grid) return;
+
+          grid.innerHTML = "";
+
+          students.forEach((student) => {
+            const card = document.createElement("div");
+            card.className =
+              "student-card" + (student.isCurrent ? " current" : "");
+
+            // Генерируем случайный статус для демонстрации
+            const statuses = [
+              "Активная",
+              "Старательная",
+              "Усердная",
+              "Внимательная",
+              "Ответственная",
+              "Дисциплинированная",
+              "Мотивированная",
+            ];
+            const randomStatus =
+              statuses[Math.floor(Math.random() * statuses.length)];
+
+            card.innerHTML = `
+                        <div class="student-letter">${student.arabicLetter}</div>
+                        <div class="student-name">${student.name}</div>
+                        <div class="student-arabic-name">${student.arabicName}</div>
+                        <div class="student-status">${randomStatus}</div>
+                    `;
+
+            grid.appendChild(card);
+          });
+
+          console.log(`✅ Создано ${students.length} карточек учеников`);
+        }
+
+        // ИНИЦИАЛИЗАЦИЯ
+        generateStudentCards();
+
+        // АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }, index * 50);
+            }
+          });
+        }, observerOptions);
+
+        // Применяем анимацию к карточкам
+        setTimeout(() => {
+          const cards = document.querySelectorAll(".student-card");
+          cards.forEach((card) => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(30px)";
+            card.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+            observer.observe(card);
+          });
+        }, 300);
+
+        // ИНТЕРАКТИВНОСТЬ ДЛЯ КАРТОЧЕК
+        document.querySelectorAll(".student-card").forEach((card) => {
+          card.addEventListener("click", function () {
+            const name = this.querySelector(".student-name").textContent;
+            console.log(`👤 Выбрана ученица: ${name}`);
+
+            // Добавляем эффект "клика"
+            this.style.transform = "scale(0.98)";
+            setTimeout(() => {
+              this.style.transform = "";
+            }, 200);
+          });
+        });
+
+        // ПОДСВЕТКА ТЕКУЩЕЙ УЧЕНИЦЫ
+        const currentStudent = document.querySelector(".student-card.current");
+        if (currentStudent) {
+          currentStudent.innerHTML += `
+                    <div style="
+                        position: absolute;
+                        top: 15px;
+                        right: 15px;
+                        background: #8a4a5f;
+                        color: white;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 0.8rem;
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        z-index: 3;
+                    ">Вы</div>
+                `;
+        }
+      });
+    </script>
+  </body>
+</html>

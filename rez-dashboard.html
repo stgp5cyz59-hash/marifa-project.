@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Личный кабинет</title>
+
+    <!-- Основные стили сайта -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Стили кабинета -->
+    <link rel="stylesheet" href="rez-dashboard.css" />
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Иконки -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
+  </head>
+  <body>
+    <!-- В самом начале dashboard.html -->
+<script src="auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const user = Auth.isAuthenticated();
+    
+    if (!user) {
+      window.location.href = 'index.html';
+      return;
+    }
+    
+    // Проверяем роль - если учитель, отправляем в его ЛК
+    if (user.role === 'teacher') {
+      window.location.href = 'teacher-dashboard.html';
+      return;
+    }
+    
+    // Проверяем onboarding
+    if (!Auth.isOnboardingCompleted()) {
+      window.location.href = 'onboarding-student.html';
+      return;
+    }
+    
+    // Студент, прошел onboarding - загружаем его ЛК
+    console.log('Студент в своем ЛК:', user.name);
+  });
+</script>
+    <!-- Фоновое изображение -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- НОВЫЙ ФОН ДЛЯ КАБИНЕТА -->
+    <div class="dashboard-night-sky">
+      <div class="twinkling-stars"></div>
+      <div class="shooting-stars"></div>
+      <div class="nebula-effect"></div>
+    </div>
+
+    <!-- Декоративные линии -->
+    <div class="side-lines">
+     
+      <div class="side-line right"></div>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР -->
+    <div class="dashboard-container">
+      <!-- БОКОВАЯ ПАНЕЛЬ (сохраняем стиль, меняем содержание) -->
+      <aside class="dashboard-sidebar">
+        <div class="sidebar-glow"></div>
+
+        <div class="sidebar-logo">
+          <span class="sidebar-arabic">مَعْرِفَة</span>
+          <span class="sidebar-latin">ЛИЧНЫЙ КАБИНЕТ</span>
+        </div>
+
+        <div class="sidebar-profile">
+          <div class="profile-avatar">
+            <div class="avatar-initial">أ</div>
+            <div class="online-status"></div>
+          </div>
+          <div class="profile-info">
+            <div class="profile-name">...</div>
+            <div class="profile-level">الْمُتَقَدِّم</div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-scroll-container">
+            <!-- 11 пунктов как вы указали -->
+            <a href="koran.html" class="nav-item">
+              <div class="nav-icon"><i class="fas fa-book-quran"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Коран</div>
+                <div class="nav-arabic">القُرْآن</div>
+              </div>
+            </a>
+
+            <a href="study.html" class="nav-item active">
+              <div class="nav-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Теория</div>
+                <div class="nav-arabic">الدَّرْس</div>
+              </div>
+            </a>
+
+            <a href="homework.html" class="nav-item">
+              <div class="nav-icon"><i class="fas fa-tasks"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Задания</div>
+                <div class="nav-arabic">الوَاجِب</div>
+              </div>
+            </a>
+
+            <a href="progress.html" class="nav-item">
+              <div class="nav-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Прогресс</div>
+                <div class="nav-arabic">التَّقَدُّم</div>
+              </div>
+            </a>
+
+            <a href="class.html" class="nav-item"
+              ><div class="nav-icon"><i class="fas fa-comments"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Общение</div>
+                <div class="nav-arabic">المُحادَثَة</div>
+              </div>
+            </a>
+
+            <a href="infa-class.html" class="nav-item">
+              <div class="nav-icon"><i class="fas fa-users"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Мой класс</div>
+                <div class="nav-arabic">الفَصْل</div>
+              </div>
+            </a>
+
+            <a href="izbr.html" class="nav-item">
+              <div class="nav-icon"><i class="fas fa-star"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Избранное</div>
+                <div class="nav-arabic">المُفَضَّل</div>
+              </div>
+            </a>
+
+            <a href="game.html" class="nav-item">
+              <div class="nav-icon"><i class="fas fa-gamepad"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Мини-игры</div>
+                <div class="nav-arabic">الأَلْعَاب</div>
+              </div>
+            </a>
+
+            <a href="profile.html" class="nav-item">
+              <div class="nav-icon"><i class="fas fa-user-circle"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Профиль</div>
+                <div class="nav-arabic">الْمَلَفّ</div>
+              </div>
+            </a>
+
+            <a href="nastroy.html" class="nav-item">
+              <div class="nav-icon"><i class="fas fa-cog"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Настройки</div>
+                <div class="nav-arabic">الإعْدَادَات</div>
+              </div>
+            </a>
+
+            <a href="#" class="nav-item logout">
+              <div class="nav-icon"><i class="fas fa-sign-out-alt"></i></div>
+              <div class="nav-text">
+                <div class="nav-title">Выход</div>
+                <div class="nav-arabic">خُرُوج</div>
+              </div>
+            </a>
+          </div>
+        </nav>
+
+        <div class="sidebar-quran-verse">
+          <div class="verse-arabic">
+            وَذَكِّرْ فَإِنَّ الذِّكْرَىٰ تَنفَعُ الْمُؤْمِنِينَ
+          </div>
+          <div class="verse-translation">
+            Напоминай, ибо напоминание приносит пользу верующим
+          </div>
+        </div>
+      </aside>
+
+      <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
+      <header class="dashboard-header">
+        <div class="header-left">
+          <div class="header-greeting">
+            <h1>
+              <span class="arabic-greeting">السَّلَامُ عَلَيْكُمْ</span>
+              <span class="name">Ищущий знание</span>
+            </h1>
+            <p class="greeting-subtitle">
+              Добро пожаловать в ваше духовное пространство
+            </p>
+          </div>
+
+          <div class="header-stats">
+            <div class="stat-item">
+              <div class="stat-value">٨٥٪</div>
+              <div class="stat-label">Прогресс</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">١٢</div>
+              <div class="stat-label">Уроков</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">٧</div>
+              <div class="stat-label">Дней подряд</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="header-date">
+            <div class="hijri-date">١٥ رَمَضَان ١٤٤٥</div>
+            <div class="gregorian-date">25 марта 2024 • 08:45</div>
+          </div>
+
+          <div class="header-actions">
+            <div class="action-btn notification-btn">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">2</span>
+            </div>
+            <div class="action-btn theme-toggle">
+              <i class="fas fa-moon"></i>
+            </div>
+            <div class="action-btn quick-notes">
+              <i class="fas fa-pen"></i>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ОСНОВНОЙ КОНТЕНТ (ПОЛНОСТЬЮ НОВЫЙ) -->
+      <main class="dashboard-content">
+        <!-- РАЗДЕЛ 1: СУРА ИХЛАС (центральный элемент) -->
+        <section class="surah-section">
+          <div class="surah-container">
+            <div class="surah-header">
+              <h2 class="surah-title">
+                <i class="fas fa-star-and-crescent"></i>
+                سورة الإخلاص
+                <span class="surah-title-latin">Сура Аль-Ихлас</span>
+              </h2>
+              <div class="surah-info">
+                <span class="surah-number">112</span>
+                <span class="surah-revelation">مَكِّيَّة</span>
+                <span class="surah-ayat">4 آيات</span>
+              </div>
+            </div>
+
+            <div class="surah-display">
+              <!-- Небесный фон для суры -->
+              <div class="celestial-backdrop">
+                <div class="glowing-orb"></div>
+                <div class="star-field"></div>
+              </div>
+
+              <!-- Свиток с аятом -->
+              <div class="illuminated-scroll">
+                <div class="scroll-ends">
+                  <div class="scroll-end left"></div>
+                  <div class="scroll-end right"></div>
+                </div>
+
+                <div class="ayah-display">
+                  <div class="ayah-text" id="ayahText">
+                    قُلْ هُوَ اللَّهُ أَحَدٌ ﴿١﴾ اللَّهُ الصَّمَدُ ﴿٢﴾ لَمْ
+                    يَلِدْ وَلَمْ يُولَدْ ﴿٣﴾ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ
+                    ﴿٤﴾
+                  </div>
+                  <div class="ayah-translation">
+                    Скажи: "Он - Аллах Единый, Аллах Вечный. Не родил и не был
+                    рожден, и нет никого равного Ему".
+                  </div>
+                </div>
+
+                <div class="surah-controls">
+                  <button class="control-btn listen-btn">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Слушать</span>
+                  </button>
+                  <button class="control-btn favorite-btn active">
+                    <i class="fas fa-star"></i>
+                    <span>В избранном</span>
+                  </button>
+                  <button class="control-btn tafsir-btn">
+                    <i class="fas fa-book-open"></i>
+                    <span>Тафсир</span>
+                  </button>
+                  <button class="control-btn copy-btn">
+                    <i class="fas fa-copy"></i><span>Копировать</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Статистика суры -->
+              <div class="surah-stats">
+                <div class="stat-card">
+                  <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                  <div class="stat-content">
+                    <div class="stat-value">0:45</div>
+                    <div class="stat-label">Время чтения</div>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                  <div class="stat-content">
+                    <div class="stat-value">10×</div>
+                    <div class="stat-label">Прочитано</div>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon"><i class="fas fa-award"></i></div>
+                  <div class="stat-content">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Запомнено</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- РАЗДЕЛ 2: УЧИТЕЛЬ И ОБЪЯВЛЕНИЕ -->
+        <section class="teacher-section">
+          <div class="dashboard-card teacher-card">
+            <div class="card-glow"></div>
+            <div class="card-header">
+              <h3><i class="fas fa-chalkboard-teacher"></i> مُعَلِّمَتُكُمْ</h3>
+              <div class="card-subtitle">Ваш наставник в мире таджвида</div>
+            </div>
+
+            <div class="card-body">
+              <div class="teacher-profile">
+                <div class="teacher-avatar">
+                  <div class="avatar-image">
+                    <i class="fas fa-user-tie"></i>
+                  </div>
+                  <div class="teacher-badge">
+                    <i class="fas fa-award"></i>
+                  </div>
+                </div>
+
+                <div class="teacher-details">
+                  <h4 class="teacher-name">Устаза Тамила</h4>
+                  <div class="teacher-qualifications">
+                    <span class="qualification"
+                      ><i class="fas fa-quran"></i> Хафиз</span
+                    >
+                    <span class="qualification"
+                      ><i class="fas fa-microphone-alt"></i> Муаджин</span
+                    >
+                    <span class="qualification"
+                      ><i class="fas fa-graduation-cap"></i> Мутавассыт</span
+                    >
+                  </div>
+                  <div class="teacher-experience">
+                    <i class="fas fa-history"></i> Преподает 3 год
+                  </div>
+                </div>
+
+                <button class="message-teacher-btn">
+                  <i class="fas fa-paper-plane"></i>
+                  Написать
+                </button>
+              </div>
+
+              <div class="teacher-announcement">
+                <div class="announcement-header">
+                  <div class="announcement-icon">
+                    <i class="fas fa-bullhorn"></i>
+                  </div>
+                  <div class="announcement-title">
+                    <h5>إعْلَان هَام</h5>
+                    <div class="announcement-time">Сегодня • 07:30</div>
+                  </div>
+                </div>
+
+                <div class="announcement-content">
+                  <div class="announcement-arabic">
+                    غدًا سيكون هناك اختبار قصير على أحكام النون الساكنة
+                    والتنوين. الرجاء المراجعة جيدًا.
+                  </div>
+                  <div class="announcement-translation">
+                    Завтра будет краткий тест по правилам نون ساكنة и تنوين.
+                    Пожалуйста, хорошо повторите.
+                  </div>
+                </div>
+
+                <div class="announcement-actions">
+                  <button class="announcement-btn confirm-btn">
+                    <i class="fas fa-check-circle"></i>
+                    Подтвердить
+                  </button>
+                  <button class="announcement-btn question-btn">
+                    <i class="fas fa-question-circle"></i>
+                    Спросить
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- РАЗДЕЛ 3: СЛЕДУЮЩИЙ УРОК -->
+        <section class="lesson-section">
+          <div class="dashboard-card lesson-card">
+            <div class="card-header">
+              <h3><i class="fas fa-calendar-alt"></i> الدَّرْسُ القَادِمُ</h3>
+              <div class="lesson-status">
+                <span class="status-badge upcoming">قريبًا</span>
+                <span class="status-time">через 1 день</span>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="lesson-details">
+                <div class="detail-item">
+                  <div class="detail-icon"><i class="far fa-clock"></i></div>
+                  <div class="detail-content">
+                    <div class="detail-label">الوَقْت</div>
+                    <div class="detail-value">السبت • 19:00</div>
+                  </div>
+                </div>
+
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fas fa-book-open"></i>
+                  </div>
+                  <div class="detail-content">
+                    <div class="detail-label">الْمَوْضُوع</div>
+                    <div class="detail-value">أحكام الميم الساكنة</div>
+                    <div class="detail-translation">
+                      Правила буквы Мим с сукуном
+                    </div>
+                  </div>
+                </div>
+
+                <div class="detail-item">
+                  <div class="detail-icon"><i class="fas fa-video"></i></div>
+                  <div class="detail-content">
+                    <div class="detail-label">الرَّابِط</div>
+                    <div class="detail-value">Zoom • Комната 5</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lesson-timer">
+                <div class="timer-display">
+                  <div class="time-block">
+                    <div class="time-value" id="lessonHours">24</div>
+                    <div class="time-label">ساعات</div>
+                  </div>
+                  <div class="time-separator">:</div>
+                  <div class="time-block">
+                    <div class="time-value" id="lessonMinutes">45</div>
+                    <div class="time-label">دقائق</div>
+                  </div>
+                  <div class="time-separator">:</div>
+                  <div class="time-block">
+                    <div class="time-value" id="lessonSeconds">30</div>
+                    <div class="time-label">ثواني</div>
+                  </div>
+                </div>
+
+                <button class="join-lesson-btn" id="joinLessonBtn" disabled>
+                  <i class="fas fa-door-closed"></i>
+                  <span class="btn-text">يُفَعَّل قبل 10 دقائق</span>
+                  <span class="btn-tooltip"
+                    >Станет доступно за 10 минут до урока</span
+                  >
+                </button>
+              </div>
+
+              <div class="lesson-preparation">
+                <h5><i class="fas fa-clipboard-check"></i> التحضير للدرس</h5>
+                <ul class="preparation-list">
+                  <li>
+                    <i class="fas fa-check-circle"></i> Повторить Идгам, Ихфа,
+                    Изхар
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Подготовить вопросы
+                  </li>
+                  <li>
+                    <i class="far fa-circle"></i> Принести тетрадь для заметок
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- РАЗДЕЛ 4: РАСПИСАНИЕ И ПРАВИЛА -->
+        <section class="schedule-section">
+          <div class="dashboard-card schedule-card">
+            <div class="card-header">
+              <h3>
+                <i class="fas fa-calendar-star"></i> الجَدْوَلُ وَ الآدَابُ
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <div class="schedule-content">
+                <!-- Мини-календарь -->
+                <div class="mini-calendar">
+                  <div class="calendar-header">
+                    <button class="calendar-nav prev">
+                      <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="calendar-month">
+                      <div class="month-arabic">رَمَضَان</div>
+                      <div class="month-gregorian">Декабрь 2026</div>
+                    </div>
+                    <button class="calendar-nav next">
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </div>
+
+                  <div class="calendar-weekdays">
+                    <div>أح</div>
+                    <div>إث</div>
+                    <div>ث</div>
+                    <div>أر</div>
+                    <div>خ</div>
+                    <div>ج</div>
+                    <div>س</div>
+                  </div>
+
+                  <div class="calendar-days" id="calendarDays">
+                    <!-- Заполняется JavaScript -->
+                  </div>
+
+                  <div class="calendar-legend">
+                    <div class="legend-item">
+                      <span class="legend-dot today"></span>
+                      <span>اليوم</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-dot lesson"></span>
+                      <span>دَرْس</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Правила класса -->
+                <div class="class-rules">
+                  <div class="rules-header">
+                    <h4>
+                      <i class="fas fa-graduation-cap"></i> آدَابُ الطَّالِب
+                    </h4>
+                    <div class="rules-subtitle">Правила ученика</div>
+                  </div>
+
+                  <div class="rules-list">
+                    <div class="rule-item">
+                      <div class="rule-number">١</div>
+                      <div class="rule-text">
+                        <div class="rule-title">الحُضُور فِي الوَقْت</div>
+                        <div class="rule-description">
+                          Приходить за 5 минут до начала урока
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="rule-item">
+                      <div class="rule-number">٢</div>
+                      <div class="rule-text">
+                        <div class="rule-title">إِعْدَادُ الوَاجِب</div>
+                        <div class="rule-description">
+                          Выполнять домашние задания вовремя
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="rule-item">
+                      <div class="rule-number">٣</div>
+                      <div class="rule-text">
+                        <div class="rule-title">حِفْظُ الاحْتِرَام</div>
+                        <div class="rule-description">
+                          Уважать учителя и одноклассников
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="rule-item">
+                      <div class="rule-number">٤</div>
+                      <div class="rule-text">
+                        <div class="rule-title">طَلَبُ العِلْم بنِيَّة</div>
+                        <div class="rule-description">
+                          Иметь искреннее намерение в обучении
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="rule-item">
+                      <div class="rule-number">٥</div>
+                      <div class="rule-text">
+                        <div class="rule-title">المُثَابَرَةُ وَ الصَّبْرُ</div>
+                        <div class="rule-description">
+                          Проявлять усердие и терпение
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- РАЗДЕЛ 5: МОИ ЗАМЕТКИ -->
+        <section class="notes-section">
+          <div class="dashboard-card notes-card">
+            <div class="card-header">
+              <h3><i class="fas fa-sticky-note"></i> مُلاحَظَاتِي</h3>
+              <div class="notes-count">
+                <span class="count-number">٧</span>
+                <span class="count-label">ملاحظات</span>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="notes-editor">
+                <div class="editor-header">
+                  <div class="editor-title">اكتب ما تريد حفظه</div>
+                  <div class="editor-actions">
+                    <button class="format-btn" title="Жирный">
+                      <i class="fas fa-bold"></i>
+                    </button>
+                    <button class="format-btn" title="Курсив">
+                      <i class="fas fa-italic"></i>
+                    </button>
+                    <button class="format-btn" title="Список">
+                      <i class="fas fa-list-ul"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <textarea
+                  class="notes-input"
+                  placeholder="اكتب ملاحظة جديدة... (Напишите новую заметку...)"
+                ></textarea>
+
+                <div class="editor-footer">
+                  <div class="word-count">الكلمات: ٠</div>
+                  <button class="save-note-btn" id="saveNoteBtn">
+                    <i class="fas fa-save"></i>
+                    حَفَظَ
+                  </button>
+                </div>
+              </div>
+
+              <div class="notes-preview">
+                <div class="preview-header">
+                  <h5>آخِرُ المُلاحَظَات</h5>
+                  <button class="view-all-notes">عرض الكل</button>
+                </div>
+
+                <div class="notes-list">
+                  <!-- Заметки будут добавляться здесь -->
+                  <div class="note-item">
+                    <div class="note-content">
+                      حُرُوفُ التَّفْخِيم: خ ص ض غ ط ظ ق. تُنْطَقُ بِرَفْعِ
+                      اللِّسَانِ وَ تَكْوِينِ رَنَّةٍ فِي الْحَلْقِ.
+                    </div>
+                    <div class="note-meta">
+                      <span class="note-date">أمس • ٢١:١٥</span>
+                      <div class="note-actions">
+                        <button class="note-action favorite">
+                          <i class="far fa-star"></i>
+                        </button>
+                        <button class="note-action delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- РАЗДЕЛ 6: ПРОГРЕСС ОБУЧЕНИЯ -->
+        <section class="progress-section">
+          <div class="dashboard-card progress-card">
+            <div class="card-header">
+              <h3><i class="fas fa-chart-pie"></i> تَقَدُّمِي</h3>
+              <div class="progress-overall">٨٥٪ إِتْمَام</div>
+            </div>
+
+            <div class="card-body">
+              <div class="progress-chart">
+                <div class="chart-container">
+                  <div class="circular-progress">
+                    <div class="progress-ring">
+                      <svg width="120" height="120">
+                        <circle
+                          class="progress-bg"
+                          cx="60"
+                          cy="60"
+                          r="54"
+                        ></circle>
+                        <circle
+                          class="progress-fill"
+                          cx="60"
+                          cy="60"
+                          r="54"
+                          style="stroke-dashoffset: 340"
+                        ></circle>
+                      </svg>
+                      <div class="progress-value">٨٥٪</div>
+                    </div>
+                  </div>
+                  <div class="progress-stats">
+                    <div class="stat">
+                      <div class="stat-value">١٢</div>
+                      <div class="stat-label">الدُّرُوس</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">٣٨</div>
+                      <div class="stat-label">الوَاجِبَات</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">٧</div>
+                      <div class="stat-label">الأَيَّام</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="progress-details">
+                  <div class="progress-category">
+                    <div class="category-header">
+                      <span class="category-name">التَّجْوِيد</span>
+                      <span class="category-percent">٩٢٪</span>
+                    </div>
+                    <div class="category-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="progress-category">
+                    <div class="category-header">
+                      <span class="category-name">القِرَاءَة</span>
+                      <span class="category-percent">٨٥٪</span>
+                    </div>
+                    <div class="category-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="progress-category">
+                    <div class="category-header">
+                      <span class="category-name">الْحِفْظ</span>
+                      <span class="category-percent">٧٨٪</span>
+                    </div>
+                    <div class="category-progress">
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="progress-achievements">
+                <h5><i class="fas fa-trophy"></i> إِنْجَازاتِي</h5>
+                <div class="achievements-list">
+                  <div class="achievement earned">
+                    <div class="achievement-icon">
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <div class="achievement-info">
+                      <div class="achievement-name">الْمُبْتَدِئ</div>
+                      <div class="achievement-desc">Пройдено 5 уроков</div>
+                    </div>
+                  </div>
+
+                  <div class="achievement earned">
+                    <div class="achievement-icon">
+                      <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="achievement-info">
+                      <div class="achievement-name">قَارِئ</div>
+                      <div class="achievement-desc">Прочитано 10 сур</div>
+                    </div>
+                  </div>
+
+                  <div class="achievement locked">
+                    <div class="achievement-icon">
+                      <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="achievement-info">
+                      <div class="achievement-name">الْحَافِظ</div>
+                      <div class="achievement-desc">Выучить 1 джуз</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ЭЛЕГАНТНЫЙ ФУТЕР 
+      <footer class="dashboard-footer">
+        <div class="footer-content">
+          <div class="footer-quote">
+            <div class="quote-arabic">
+              "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ
+              لَهُ طَرِيقًا إِلَى الْجَنَّةِ"
+            </div>
+            <div class="quote-translation">
+              "Кто отправится по дороге в поисках знания, тому Аллах облегчит
+              путь в Рай"
+            </div>
+            <div class="quote-source">Сахих Муслим</div>
+          </div>
+
+          <div class="footer-divider">
+            <div class="divider-line"></div>
+            <div class="divider-ornament">
+              <i class="fas fa-star-and-crescent"></i>
+            </div>
+            <div class="divider-line"></div>
+          </div>
+
+          <div class="footer-info">
+            <div class="footer-logo">
+              <span class="logo-arabic">مَعْرِفَة</span>
+              <span class="logo-latin">MA'RIFA</span>
+            </div>
+
+            <div class="footer-text">
+              <p>
+                Платформа для изучения таджвида и совершенствования чтения
+                Корана
+              </p>
+              <p class="arabic-text">
+                مَنْصَّةٌ لِتَعْلِيمِ التَّجْوِيدِ وَ إِتْقَانِ قِرَاءَةِ
+                الْقُرْآنِ
+              </p>
+            </div>
+
+            <div class="footer-copyright">
+              © 2026 MA'RIFA • مَعْرِفَة — فَنُّ التَّجْوِيدِ
+              <span class="footer-version"
+                >الإصدار ١.٢ • تم التطوير بِـــﷺ</span
+              >
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>-->
+
+    <script src="dashboard.js"></script>
+
+  </body>
+</html>

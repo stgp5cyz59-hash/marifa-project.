@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Игровая площадка</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* ===== СТИЛИ СТРАНИЦЫ ИГРЫ ===== */
+
+      /* ФОН В РОЗОВЫХ ТОНАХ */
+      .game-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+      }
+
+      .game-background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("images/nebo11.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        filter: blur(10px) brightness(1.1) sepia(0.3) saturate(1.5)
+          hue-rotate(-10deg);
+        transform: scale(1.1);
+      }
+
+      .game-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(168, 108, 130, 0.85) 0%,
+          rgba(138, 74, 95, 0.9) 40%,
+          rgba(45, 27, 78, 0.95) 100%
+        );
+        backdrop-filter: blur(3px);
+      }
+
+      /* ПЛАВНЫЙ ПЕРЕХОД К ФУТЕРУ */
+      .game-footer-transition {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .game-transition-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(138, 74, 95, 0.3),
+          rgba(138, 74, 95, 0.6),
+          rgba(138, 74, 95, 0.9)
+        );
+        animation: gameWaveFloat 25s infinite linear;
+      }
+
+      @keyframes gameWaveFloat {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-15px) scale(1.03);
+        }
+        100% {
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* ГЛАВНЫЙ ЗАГОЛОВОК */
+      .game-hero {
+        text-align: center;
+        padding: 120px 20px 60px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .game-title-arabic {
+        font-family: "Amiri", serif;
+        font-size: 4.5rem;
+        color: #fff8f0;
+        margin-bottom: 20px;
+        text-shadow: 0 4px 20px rgba(138, 74, 95, 0.5);
+        line-height: 1.2;
+      }
+
+      .game-title-latin {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
+        color: #ffffff;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .game-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      /* ОСНОВНОЙ КОНТЕЙНЕР */
+      .game-container {
+        max-width: 1400px;
+        margin: 0 auto 100px;
+        padding: 0 20px;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* КАРТОЧКА "В РАЗРАБОТКЕ" */
+      .dev-notice {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 250, 245, 0.98) 100%
+        );
+        border-radius: 30px;
+        padding: 40px 50px;
+        margin-bottom: 50px;
+        box-shadow: 0 25px 60px rgba(138, 74, 95, 0.25),
+          0 0 0 1px rgba(212, 165, 116, 0.2);
+        border: 2px solid rgba(168, 108, 130, 0.3);
+        text-align: center;
+      }
+
+      .dev-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #a86c82, #f5d5a6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        color: white;
+        font-size: 3rem;
+        box-shadow: 0 10px 25px rgba(168, 108, 130, 0.3);
+      }
+
+      .dev-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        color: #8a4a5f;
+        margin-bottom: 15px;
+        font-weight: 700;
+      }
+
+      .dev-text {
+        font-family: "Inter", sans-serif;
+        font-size: 1.15rem;
+        color: #4a4048;
+        line-height: 1.7;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* СЕТКА ИГР */
+      .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .game-card {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.97) 0%,
+          rgba(255, 250, 245, 0.95) 100%
+        );
+        border-radius: 25px;
+        padding: 35px;
+        box-shadow: 0 20px 50px rgba(138, 74, 95, 0.2),
+          0 0 0 1px rgba(212, 165, 116, 0.15);
+        border: 2px solid rgba(168, 108, 130, 0.25);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .game-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(168, 108, 130, 0.05) 0%,
+          rgba(245, 213, 166, 0.05) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+      }
+
+      .game-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 70px rgba(138, 74, 95, 0.35), 0 0 0 2px #a86c82,
+          0 0 40px rgba(245, 213, 166, 0.3);
+        border-color: #a86c82;
+      }
+
+      .game-card:hover::before {
+        opacity: 1;
+      }
+
+      .game-status {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #8a4a5f;
+        color: white;
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-family: "Inter", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        z-index: 2;
+      }
+
+      .game-status.available {
+        background: #4caf50;
+      }
+
+      .game-status.coming {
+        background: #ff9800;
+      }
+
+      .game-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #a86c82, #f5d5a6);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        color: white;
+        font-size: 2.5rem;
+        align-self: flex-start;
+        z-index: 2;
+      }
+
+      .game-content {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+      }
+
+      .game-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+        color: #6d394a;
+        margin-bottom: 15px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .game-arabic-name {
+        font-family: "Amiri", serif;
+        font-size: 1.4rem;
+        color: #a86c82;
+        margin-bottom: 20px;
+        direction: rtl;
+        font-weight: 600;
+      }
+
+      .game-description {
+        font-family: "Inter", sans-serif;
+        font-size: 1.05rem;
+        color: #4a4048;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        flex: 1;
+      }
+
+      .game-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 25px 0;
+      }
+
+      .game-features li {
+        color: #666;
+        padding: 5px 0;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .game-features li i {
+        color: #d4a574;
+        font-size: 0.9rem;
+      }
+
+      .play-button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #8a4a5f, #a86c82);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        font-family: "Inter", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        transition: all 0.3s ease;
+        margin-top: auto;
+        position: relative;
+        z-index: 2;
+        text-decoration: none;
+      }
+
+      .play-button:hover {
+        background: linear-gradient(135deg, #6d394a, #8a4a5f);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(138, 74, 95, 0.3);
+      }
+
+      .play-button.coming-soon {
+        background: rgba(138, 74, 95, 0.1);
+        color: #8a4a5f;
+        cursor: not-allowed;
+      }
+
+      .play-button.coming-soon:hover {
+        background: rgba(138, 74, 95, 0.15);
+        transform: none;
+        box-shadow: none;
+      }
+
+      /* ОСОБЫЕ СТИЛИ ДЛЯ КАРТОЧКИ АРАБСКОГО АЛФАВИТА */
+      .game-card.alphabet-card {
+        border: 3px solid #eaeaea;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.98) 0%,
+          rgba(245, 213, 166, 0.12) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .game-card.alphabet-card::after {
+        content: "أ ب ت";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-family: "Amiri", serif;
+        font-size: 1.5rem;
+        color: rgba(138, 74, 95, 0.15);
+        font-weight: 700;
+        z-index: 1;
+      }
+
+      .game-card.alphabet-card .game-icon {
+        background: linear-gradient(135deg, #8a4a5f, #6d394a);
+        box-shadow: 0 8px 20px rgba(138, 74, 95, 0.3);
+      }
+
+      .game-card.alphabet-card .play-button {
+        background: linear-gradient(135deg, #ffcbe9, #ad9bb8);
+        color: #211733;
+        border: 2px solid #634d6672;
+        font-weight: 700;
+      }
+
+      .game-card.alphabet-card .play-button:hover {
+        background: linear-gradient(135deg, #735e60, #a78797);
+        box-shadow: 0 10px 25px rgba(212, 165, 116, 0.4);
+        transform: translateY(-3px);
+      }
+
+      .game-card.alphabet-card .game-status {
+        background: #4caf50;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+        }
+      }
+
+      /* ПРОГРЕСС РАЗРАБОТКИ */
+      .development-progress {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 250, 245, 0.98) 100%
+        );
+        border-radius: 25px;
+        padding: 40px;
+        margin: 60px 0;
+        box-shadow: 0 20px 50px rgba(138, 74, 95, 0.15);
+        border: 2px solid rgba(168, 108, 130, 0.2);
+      }
+
+      .progress-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        color: #6d394a;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .progress-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 25px 20px;
+        background: rgba(168, 108, 130, 0.08);
+        border-radius: 20px;
+        border: 1px solid rgba(168, 108, 130, 0.15);
+      }
+      .stat-number {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        color: #8a4a5f;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        color: #666;
+      }
+
+      .progress-bar-container {
+        height: 20px;
+        background: rgba(168, 108, 130, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 30px 0;
+        border: 1px solid rgba(168, 108, 130, 0.2);
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #a86c82, #f5d5a6);
+        border-radius: 10px;
+        width: 55%;
+        position: relative;
+        animation: progressAnimation 2s ease-out;
+      }
+
+      @keyframes progressAnimation {
+        from {
+          width: 0;
+        }
+        to {
+          width: 55%;
+        }
+      }
+
+      /* ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ */
+      .game-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .game-star {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #f5d5a6;
+        border-radius: 50%;
+        animation: gameStarTwinkle 4s infinite;
+      }
+
+      .game-star:nth-child(1) {
+        top: 15%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .game-star:nth-child(2) {
+        top: 35%;
+        right: 15%;
+        animation-delay: 1s;
+      }
+      .game-star:nth-child(3) {
+        top: 65%;
+        left: 20%;
+        animation-delay: 2s;
+      }
+      .game-star:nth-child(4) {
+        top: 25%;
+        right: 25%;
+        animation-delay: 1.5s;
+      }
+
+      @keyframes gameStarTwinkle {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.2);
+        }
+      }
+
+      /* КНОПКА НАЗАД */
+      .back-to-dashboard {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        z-index: 1000;
+      }
+
+      .back-btn {
+        padding: 12px 25px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(168, 108, 130, 0.3);
+        border-radius: 50px;
+        color: #8a4a5f;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .back-btn:hover {
+        background: rgba(168, 108, 130, 0.1);
+        transform: translateX(-5px);
+      }
+
+      /* АДАПТИВНОСТЬ */
+      @media (max-width: 992px) {
+        .games-grid {
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .dev-notice {
+          padding: 35px 30px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .game-title-arabic {
+          font-size: 3.5rem;
+        }
+
+        .game-title-latin {
+          font-size: 2.2rem;
+        }
+
+        .game-subtitle {
+          font-size: 1.15rem;
+        }
+
+        .games-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .progress-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .back-btn span {
+          display: none;
+        }
+
+        .back-btn {
+          padding: 10px;
+          width: 45px;
+          height: 45px;
+          justify-content: center;
+        }
+
+        .game-card {
+          min-height: 280px;
+          padding: 30px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .game-hero {
+          padding: 100px 15px 40px;
+        }
+
+        .game-title-arabic {
+          font-size: 2.8rem;
+        }
+
+        .game-title-latin {
+          font-size: 1.8rem;
+        }
+
+        .progress-stats {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .development-progress {
+          padding: 30px 20px;
+        }
+
+        .stat-number {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ФОН В РОЗОВЫХ ТОНАХ -->
+    <div class="game-background">
+      <div class="game-background-image"></div>
+      <div class="game-overlay"></div>
+    </div>
+
+    <!-- КНОПКА НАЗАД -->
+    <div class="back-to-dashboard">
+      <a href="dashboard.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        <span>В кабинет</span>
+      </a>
+    </div>
+
+    <!-- ГЛАВНЫЙ ЗАГОЛОВОК -->
+    <header class="game-hero">
+      <h1 class="game-title-arabic">مَلْعَبُ الْعِلْمِ</h1>
+      <h2 class="game-title-latin">Игровая площадка</h2>
+      <p class="game-subtitle">
+        Учите таджвид весело и легко через игры. Запоминайте правила, тренируйте
+        память и совершенствуйте навыки в игровой форме.
+      </p>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР -->
+    <main class="game-container">
+      <!-- ДЕКОРАТИВНЫЕ ЗВЕЗДЫ -->
+      <div class="game-decoration">
+        <div class="game-star"></div>
+        <div class="game-star"></div>
+        <div class="game-star"></div>
+        <div class="game-star"></div>
+      </div>
+
+      <!-- УВЕДОМЛЕНИЕ О РАЗРАБОТКЕ -->
+      <div class="dev-notice">
+        <div class="dev-icon">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <h3 class="dev-title">Раздел в активной разработке</h3>
+        <p class="dev-text">
+          Мы создаём для вас интересные и полезные игры для изучения таджвида.
+          Пока доступно несколько игр, но мы постоянно добавляем новые. Следите
+          за обновлениями!
+        </p>
+      </div>
+
+      <!-- СЕТКА ИГР -->
+      <div class="games-grid">
+        <!-- ИГРА 1: АЛФАВИТ -->
+        <a href="alphabet-game.html" class="game-card alphabet-card">
+          <span class="game-status available">Доступно</span>
+          <div class="game-icon">
+            <i class="fas fa-font"></i>
+          </div>
+          <div class="game-content">
+            <h3 class="game-name">Арабский алфавит</h3>
+            <div class="game-arabic-name">حروف الهجاء</div>
+            <p class="game-description">
+              Учите арабские буквы в игровой форме. Сопоставляйте буквы с их
+              названиями, слушайте правильное произношение и запоминайте
+              начертания.
+            </p>
+            <ul class="game-features">
+              <li><i class="fas fa-check"></i> 28 букв с озвучкой</li>
+              <li><i class="fas fa-check"></i> 3 уровня сложности</li>
+              <li><i class="fas fa-check"></i> Таймер и очки</li>
+              <li><i class="fas fa-check"></i> Сохранение прогресса</li>
+            </ul>
+          </div>
+          <div class="play-button">
+            <i class="fas fa-play"></i> Играть сейчас
+          </div>
+        </a>
+
+        <!-- ИГРА 2: СЫФАТ -->
+        <div class="game-card">
+          <span class="game-status available">Доступно</span>
+          <div class="game-icon">
+            <i class="fas fa-weight-hanging"></i>
+          </div>
+          <div class="game-content">
+            <h3 class="game-name">Сыфат (атрибуты)</h3>
+            <div class="game-arabic-name">صفات الحروف</div>
+            <p class="game-description">
+              Различайте тяжёлые и лёгкие буквы. Тренируйте слух и память,
+              определяя атрибуты букв по звучанию.
+            </p>
+            <ul class="game-features">
+              <li><i class="fas fa-check"></i> 7 тяжёлых букв</li>
+              <li><i class="fas fa-check"></i> 21 лёгкая буква</li>
+              <li><i class="fas fa-check"></i> Аудио-тренировка</li>
+            </ul>
+          </div>
+          <button class="play-button" onclick="startGame('sifat')">
+            <i class="fas fa-play"></i> Играть сейчас
+          </button>
+        </div>
+
+        <!-- ИГРА 3: МАХРАДЖ -->
+        <div class="game-card">
+          <span class="game-status coming">Скоро</span>
+          <div class="game-icon">
+            <i class="fas fa-microphone-alt"></i>
+          </div>
+          <div class="game-content">
+            <h3 class="game-name">Махрадж викторина</h3>
+            <div class="game-arabic-name">مخارج الحروف</div>
+            <p class="game-description">
+              Определяйте место выхода звуков букв. Тест на знание 5 основных
+              махраджей арабских букв.
+            </p>
+            <ul class="game-features">
+              <li><i class="fas fa-clock"></i> 5 областей произношения</li>
+              <li><i class="fas fa-clock"></i> Интерактивная карта</li>
+              <li><i class="fas fa-clock"></i> Подсказки и объяснения</li>
+            </ul>
+          </div>
+          <button class="play-button coming-soon">
+            <i class="fas fa-clock"></i> Скоро доступно
+          </button>
+        </div>
+
+        <!-- ИГРА 4: ПРАВИЛА ТАДЖВИДА -->
+        <div class="game-card">
+          <span class="game-status coming">Скоро</span>
+          <div class="game-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <div class="game-content">
+            <h3 class="game-name">Правила таджвида</h3>
+            <div class="game-arabic-name">قواعد التجويد</div>
+            <p class="game-description">
+              Изучайте правила через интерактивные задания. Нун сакина, мим
+              сакина, мадд и другие правила в игровой форме.
+            </p>
+            <ul class="game-features">
+              <li><i class="fas fa-clock"></i> 10+ правил таджвида</li>
+              <li><i class="fas fa-clock"></i> Примеры из Корана</li>
+              <li><i class="fas fa-clock"></i> Постепенное усложнение</li>
+            </ul>
+          </div>
+          <button class="play-button coming-soon">
+            <i class="fas fa-clock"></i> Скоро доступно
+          </button>
+        </div>
+
+        <!-- ИГРА 5: ПАМЯТЬ -->
+        <div class="game-card">
+          <span class="game-status available">Доступно</span>
+          <div class="game-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="game-content">
+            <h3 class="game-name">Игра на память</h3>
+            <div class="game-arabic-name">لعبة الذاكرة</div>
+            <p class="game-description">
+              Тренируйте память, находя пары арабских букв, их названий и
+              транскрипций.
+            </p>
+            <ul class="game-features">
+              <li><i class="fas fa-check"></i> 3 режима сложности</li>
+              <li><i class="fas fa-check"></i> Таймер и рекорды</li>
+              <li><i class="fas fa-check"></i> Прогрессивная система</li>
+            </ul>
+          </div>
+          <button class="play-button" onclick="startGame('memory')">
+            <i class="fas fa-play"></i> Играть сейчас
+          </button>
+        </div>
+
+        <!-- ИГРА 6: ТЕСТ -->
+        <div class="game-card">
+          <span class="game-status coming">Скоро</span>
+          <div class="game-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="game-content">
+            <h3 class="game-name">Экзамен по таджвиду</h3>
+            <div class="game-arabic-name">امتحان التجويد</div>
+            <p class="game-description">
+              Проверьте свои знания в финальном тесте. Ответьте на вопросы по
+              всемизученным темам и получите сертификат.
+            </p>
+            <ul class="game-features">
+              <li><i class="fas fa-clock"></i> 50+ вопросов</li>
+              <li><i class="fas fa-clock"></i> Разные уровни</li>
+              <li><i class="fas fa-clock"></i> Сертификат достижений</li>
+            </ul>
+          </div>
+          <button class="play-button coming-soon">
+            <i class="fas fa-clock"></i> Скоро доступно
+          </button>
+        </div>
+      </div>
+
+      <!-- ПРОГРЕСС РАЗРАБОТКИ -->
+      <div class="development-progress">
+        <h3 class="progress-title">Прогресс разработки игрового раздела</h3>
+
+        <div class="progress-stats">
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Доступных игр</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">55%</div>
+            <div class="stat-label">Готовность раздела</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Всего игр планируется</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">...</div>
+            <div class="stat-label">Дата завершения</div>
+          </div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar"></div>
+        </div>
+
+        <p
+          style="
+            font-family: 'Inter', sans-serif;
+            color: #666;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+          "
+        >
+          Мы работаем над добавлением новых игр каждый день. Следующие
+          обновления будут включать мультиплеерные режимы, систему достижений и
+          соревновательные таблицы лидеров.
+        </p>
+      </div>
+    </main>
+
+    <!-- ПЛАВНЫЙ ПЕРЕХОД К ФУТЕРУ 
+    <div class="game-footer-transition">
+      <div class="game-transition-wave"></div>
+    </div>-->
+
+    <!-- ФУТЕР 
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <span class="footer-arabic">مَعْرِفَة</span>
+          <span class="footer-latin">MA'RIFA</span>
+        </div>
+        <div class="footer-text">
+          <p>Учитесь с удовольствием, играйте с пользой</p>
+        </div>
+        <div class="footer-divider">
+          <div class="footer-line"></div>
+          <div class="footer-dot"></div>
+          <div class="footer-line"></div>
+        </div>
+        <div class="footer-copyright">
+          © 2024 MA'RIFA. Искусство Таджвида. Все права сохранены.
+        </div>
+      </div>
+    </footer>-->
+
+    <!-- СКРИПТ -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("🎮 Игровая площадка загружена");
+
+        // ФУНКЦИЯ ДЛЯ ЗАПУСКА ИГР
+        window.startGame = function (gameType) {
+          // Для алфавита уже есть отдельная страница
+          if (gameType === "alphabet") {
+            window.location.href = "alphabet-game.html";
+            return;
+          }
+
+          const games = {
+            alphabet: "Арабский алфавит",
+            sifat: "Сыфат (атрибуты)",
+            memory: "Игра на память",
+          };
+
+          const gameName = games[gameType] || "Игра";
+
+          // Временное сообщение для других игр (в будущем будет реальная игра)
+          const modal = document.createElement("div");
+          modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.7);display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2000;
+                    animation: fadeIn 0.3s ease;
+                `;
+
+          modal.innerHTML = `
+                    <div style="
+                        background: white;
+                        border-radius: 25px;
+                        padding: 40px;
+                        max-width: 500px;
+                        width: 90%;
+                        text-align: center;
+                        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+                        border: 3px solid #a86c82;
+                        animation: slideUp 0.3s ease;
+                    ">
+                        <div style="
+                            width: 80px;
+                            height: 80px;
+                            background: linear-gradient(135deg, #a86c82, #f5d5a6);
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 25px;
+                            color: white;font-size: 2.5rem;
+                        ">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 style="
+                            font-family: 'Cormorant Garamond', serif;
+                            font-size: 2rem;
+                            color: #6d394a;
+                            margin-bottom: 15px;
+                        ">
+                            Запуск: ${gameName}
+                        </h3>
+                        <p style="
+                            font-family: 'Inter', sans-serif;
+                            color: #666;
+                            line-height: 1.6;
+                            margin-bottom: 25px;
+                        ">
+                            Игра находится в разработке. Мы активно работаем над созданием 
+                            полноценной игровой механики для лучшего запоминания таджвида.
+                        </p>
+                        <button onclick="this.closest('div[style*=\\'position: fixed\\']').remove()" style="
+                            padding: 15px 40px;
+                            background: #8a4a5f;
+                            color: white;
+                            border: none;
+                            border-radius: 15px;
+                            font-family: 'Inter', sans-serif;
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        ">
+                            Понятно
+                        </button>
+                    </div>
+                `;
+
+          document.body.appendChild(modal);
+
+          // Закрытие по клику вне окна
+          modal.addEventListener("click", function (e) {
+            if (e.target === modal) {
+              modal.remove();
+            }
+          });
+
+          // Закрытие по Escape
+          const closeOnEscape = function (e) {
+            if (e.key === "Escape") {
+              modal.remove();
+              document.removeEventListener("keydown", closeOnEscape);
+            }
+          };
+          document.addEventListener("keydown", closeOnEscape);
+        };
+
+        // АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }, index * 100);
+            }
+          });
+        }, observerOptions);
+
+        // Применяем анимацию к карточкам игр
+        setTimeout(() => {
+          const cards = document.querySelectorAll(".game-card");
+          cards.forEach((card, index) => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(30px)";
+            card.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+            observer.observe(card);
+          });
+        }, 300);
+
+        // ИНТЕРАКТИВНОСТЬ ДЛЯ КНОПОК (кроме карточки алфавита)
+        document
+          .querySelectorAll(".play-button:not(.coming-soon)")
+          .forEach((button) => {
+            button.addEventListener("mouseenter", function () {
+              if (!this.closest(".alphabet-card")) {
+                this.style.transform = "translateY(-3px) scale(1.02)";
+              }
+            });
+
+            button.addEventListener("mouseleave", function () {
+              this.style.transform = "";
+            });
+          });
+
+        // АНИМАЦИЯ ПРОГРЕСС-БАРА
+        const progressBar = document.querySelector(".progress-bar");
+        if (progressBar) {
+          setTimeout(() => {
+            progressBar.style.width = "55%";
+          }, 500);
+        }
+
+        // ДОБАВЛЯЕМ СТИЛИ ДЛЯ АНИМАЦИЙ
+        const style = document.createElement("style");
+        style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                
+                @keyframes slideUp {
+                    from { 
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to { 
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `;
+        document.head.appendChild(style);
+
+        console.log("✅ Игровая площадка инициализирована");
+      });
+    </script>
+  </body>
+</html>

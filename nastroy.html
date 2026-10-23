@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Настройки</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* ===== ОСНОВНЫЕ СТИЛИ СТРАНИЦЫ НАСТРОЕК ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: #4a4048;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Фон с размытием */
+      .settings-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+      }
+
+      .settings-background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("images/nebo11.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        filter: blur(15px) brightness(0.7); /* Сильное размытие и затемнение */
+        transform: scale(1.1); /* Убираем черные края от blur */
+      }
+
+      .settings-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(45, 27, 78, 0.85) 0%,
+          rgba(138, 74, 95, 0.8) 50%,
+          rgba(15, 10, 26, 0.9) 100%
+        );
+        backdrop-filter: blur(5px);
+      }
+
+      /* Навигация */
+      .settings-nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px 0;
+        background: rgba(31, 21, 33, 0.9);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* Заголовок */
+      .settings-hero {
+        text-align: center;
+        padding: 140px 20px 70px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .settings-title-arabic {
+        font-family: "Amiri", serif;
+        font-size: 4.2rem;
+        color: #f5d5a6;
+        margin-bottom: 25px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        line-height: 1.2;
+      }
+
+      .settings-title-latin {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.6rem;
+        color: #ffffff;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      .settings-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 700px;
+        margin: 0 auto 30px;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      /* Основной контейнер */
+      .settings-container {
+        max-width: 1200px;
+        margin: 0 auto 100px;
+        padding: 0 20px;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Карточка настроек */
+      .settings-card {
+        background: rgba(31, 21, 33, 0.92);
+        border-radius: 30px;
+        padding: 60px 50px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(212, 165, 116, 0.1),
+          0 0 30px rgba(212, 165, 116, 0.1) inset;
+        border: 2px solid rgba(212, 165, 116, 0.25);
+        backdrop-filter: blur(20px);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 50px;
+      }
+
+      /* Иконка в разработке */
+      .dev-icon {
+        width: 140px;
+        height: 140px;
+        background: linear-gradient(135deg, #8a4a5f, #d4a574);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 40px;
+        position: relative;
+        animation: iconFloat 3s ease-in-out infinite;
+      }
+
+      .dev-icon i {
+        font-size: 4rem;
+        color: white;
+      }
+
+      .dev-icon::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(135deg, #8a4a5f, #d4a574);
+        border-radius: 50%;
+        opacity: 0.3;
+        z-index: -1;
+        animation: pulseRing 2s ease-out infinite;
+      }
+
+      @keyframes iconFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-15px) rotate(5deg);
+        }
+      }
+
+      @keyframes pulseRing {
+        0% {
+          transform: scale(1);
+          opacity: 0.3;
+        }
+        100% {
+          transform: scale(1.1);
+          opacity: 0;
+        }
+      }
+
+      /* Заголовок */
+      .dev-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
+        color: #f5d5a6;
+        margin-bottom: 25px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      .dev-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 1.3rem;
+        color: rgba(245, 213, 166, 0.9);
+        margin-bottom: 40px;
+        font-weight: 500;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      /* Описание */
+      .dev-description {
+        font-family: "Inter", sans-serif;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.8;
+        margin-bottom: 50px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 400;
+        padding: 35px;
+        background: rgba(45, 27, 78, 0.4);
+        border-radius: 20px;
+        border-left: 4px solid #d4a574;
+        border-right: 4px solid #8a4a5f;
+        text-align: center;
+      }
+
+      /* Разделы настроек */
+      .sections-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.4rem;
+        color: #f5d5a6;
+        margin: 60px 0 40px;
+        font-weight: 600;
+        text-align: center;
+        position: relative;
+      }
+
+      .sections-title::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #d4a574, transparent);
+      }
+
+      .sections-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .section-item {
+        background: rgba(45, 27, 78, 0.6);
+        border-radius: 20px;
+        padding: 35px;
+        border: 2px solid rgba(212, 165, 116, 0.15);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #8a4a5f, #d4a574);
+      }
+
+      .section-item:hover {
+        transform: translateY(-8px);
+        border-color: rgba(212, 165, 116, 0.4);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+          0 0 20px rgba(212, 165, 116, 0.1) inset;
+        background: rgba(45, 27, 78, 0.7);
+      }
+
+      .section-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(
+          135deg,
+          rgba(138, 74, 95, 0.2),
+          rgba(212, 165, 116, 0.2)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        color: #d4a574;
+        font-size: 1.8rem;
+        border: 2px solid rgba(212, 165, 116, 0.3);
+      }
+
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.7rem;
+        color: #ffffff;
+        margin-bottom: 15px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .section-desc {
+        font-family: "Inter", sans-serif;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        font-size: 1.05rem;
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      .section-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .section-features li {
+        color: rgba(245, 213, 166, 0.8);
+        padding: 8px 0;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-features li i {
+        color: #d4a574;
+        font-size: 0.9rem;
+      }
+
+      /* Прогресс-бар */
+      .progress-section {
+        margin: 60px 0;
+        padding: 40px;
+        background: rgba(45, 27, 78, 0.5);
+        border-radius: 25px;
+        border: 2px solid rgba(212, 165, 116, 0.2);
+      }
+
+      .progress-label {
+        font-family: "Inter", sans-serif;
+        font-size: 1.3rem;
+        color: #ffffff;
+        font-weight: 600;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .progress-percent {
+        color: #d4a574;
+        font-weight: 700;
+        font-size: 1.4rem;
+      }
+
+      .progress-bar-container {
+        height: 20px;
+        background: rgba(138, 74, 95, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 30px;
+        border: 1px solid rgba(212, 165, 116, 0.1);
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #8a4a5f, #d4a574);
+        border-radius: 10px;
+        width: 35%;
+        position: relative;
+        animation: progressAnimation 2s ease-out;
+      }
+
+      .progress-bar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        animation: shimmer 2s infinite;
+      }
+
+      @keyframes progressAnimation {
+        from {
+          width: 0;
+        }
+        to {
+          width: 35%;
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Кнопки */
+      .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 50px;
+        flex-wrap: wrap;
+      }
+
+      .nav-btn {
+        padding: 18px 35px;
+        border-radius: 50px;
+        font-family: "Inter", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s ease;
+        min-width: 220px;
+        justify-content: center;
+        border: 2px solid;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #8a4a5f, #6d394a);
+        color: white;
+        border-color: #8a4a5f;
+      }
+
+      .btn-secondary {
+        background: rgba(45, 27, 78, 0.6);
+        color: #f5d5a6;
+        border-color: rgba(212, 165, 116, 0.4);
+      }
+
+      .nav-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(138, 74, 95, 0.3);
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #6d394a, #8a4a5f);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(212, 165, 116, 0.1);
+        border-color: #d4a574;
+      }
+
+      /* Декоративные элементы */
+      .settings-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .settings-star {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: #d4a574;
+        border-radius: 50%;
+        animation: twinkle 4s infinite;
+      }
+
+      .settings-star:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .settings-star:nth-child(2) {
+        top: 40%;
+        right: 15%;
+        animation-delay: 1s;
+      }
+      .settings-star:nth-child(3) {
+        top: 70%;
+        left: 20%;
+        animation-delay: 2s;
+      }
+      .settings-star:nth-child(4) {
+        top: 30%;
+        right: 25%;
+        animation-delay: 1.5s;
+      }
+      .settings-star:nth-child(5) {
+        top: 60%;
+        left: 35%;
+        animation-delay: 0.5s;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.3);
+        }
+      }
+
+      /* Футер */
+      .settings-footer {
+        padding: 60px 40px;
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 10, 26, 0.9) 0%,
+          rgba(15, 10, 26, 1) 100%
+        );
+        color: rgba(255, 255, 255, 0.7);
+        position: relative;
+        z-index: 10;
+        border-top: 1px solid rgba(212, 165, 116, 0.1);
+      }
+
+      /* Адаптивность */
+      @media (max-width: 992px) {
+        .sections-grid {
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .settings-card {
+          padding: 50px 30px;
+        }
+
+        .dev-title {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .settings-title-arabic {
+          font-size: 3.2rem;
+        }
+
+        .settings-title-latin {
+          font-size: 2rem;
+        }
+
+        .dev-title {
+          font-size: 2.2rem;
+        }
+
+        .dev-subtitle {
+          font-size: 1.15rem;
+        }
+
+        .settings-card {
+          padding: 40px 25px;
+        }
+
+        .dev-icon {
+          width: 120px;
+          height: 120px;
+        }
+
+        .dev-icon i {
+          font-size: 3.2rem;
+        }
+
+        .sections-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        .nav-btn {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .progress-section {
+          padding: 30px 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .settings-hero {
+          padding: 120px 15px 50px;
+        }
+
+        .settings-title-arabic {
+          font-size: 2.5rem;
+        }
+
+        .settings-title-latin {
+          font-size: 1.6rem;
+        }
+
+        .dev-title {
+          font-size: 1.8rem;
+        }
+
+        .dev-description {
+          font-size: 1rem;
+          padding: 25px 20px;
+        }
+
+        .section-item {
+          padding: 25px;
+        }
+
+        .nav-container {
+          padding: 0 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Фон с размытием -->
+    <div class="settings-background">
+      <div class="settings-background-image"></div>
+      <div class="settings-overlay"></div>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="settings-nav">
+      <div class="nav-container">
+        <div class="nav-left">
+          <div
+            class="crescent-icon"
+            onclick="window.location.href='dashboard.html'"
+          >
+            <div class="crescent-shape"></div>
+          </div>
+        </div>
+        <div class="nav-center">
+          <div class="bismillah" style="color: rgba(245, 213, 166, 0.9)">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+          </div>
+        </div>
+        <div class="nav-right">
+          <div class="nav-star">
+            <i class="fas fa-star" style="color: #d4a574"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Главный заголовок -->
+    <header class="settings-hero">
+      <h1 class="settings-title-arabic">الإعْدَادَاتُ</h1>
+      <h2 class="settings-title-latin">Настройки</h2>
+      <p class="settings-subtitle">
+        Управление вашим аккаунтом, настройками приватности и персонализацией
+        обучения
+      </p>
+    </header>
+
+    <!-- Основной контейнер -->
+    <main class="settings-container">
+      <!-- Карточка настроек -->
+      <div class="settings-card">
+        <!-- Декоративные элементы -->
+        <div class="settings-decoration">
+          <div class="settings-star"></div>
+          <div class="settings-star"></div>
+          <div class="settings-star"></div>
+          <div class="settings-star"></div>
+          <div class="settings-star"></div>
+        </div>
+
+        <!-- Иконка -->
+        <div class="dev-icon">
+          <i class="fas fa-cogs"></i>
+        </div>
+
+        <!-- Заголовок -->
+        <h1 class="dev-title">Раздел в разработке</h1>
+        <p class="dev-subtitle">
+          Мы создаем для вас удобную и безопасную систему управления аккаунтом
+        </p>
+
+        <!-- Описание -->
+        <div class="dev-description">
+          <p>
+            <strong>Уважаемый пользователь!</strong> Панель настроек находится в
+            активной разработке. Здесь вы сможете полностью контролировать свой
+            аккаунт, настраивать параметры приватности, менять пароль и
+            персонализировать процесс обучения под свои нужды.
+          </p>
+          <p style="margin-top: 20px">
+            Наша команда работает над созданием интуитивно понятного интерфейса,
+            который сделает управление вашим профилем максимально удобным и
+            безопасным.
+          </p>
+        </div>
+
+        <!-- Разделы настроек -->
+        <h2 class="sections-title">Что будет в этом разделе:</h2>
+
+        <div class="sections-grid">
+          <!-- Раздел 1: Аккаунт -->
+          <div class="section-item">
+            <div class="section-icon">
+              <i class="fas fa-user-circle"></i>
+            </div>
+            <h3 class="section-title">Управление аккаунтом</h3>
+            <p class="section-desc">Полный контроль над вашим профилем</p>
+            <ul class="section-features">
+              <li><i class="fas fa-check"></i> Изменение личных данных</li>
+              <li><i class="fas fa-check"></i> Смена email и пароля</li>
+              <li><i class="fas fa-check"></i> Настройка аватарки</li>
+              <li><i class="fas fa-check"></i> История активности</li>
+              <li><i class="fas fa-check"></i> Экспорт данных</li>
+            </ul>
+          </div>
+
+          <!-- Раздел 2: Безопасность -->
+          <div class="section-item">
+            <div class="section-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="section-title">Безопасность и приватность</h3>
+            <p class="section-desc">Защита ваших данных и конфиденциальности</p>
+            <ul class="section-features">
+              <li><i class="fas fa-check"></i> Двухфакторная аутентификация</li>
+              <li><i class="fas fa-check"></i> Настройки приватности</li>
+              <li><i class="fas fa-check"></i> Управление сессиями</li>
+              <li><i class="fas fa-check"></i> История входов</li>
+              <li><i class="fas fa-check"></i> Уведомления о безопасности</li>
+            </ul>
+          </div>
+
+          <!-- Раздел 3: Персонализация -->
+          <div class="section-item">
+            <div class="section-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3 class="section-title">Персонализация</h3>
+            <p class="section-desc">Настройка внешнего вида и уведомлений</p>
+            <ul class="section-features">
+              <li><i class="fas fa-check"></i> Темы оформления</li>
+              <li><i class="fas fa-check"></i> Настройки шрифтов</li>
+              <li><i class="fas fa-check"></i> Язык интерфейса</li>
+              <li><i class="fas fa-check"></i> Управление уведомлениями</li>
+              <li><i class="fas fa-check"></i> Быстрые настройки</li>
+            </ul>
+          </div>
+
+          <!-- Раздел 4: Обучение -->
+          <div class="section-item">
+            <div class="section-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="section-title">Настройки обучения</h3>
+            <p class="section-desc">Персонализация учебного процесса</p>
+            <ul class="section-features">
+              <li><i class="fas fa-check"></i> Цели и расписание</li>
+              <li><i class="fas fa-check"></i> Уровень сложности</li>
+              <li><i class="fas fa-check"></i> Напоминания о занятиях</li>
+              <li><i class="fas fa-check"></i> Автоповторение уроков</li>
+              <li><i class="fas fa-check"></i> Статистика и отчеты</li>
+            </ul>
+          </div>
+
+          <!-- Раздел 5: Уведомления -->
+          <div class="section-item">
+            <div class="section-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <h3 class="section-title">Уведомления</h3>
+            <p class="section-desc">Контроль над оповещениями</p>
+            <ul class="section-features">
+              <li><i class="fas fa-check"></i> Email-уведомления</li>
+              <li><i class="fas fa-check"></i> Push-оповещения</li>
+              <li><i class="fas fa-check"></i> Напоминания о дуа</li>
+              <li><i class="fas fa-check"></i> Уведомления от учителя</li>
+              <li><i class="fas fa-check"></i> Тихие часы</li>
+            </ul>
+          </div>
+
+          <!-- Раздел 6: Платежи -->
+          <div class="section-item">
+            <div class="section-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3 class="section-title">Платежи и подписка</h3>
+            <p class="section-desc">Управление финансовыми вопросами</p>
+            <ul class="section-features">
+              <li><i class="fas fa-check"></i> История платежей</li>
+              <li><i class="fas fa-check"></i> Управление подпиской</li>
+              <li><i class="fas fa-check"></i> Способы оплаты</li>
+              <li><i class="fas fa-check"></i> Скидки и промокоды</li>
+              <li><i class="fas fa-check"></i> Счет и квитанции</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Прогресс разработки -->
+        <div class="progress-section">
+          <div class="progress-label">
+            <span>Прогресс разработки раздела</span>
+            <span class="progress-percent">35%</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+          </div>
+          <p
+            style="
+              font-family: 'Inter', sans-serif;
+              color: rgba(255, 255, 255, 0.8);
+              text-align: center;
+              font-size: 1.1rem;
+              margin-top: 20px;
+            "
+          >
+            Ожидаемая дата запуска:
+            <strong style="color: #d4a574">Шавваль 1446</strong>
+          </p>
+        </div>
+
+        <!-- Кнопки навигации -->
+        <div class="nav-buttons">
+          <a href="dashboard.html" class="nav-btn btn-primary">
+            <i class="fas fa-arrow-left"></i>
+            Вернуться в кабинет
+          </a>
+          <a href="koran.html" class="nav-btn btn-secondary">
+            <i class="fas fa-book-quran"></i>
+            ☽
+          </a>
+          <a href="progress.html" class="nav-btn btn-secondary">
+            <i class="fas fa-chart-line"></i>
+            ♡
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Футер 
+    <footer class="settings-footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <span class="footer-arabic" style="color: #ffffff">مَعْرِفَة</span>
+          <span class="footer-latin" style="color: #d4a574">MA'RIFA</span>
+        </div>
+        <div class="footer-text">
+          <p style="color: rgba(255, 255, 255, 0.6)">
+            Безопасность и комфорт наших пользователей — наш приоритет
+          </p>
+        </div>
+        <div class="footer-divider">
+          <div
+            class="footer-line"
+            style="background: rgba(212, 165, 116, 0.3)"
+          ></div>
+          <div class="footer-dot" style="background: #d4a574"></div>
+          <div
+            class="footer-line"
+            style="background: rgba(212, 165, 116, 0.3)"
+          ></div>
+        </div>
+        <div class="footer-copyright" style="color: rgba(255, 255, 255, 0.5)">
+          © 2024 MA'RIFA. Искусство Таджвида. Все права сохранены.
+        </div>
+      </div>
+    </footer>-->
+
+    <!-- Скрипт -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          console.log('⚙️ Страница настроек загружена');
+
+          // Анимация появления элементов
+          const observerOptions = {
+              threshold: 0.1,
+              rootMargin: '0px 0px -50px 0px'
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      entry.target.style.opacity = '1';
+                      entry.target.style.transform = 'translateY(0)';
+                  }
+              });
+          }, observerOptions);
+
+          // Наблюдаем за всеми элементами
+          document.querySelectorAll('.section-item').forEach((el, index) => {
+              el.style.opacity = '0';
+              el.style.transform = 'translateY(30px)';
+              el.style.transition = all 0.6s ease ${index * 0.1}s;
+              observer.observe(el);
+          });
+
+          // Плавный скролл для кнопок
+          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+              anchor.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  const targetId = this.getAttribute('href');
+                  if (targetId !== '#') {
+                      const targetElement = document.querySelector(targetId);
+                      if (targetElement) {
+                          targetElement.scrollIntoView({
+                              behavior: 'smooth',
+                              block: 'start'
+                          });
+                      }
+                  }
+              });
+          });
+
+          // Интерактивность для иконок
+          document.querySelectorAll('.section-icon').forEach(icon => {
+              icon.addEventListener('mouseenter', function() {
+                  this.style.transform = 'scale(1.1) rotate(10deg)';
+              });
+
+              icon.addEventListener('mouseleave', function() {
+                  this.style.transform = 'scale(1) rotate(0deg)';
+              });
+          });
+      });
+    </script>
+  </body>
+</html>

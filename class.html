@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Класс 10-А | MA'RIFA</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-chat.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Дополнительные стили для корректного отображения */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Фон -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+    <div class="side-lines">
+      <div class="side-line left"></div>
+      <div class="side-line right"></div>
+    </div>
+
+    <!-- Кнопка назад -->
+    <div class="back-to-dashboard">
+      <a href="dashboard.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        <span>В кабинет</span>
+      </a>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="class-page">
+      <!-- Шапка класса -->
+      <header class="class-header">
+        <div class="class-info-main">
+          <h1><i class="fas fa-users"></i> 10-А Класс</h1>
+          <div class="teacher-info">
+            <div class="teacher-avatar">Т</div>
+            <div class="teacher-details">
+              <h3>Тамила</h3>
+              <p>Устаза</p>
+            </div>
+          </div>
+          <div class="class-stats">
+            <span><i class="fas fa-user-graduate"></i> 21 ученик</span>
+            <span><i class="fas fa-clock"></i> Занятия: Вт, чт, сб, 19:00</span>
+            <span><i class="fas fa-door-open"></i> Кабинет: 204</span>
+          </div>
+        </div>
+
+        <div class="theme-switcher">
+          <button id="themeToggle" class="theme-btn">
+            <i class="fas fa-moon"></i>
+            <span>Ночная тема</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Основной контен�� (2 колонки) -->
+      <div class="class-layout">
+        <!-- Левая колонка: участники -->
+        <aside class="class-sidebar">
+          <!-- Поиск участников -->
+          <div class="search-members">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="searchMembers"
+              placeholder="Найти участника..."
+            />
+          </div>
+
+          <!-- Список участников -->
+          <div class="members-section">
+            <h3>
+              <i class="fas fa-user-friends"></i> Диалоги
+              <span class="online-count" id="onlineCount">15 онлайн</span>
+            </h3>
+
+            <!-- ГРУППОВОЙ ЧАТ (ДОБАВЛЯЕМ ПЕРВЫМ) -->
+            <div class="member-card active" id="groupChat" data-user="group">
+              <div class="member-avatar teacher" style="background: #9b59b6">
+                <span><i class="fas fa-users"></i></span>
+                <div class="online-dot"></div>
+              </div>
+              <div class="member-info">
+                <h4>Групповой чат <i class="fas fa-comments"></i></h4>
+                <p class="member-status">21 участник • Онлайн</p>
+              </div>
+              <div class="unread-badge">5</div>
+            </div>
+
+            <!-- Учитель -->
+            <div
+              class="member-card teacher"
+              data-user="teacher"
+              data-online="true"
+            >
+              <div class="member-avatar teacher">
+                <span>Т</span>
+                <div class="online-dot"></div>
+              </div>
+              <div class="member-info">
+                <h4>Тамила<i class="fas fa-crown"></i></h4>
+                <p class="member-status">Был(а) час назад</p>
+              </div>
+              <div class="unread-badge">3</div>
+            </div>
+
+            <!-- Ученицы -->
+            <div class="members-list" id="membersList">
+              <!-- Список будет заполнен JavaScript -->
+            </div>
+          </div>
+
+          <!-- Быстрые действия -->
+          <div class="quick-actions">
+            <h3><i class="fas fa-bolt"></i> Быстрые действия</h3>
+            <div class="actions-grid">
+              <button class="action-btn" id="newGroup">
+                <i class="fas fa-plus-circle"></i>
+                <span>Создать чат</span>
+              </button>
+              <button class="action-btn" id="importantMessages">
+                <i class="fas fa-star"></i>
+                <span>Избранное</span>
+              </button>
+              <button class="action-btn" id="homework">
+                <i class="fas fa-tasks"></i>
+                <span>Домашнее задание</span>
+              </button>
+              <button class="action-btn" id="studyMaterials">
+                <i class="fas fa-book"></i>
+                <span>Теория</span>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Правая колонка: мессенджер -->
+        <main class="class-chat">
+          <!-- Шапка чата -->
+          <div class="chat-header">
+            <div class="chat-partner">
+              <div class="partner-avatar teacher">
+                <span><i class="fas fa-users"></i></span>
+                <div class="online-dot"></div>
+              </div>
+              <div class="partner-info">
+                <h2 id="chatTitle">Групповой чат</h2>
+                <p id="chatStatus">21 участник • Онлайн</p>
+              </div>
+            </div>
+
+            <div class="chat-actions">
+              <button
+                class="chat-action-btn"
+                title="Поиск в чате"
+                id="searchChatBtn"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+              <button class="chat-action-btn" title="Участники" id="membersBtn">
+                <i class="fas fa-users"></i>
+              </button>
+              <button class="chat-action-btn" title="Медиа" id="mediaBtn">
+                <i class="fas fa-images"></i>
+              </button>
+              <button
+                class="chat-action-btn"
+                title="Настройки"
+                id="settingsBtn"
+              >
+                <i class="fas fa-cog"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Область переписки -->
+          <div class="chat-messages" id="chatMessages">
+            <!-- Сообщения будут вставляться сюда -->
+            <div class="loading">Загрузка сообщений...</div>
+          </div>
+
+          <!-- Панель ввода -->
+          <div class="chat-input-area">
+            <!-- Предпросмотр ответа 
+            <div class="reply-preview" id="replyPreview">
+              <div class="reply-info">
+                <span>Ответ на: <span id="replyName"></span></span>
+                <button class="cancel-reply" id="cancelReply">&times;</button>
+              </div>
+              <div class="reply-text" id="replyText"></div>
+            </div>-->
+
+            <!-- Основная панель -->
+            <div class="input-container">
+              <!-- Левая часть: голосовое и эмодзи -->
+              <div class="input-left">
+                <button
+                  class="input-btn"
+                  id="voiceMessageBtn"
+                  title="Голосовое сообщение"
+                >
+                  <i class="fas fa-microphone"></i>
+                </button>
+                <button class="input-btn" id="emojiBtn" title="Эмодзи">
+                  <i class="far fa-smile"></i>
+                </button>
+                <button
+                  class="input-btn"
+                  id="attachBtn"
+                  title="Прикрепить файл"
+                >
+                  <i class="fas fa-paperclip"></i>
+                </button>
+              </div>
+
+              <!-- Поле ввода -->
+              <div class="input-wrapper">
+                <div
+                  class="input-field"
+                  contenteditable="true"
+                  id="messageInput"
+                  placeholder="Напишите сообщение..."
+                ></div>
+
+                <!-- Быстрые шаблоны (появляются если поле пустое) 
+                <div class="quick-templates" id="quickTemplates">
+                  <button class="template-btn" data-text="Можно задать вопрос?">
+                    <i class="fas fa-question-circle"></i> Вопрос
+                  </button>
+                  <button class="template-btn" data-text="Проверьте моё чтение">
+                    <i class="fas fa-microphone-alt"></i> Проверить
+                  </button>
+                  <button class="template-btn" data-text="Не понял правило...">
+                    <i class="fas fa-book"></i> Правило
+                  </button>
+                </div>
+              </div> -->
+
+                <!-- Правая часть: отправка -->
+                <div class="input-right">
+                  <button class="send-btn" id="sendMessage" title="Отправить">
+                    <i class="fas fa-paper-plane"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Индикатор записи голосового 
+          <div class="voice-recorder" id="voiceRecorder">
+            <div class="recorder-container">
+              <div class="recorder-header">
+                <i class="fas fa-microphone recording"></i>
+                <span>Запись...</span>
+                <span class="recording-time">0:00</span>
+              </div>
+              <div class="recorder-waveform" id="recorderWaveform">
+                <!-- Волны будут генерироваться JS 
+              </div>
+              <div class="recorder-controls">
+                <button class="recorder-btn cancel" id="cancelRecording">
+                  <i class="fas fa-times"></i> Отмена
+                </button>
+                <button class="recorder-btn send" id="sendRecording">
+                  <i class="fas fa-check"></i> Отправить
+                </button>
+              </div>-->
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="fake-data.js"></script>
+    <script src="chat.js"></script>
+
+    <script>
+      // Инициализация при загрузке
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Страница загружена, запускаем мессенджер...");
+
+        // Проверяем, что все элементы существуют
+        const checkElements = [
+          "membersList",
+          "chatMessages",
+          "messageInput",
+          "sendMessage",
+          "themeToggle",
+          "emojiBtn",
+          "emojiPicker",
+          "quickTemplates",
+        ];
+
+        checkElements.forEach((id) => {
+          const el = document.getElementById(id);
+          console.log(`${id}:`, el ? "найден" : "НЕ НАЙДЕН!");
+        });
+
+        // Если скрипт не загрузился, показываем сообщение
+        setTimeout(() => {
+          if (!window.chatData) {
+            console.error("chat.js не загрузился!");
+            alert("Ошибка загрузки скрипта. Проверьте консоль (F12)");
+          }
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

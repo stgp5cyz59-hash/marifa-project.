@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Регистрация учителя</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .register-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .register-container {
+        width: 100%;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 25px;
+        padding: 50px 40px;
+        box-shadow: 0 25px 60px rgba(138, 74, 95, 0.25);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .register-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .register-arabic {
+        font-family: "Noto Naskh Arabic", serif;
+        font-size: 3.5rem;
+        color: #2d1b4e;
+        margin-bottom: 15px;
+      }
+
+      .register-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        color: #8a4a5f;
+        margin-bottom: 10px;
+      }
+
+      .teacher-badge {
+        background: linear-gradient(135deg, #d4a574, #c1955e);
+        color: #2d1b4e;
+        padding: 8px 20px;
+        border-radius: 50px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+
+      .register-form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-group label {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        color: #4a4048;
+        font-size: 0.95rem;
+      }
+
+      .register-form input {
+        padding: 16px 20px;
+        border: 2px solid rgba(138, 74, 95, 0.2);
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        background: white;
+        transition: all 0.3s ease;
+      }
+
+      .register-form input:focus {
+        outline: none;
+        border-color: #d4a574;
+        box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+      }
+
+      .submit-btn {
+        padding: 18px;
+        background: linear-gradient(135deg, #d4a574, #c1955e);
+        color: #2d1b4e;
+        border: none;
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(212, 165, 116, 0.3);
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .back-link a {
+        color: #8a4a5f;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+      }
+
+      .back-link a:hover {
+        text-decoration: underline;
+      }
+
+      .teacher-quote {
+        background: rgba(212, 165, 116, 0.1);
+        padding: 20px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #d4a574;
+      }
+
+      .teacher-quote p {
+        font-style: italic;
+        font-size: 1.1rem;
+        color: #4a4048;
+        line-height: 1.6;
+      }
+
+      .teacher-quote .quote-source {
+        text-align: right;
+        color: #d4a574;
+        font-weight: 500;
+        margin-top: 10px;
+      }
+
+      .error-message {
+        background: #ffebee;
+        color: #c62828;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border-left: 4px solid #c62828;
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+        display: none;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .success-message {
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border-left: 4px solid #2e7d32;
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+        display: none;
+        align-items: center;
+        gap: 10px;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ФОН -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- РЕГИСТРАЦИЯ УЧИТЕЛЯ -->
+    <div class="register-page">
+      <div class="register-container">
+        <div class="register-header">
+          <div class="register-arabic">تَسْجِيل</div>
+          <h1 class="register-title">Регистрация учителя</h1>
+          <div class="teacher-badge">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span>حَامِلُ الْعِلْمِ | Несущий знание</span>
+          </div>
+
+          <div class="teacher-quote">
+            <p>"Лучший из вас — изучающий Коран и обучающий ему других"</p>
+            <div class="quote-source">— Аль-Бухари</div>
+          </div>
+        </div>
+
+        <form id="registerForm" class="register-form">
+          <!-- Сообщения об ошибках/успехе -->
+          <div id="errorMessage" class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorText"></span>
+          </div>
+
+          <div id="successMessage" class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <span>Регистрация успешна! Перенаправляем...</span>
+          </div>
+
+          <div class="form-group">
+            <label>Ваше полное имя</label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Введите ваше имя"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Email адрес</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="example@mail.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Пароль</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Минимум 6 символов"
+              required
+              minlength="6"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Специализация</label>
+            <input
+              type="text"
+              id="specialization"
+              placeholder="Таджвид, Кыраат, Тафсир и т.д."
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Опыт преподавания (лет)</label>
+            <input type="number" id="experience" placeholder="0" min="0" />
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <i class="fas fa-chalkboard-teacher"></i> Создать аккаунт учителя
+          </button>
+
+          <div class="back-link">
+            <a href="index.html"
+              ><i class="fas fa-arrow-left"></i> Вернуться на главную</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function showError(message) {
+        const errorDiv = document.getElementById("errorMessage");
+        const errorText = document.getElementById("errorText");
+        errorText.textContent = message;
+        errorDiv.style.display = "flex";
+        setTimeout(() => {
+          errorDiv.style.display = "none";
+        }, 5000);
+      }
+      function showSuccess() {
+        document.getElementById("successMessage").style.display = "flex";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("📝 Регистрация учителя загружена (с базой данных)");
+        const registerForm = document.getElementById("registerForm");
+        const submitBtn = document.getElementById("submitBtn");
+
+        registerForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const password = document.getElementById("password").value;
+          if (password.length < 6) {
+            showError("Пароль должен быть минимум 6 символов");
+            return;
+          }
+
+          const userData = {
+            name: document.getElementById("fullName").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            password: password,
+            role: "teacher",
+          };
+
+          submitBtn.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+          submitBtn.disabled = true;
+
+          fetch("http://localhost:3000/api/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                localStorage.setItem("marifa_user", JSON.stringify(data.user));
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Успешно!';
+                submitBtn.style.background =
+                  "linear-gradient(135deg, #4CAF50, #2E7D32)";
+                showSuccess();
+                setTimeout(() => {
+                  window.location.href = "onboarding-teacher.html";
+                }, 1000);
+              } else {
+                showError("Ошибка: " + data.error);
+                submitBtn.innerHTML =
+                  '<i class="fas fa-chalkboard-teacher"></i> Создать аккаунт учителя';
+                submitBtn.disabled = false;
+              }
+            })
+            .catch((error) => {
+              showError("Сервер не отвечает. Запущен ли node server.js?");
+              submitBtn.innerHTML =
+                '<i class="fas fa-chalkboard-teacher"></i> Создать аккаунт учителя';
+              submitBtn.disabled = false;
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

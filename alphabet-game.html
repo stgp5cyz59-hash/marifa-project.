@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Арабский алфавит: Полное погружение</title>
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=El+Messiri:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Наши стили -->
+    <link rel="stylesheet" href="alphabet-game.css" />
+
+    <!-- Иконка -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔤</text></svg>"
+    />
+
+    <style>
+      /* Мини-CSS для мгновенного отображения контента */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #0f0c29;
+        color: #333;
+        min-height: 100vh;
+        overflow-x: hidden;
+        opacity: 0;
+        animation: fadeIn 0.5s ease forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Фон с эффектом параллакса -->
+    <div class="parallax-bg">
+      <div class="bg-layer-1"></div>
+      <div class="bg-layer-2"></div>
+      <div class="bg-overlay"></div>
+
+      <!-- Плавающие арабские буквы -->
+      <div class="floating-letters">
+        <!-- Будет заполнено через JS -->
+      </div>
+
+      <!-- Арабские узоры -->
+      <div class="arabic-patterns">
+        <div class="pattern-1">﷽</div>
+        <div class="pattern-2">ﷴ</div>
+        <div class="pattern-3">ﷲ</div>
+      </div>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="main-container">
+      <!-- Верхняя панель с навигацией -->
+      <header class="game-header">
+        <div class="header-content">
+          <div class="logo-section">
+            <div class="logo-icon">
+              <i class="fas fa-book-quran"></i>
+            </div>
+            <div class="logo-text">
+              <h1 class="arabic-title">مَعْرِفَة</h1>
+              <h2 class="latin-title">MA'RIFA</h2>
+            </div>
+          </div>
+
+          <!-- Кнопки навигации -->
+          <nav class="main-nav">
+            <a href="game.html" class="nav-btn">
+              <i class="fas fa-gamepad"></i>
+              <span>Игры</span>
+              <div class="arabic-sub">الألعاب</div>
+            </a>
+            <a href="dashboard.html" class="nav-btn">
+              <i class="fas fa-home"></i>
+              <span>Кабинет</span>
+              <div class="arabic-sub">المكتب</div>
+            </a>
+            <a href="study.html" class="nav-btn">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Учеба</span>
+              <div class="arabic-sub">الدراسة</div>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Декоративная линия -->
+        <div class="header-line">
+          <div class="line-dots">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Основной игровой блок -->
+      <main class="game-main">
+        <!-- Заголовок игры -->
+        <section class="game-title-section">
+          <div class="title-content">
+            <h1 class="game-main-title">
+              <span class="title-arabic">حُرُوف الْهِجَاء</span>
+              <span class="title-latin">Арабский алфавит</span>
+            </h1>
+            <p class="game-subtitle">
+              Полное погружение в мир арабской письменности. Изучите 28 букв, их
+              формы и особенности произношения через интерактивные игры.
+            </p>
+
+            <!-- Индикатор прогресса -->
+            <div class="global-progress">
+              <div class="progress-label">
+                <span>Общий прогресс</span>
+                <span class="progress-value" id="globalProgressValue">0%</span>
+              </div>
+              <div class="progress-bar-global">
+                <div class="progress-fill" id="globalProgressFill"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Выбор режима игры -->
+        <section class="mode-selection">
+          <div class="section-header">
+            <h2><i class="fas fa-chess-queen"></i> Выберите режим игры</h2>
+            <p>Разные подходы к изучению — один идеальный результат</p>
+          </div>
+
+          <div class="modes-grid" id="modesGrid">
+            <!-- Режимы будут добавляться через JS -->
+          </div>
+        </section>
+
+        <!-- Игровая зона -->
+        <section class="game-area">
+          <div class="game-container" id="gameContainer">
+            <!-- Контент игры будет меняться в зависимости от режима -->
+            <div class="game-welcome">
+              <div class="welcome-icon">
+                <i class="fas fa-star-and-crescent"></i>
+              </div>
+              <h3>Добро пожаловать в мир арабских букв!</h3>
+              <p>Выберите режим игры выше, чтобы начать обучение.</p>
+              <p class="welcome-tip">
+                <i class="fas fa-lightbulb"></i>
+                Совет: Начните с режима "Базовый", затем переходите к "Формам
+                букв"
+              </p>
+            </div>
+          </div>
+
+          <!-- Панель статистики -->
+          <div class="stats-panel" id="statsPanel">
+            <div class="stats-header">
+              <h4><i class="fas fa-chart-line"></i> Статистика</h4>
+              <button class="reset-btn" id="resetStats">
+                <i class="fas fa-redo"></i>
+              </button>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-data">
+                  <div class="stat-value" id="statScore">0</div>
+                  <div class="stat-label">Очки</div>
+                </div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-icon">✅</div>
+                <div class="stat-data">
+                  <div class="stat-value" id="statCorrect">0</div>
+                  <div class="stat-label">Правильно</div>
+                </div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-icon">🔥</div>
+                <div class="stat-data">
+                  <div class="stat-value" id="statStreak">0</div>
+                  <div class="stat-label">Серия</div>
+                </div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-icon">📚</div>
+                <div class="stat-data">
+                  <div class="stat-value" id="statLearned">0/28</div>
+                  <div class="stat-label">Изучено</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Прогресс алфавита -->
+        <section class="alphabet-progress">
+          <div class="section-header">
+            <h2><i class="fas fa-th-large"></i> Ваш прогресс в алфавите</h2>
+            <p>Каждая изученная буква — шаг к свободному чтению</p>
+          </div>
+
+          <div class="alphabet-grid" id="alphabetGrid">
+            <!-- Буквы будут добавляться через JS -->
+          </div>
+
+          <div class="progress-summary">
+            <div class="summary-item">
+              <div class="summary-icon mastered">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="summary-text">
+                <div class="summary-count" id="countMastered">0</div>
+                <div class="summary-label">Освоено</div>
+              </div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-icon learning">
+                <i class="fas fa-book-reader"></i>
+              </div>
+              <div class="summary-text">
+                <div class="summary-count" id="countLearning">0</div>
+                <div class="summary-label">Изучается</div>
+              </div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-icon new">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="summary-text">
+                <div class="summary-count" id="countNew">28</div>
+                <div class="summary-label">Новые</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Панель управления -->
+        <section class="controls-section">
+          <div class="controls-grid">
+            <button class="control-btn btn-start" id="startGameBtn">
+              <div class="btn-icon">
+                <i class="fas fa-play"></i>
+              </div>
+              <div class="btn-text">
+                <div class="btn-title">Начать игру</div>
+                <div class="btn-sub">Погрузиться в обучение</div>
+              </div>
+            </button>
+
+            <button class="control-btn btn-hint" id="hintBtn" disabled>
+              <div class="btn-icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <div class="btn-text">
+                <div class="btn-title">Подсказка</div>
+                <div class="btn-sub">Помощь в сложный момент</div>
+              </div>
+              <div class="btn-counter" id="hintCounter">3</div>
+            </button>
+
+            <button class="control-btn btn-sound" id="soundBtn">
+              <div class="btn-icon">
+                <i class="fas fa-volume-up"></i>
+              </div>
+              <div class="btn-text">
+                <div class="btn-title">Звуки</div>
+                <div class="btn-sub">Игровые эффекты</div>
+              </div>
+            </button>
+
+            <button
+              class="control-btn btn-results"
+              id="resultsBtn"
+              disabled
+            ></button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
+<script src="alphabet-game.js"></script>

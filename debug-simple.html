@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Отладка</title>
+  </head>
+  <body>
+    <h2>Отладка перехода учителя</h2>
+
+    <div id="status" style="padding: 20px; background: #f0f0f0; margin: 20px">
+      Проверяем...
+    </div>
+
+    <button onclick="testDirect()">Тест: прямой переход</button>
+    <button onclick="testWithData()">Тест: с данными</button>
+
+    <script>
+      function updateStatus(msg) {
+        document.getElementById("status").innerHTML = msg;
+        console.log(msg);
+      }
+
+      function testDirect() {
+        updateStatus("Пробуем прямой переход...");
+        window.location.href = "teacher-dashboard.html";
+      }
+
+      function testWithData() {
+        updateStatus("Создаем данные учителя...");
+
+        // Создаем тестового учителя
+        const testTeacher = {
+          role: "teacher",
+          name: "Тест Учитель",
+          email: "teacher@test.ru",
+          onboardingCompleted: true,
+          registered: new Date().toISOString(),
+        };
+
+        // Сохраняем
+        localStorage.setItem("marifa_user", JSON.stringify(testTeacher));
+        updateStatus("Данные сохранены: " + JSON.stringify(testTeacher));
+
+        // Ждем 1 секунду и переходим
+        setTimeout(() => {
+          updateStatus("Переходим...");
+          window.location.href = "teacher-dashboard.html";
+        }, 1000);
+      }
+
+      // При загрузке показываем текущие данные
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentUser = localStorage.getItem("marifa_user");
+        updateStatus("Текущие данные: " + (currentUser || "Нет данных"));
+      });
+    </script>
+  </body>
+</html>

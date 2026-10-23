@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Прогресс обучения</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* ===== СТИЛИ СТРАНИЦЫ ПРОГРЕССА ===== */
+      .progress-hero {
+        text-align: center;
+        padding: 120px 20px 70px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .progress-title-arabic {
+        font-family: "Amiri", serif;
+        font-size: 4.5rem;
+        color: #2d1b4e;
+        margin-bottom: 25px;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+        line-height: 1.2;
+      }
+
+      .progress-title-latin {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.8rem;
+        color: #8a4a5f;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .progress-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 1.3rem;
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        line-height: 1.7;
+      }
+
+      /* Основной контейнер */
+      .progress-container {
+        max-width: 1200px;
+        margin: 0 auto 100px;
+        padding: 0 20px;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Карточка "В разработке" */
+      .development-card {
+        background: rgba(255, 255, 255, 0.97);
+        border-radius: 30px;
+        padding: 60px 50px;
+        box-shadow: 0 25px 60px rgba(138, 74, 95, 0.2);
+        border: 2px solid rgba(138, 74, 95, 0.25);
+        backdrop-filter: blur(20px);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 50px;
+      }
+
+      /* Иконка в разработке */
+      .dev-icon {
+        width: 150px;
+        height: 150px;
+        background: linear-gradient(135deg, #8a4a5f, #d4a574);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 40px;
+        position: relative;
+        animation: iconFloat 3s ease-in-out infinite;
+      }
+
+      .dev-icon i {
+        font-size: 4.5rem;
+        color: white;
+      }
+
+      .dev-icon::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(135deg, #8a4a5f, #d4a574);
+        border-radius: 50%;
+        opacity: 0.3;
+        z-index: -1;
+        animation: pulseRing 2s ease-out infinite;
+      }
+
+      @keyframes iconFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+      }
+
+      @keyframes pulseRing {
+        0% {
+          transform: scale(1);
+          opacity: 0.3;
+        }
+        100% {
+          transform: scale(1.1);
+          opacity: 0;
+        }
+      }
+
+      /* Заголовок карточки */
+      .dev-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3.2rem;
+        color: #6d394a;
+        margin-bottom: 25px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .dev-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 1.4rem;
+        color: #8a4a5f;
+        margin-bottom: 40px;
+        font-weight: 600;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
+      /* Описание */
+      .dev-description {
+        font-family: "Inter", sans-serif;
+        font-size: 1.2rem;
+        color: #4a4048;
+        line-height: 1.8;
+        margin-bottom: 40px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 500;
+        padding: 30px;
+        background: rgba(138, 74, 95, 0.05);
+        border-radius: 20px;
+        border-left: 5px solid #d4a574;
+      }
+
+      /* Особенности раздела */
+      .features-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        color: #6d394a;
+        margin: 60px 0 30px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+      }
+
+      .feature-item {
+        background: rgba(233, 214, 214, 0.863);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        border: 2px solid rgba(138, 74, 95, 0.1);
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .feature-item:hover {
+        transform: translateY(-10px);
+        border-color: #8a4a5f;
+        box-shadow: 0 20px 40px rgba(138, 74, 95, 0.15);
+      }
+
+      .feature-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(
+          135deg,
+          rgba(138, 74, 95, 0.1),
+          rgba(212, 165, 116, 0.1)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        color: #8a4a5f;
+        font-size: 1.8rem;
+      }
+
+      .feature-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        color: #6d394a;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .feature-desc {
+        font-family: "Inter", sans-serif;
+        color: #666;
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+
+      /* Прогресс-бар */
+      .progress-section {
+        margin: 60px 0;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 25px;
+        border: 2px solid rgba(138, 74, 95, 0.15);
+      }
+
+      .progress-label {
+        font-family: "Inter", sans-serif;
+        font-size: 1.2rem;
+        color: #4a4048;
+        font-weight: 600;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .progress-percent {
+        color: #8a4a5f;
+        font-weight: 700;
+        font-size: 1.3rem;
+      }
+
+      .progress-bar-container {
+        height: 20px;
+        background: rgba(138, 74, 95, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 30px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #8a4a5f, #d4a574);
+        border-radius: 10px;
+        width: 45%;
+        position: relative;
+        animation: progressAnimation 2s ease-out;
+      }
+
+      .progress-bar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: shimmer 2s infinite;
+      }
+
+      @keyframes progressAnimation {
+        from {
+          width: 0;
+        }
+        to {
+          width: 45%;
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Кнопки навигации */
+      .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 50px;
+        flex-wrap: wrap;
+      }
+
+      .nav-btn {
+        padding: 18px 35px;
+        border-radius: 50px;
+        font-family: "Inter", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s ease;
+        min-width: 220px;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #8a4a5f, #6d394a);
+        color: white;
+        border: 2px solid #8a4a5f;
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.9);
+        color: #8a4a5f;
+        border: 2px solid rgba(138, 74, 95, 0.3);
+      }
+
+      .nav-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(138, 74, 95, 0.2);
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #6d394a, #8a4a5f);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(138, 74, 95, 0.05);
+        border-color: #8a4a5f;
+      }
+
+      /* Декоративные элементы */
+      .dev-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .dev-star {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #d4a574;
+        border-radius: 50%;
+        animation: twinkle 3s infinite;
+      }
+
+      .dev-star:nth-child(1) {
+        top: 20%;
+        left: 15%;
+        animation-delay: 0s;
+      }
+      .dev-star:nth-child(2) {
+        top: 40%;
+        right: 20%;
+        animation-delay: 1s;
+      }
+      .dev-star:nth-child(3) {
+        top: 70%;
+        left: 25%;
+        animation-delay: 2s;
+      }
+      .dev-star:nth-child(4) {
+        top: 30%;
+        right: 30%;
+        animation-delay: 1.5s;
+      }
+      .dev-star:nth-child(5) {
+        top: 60%;
+        left: 40%;
+        animation-delay: 0.5s;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.2);
+        }
+      }
+
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        .progress-title-arabic {
+          font-size: 3.5rem;
+        }
+
+        .progress-title-latin {
+          font-size: 2.2rem;
+        }
+
+        .dev-title {
+          font-size: 2.5rem;
+        }
+
+        .dev-subtitle {
+          font-size: 1.2rem;
+        }
+
+        .development-card {
+          padding: 40px 25px;
+        }
+
+        .dev-icon {
+          width: 120px;
+          height: 120px;
+        }
+
+        .dev-icon i {
+          font-size: 3.5rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .nav-btn {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .progress-section {
+          padding: 30px 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .progress-hero {
+          padding: 100px 15px 50px;
+        }
+
+        .progress-title-arabic {
+          font-size: 2.8rem;
+        }
+
+        .progress-title-latin {
+          font-size: 1.8rem;
+        }
+
+        .dev-title {
+          font-size: 2rem;
+        }
+
+        .dev-description {
+          font-size: 1.1rem;
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Фон -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Навигация -->
+    <nav class="main-nav">
+      <div class="nav-container">
+        <div class="nav-left">
+          <div
+            class="crescent-icon"
+            id="menuToggle"
+            onclick="window.location.href='dashboard.html'"
+          >
+            <div class="crescent-shape"></div>
+          </div>
+        </div>
+        <div class="nav-center">
+          <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        </div>
+        <div class="nav-right">
+          <div class="nav-star">
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Главный заголовок -->
+    <header class="progress-hero">
+      <h1 class="progress-title-arabic">تَقْدُمُ التَّعْلِيمِ</h1>
+      <h2 class="progress-title-latin">Прогресс обучения</h2>
+      <p class="progress-subtitle">
+        Отслеживайте ваши достижения, прогресс в изучении таджвида и духовный
+        рост
+      </p>
+    </header>
+
+    <!-- Основной контейнер -->
+    <main class="progress-container">
+      <!-- Карточка "В разработке" -->
+      <div class="development-card">
+        <!-- Декоративные звезды -->
+        <div class="dev-decoration">
+          <div class="dev-star"></div>
+          <div class="dev-star"></div>
+          <div class="dev-star"></div>
+          <div class="dev-star"></div>
+          <div class="dev-star"></div>
+        </div>
+
+        <!-- Иконка -->
+        <div class="dev-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+
+        <!-- Заголовок -->
+        <h1 class="dev-title">Раздел в разработке</h1>
+        <p class="dev-subtitle">
+          Мы усердно работаем над созданием системы отслеживания прогресса
+        </p>
+
+        <!-- Описание -->
+        <div class="dev-description">
+          <p>
+            <strong>Дорогой ученик!</strong> Этот раздел находится в активной
+            разработке. Мы создаем для вас мощную систему аналитики, которая
+            позволит отслеживать каждый шаг вашего пути в изучении таджвида и
+            духовного совершенствования.
+          </p>
+          <p style="margin-top: 20px">
+            Здесь вы сможете видеть статистику по изученным урокам, прогресс в
+            запоминании Корана, активность в практике дуа и азкаров, а также
+            получать персональные рекомендации для дальнейшего роста.
+          </p>
+        </div>
+
+        <!-- Прогресс разработки -->
+        <div class="progress-section">
+          <div class="progress-label">
+            <span>Прогресс разработки раздела</span>
+            <span class="progress-percent">45%</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+          </div>
+          <p
+            style="
+              font-family: 'Inter', sans-serif;
+              color: #666;
+              text-align: center;
+              font-size: 1.1rem;
+              margin-top: 20px;
+            "
+          >
+            Ожидаемая дата запуска: <strong>Рамадан 1446</strong>
+          </p>
+        </div>
+
+        <!-- Особенности будущего раздела -->
+        <h2 class="features-title">Что вас ожидает в этом разделе:</h2>
+
+        <div class="features-grid">
+          <!-- Особенность 1 -->
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+            <h3 class="feature-title">Детальная статистика</h3>
+            <p class="feature-desc">
+              Графики и диаграммы вашего прогресса в изучении таджвида, чтении
+              Корана и практике дуа.
+            </p>
+          </div>
+
+          <!-- Особенность 2 -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <h3 class="feature-title">Достижения и награды</h3>
+            <p class="feature-desc">
+              Система ачивментов за достижение целей, изучение сур и регулярную
+              практику.
+            </p>
+          </div>
+
+          <!-- Особенность 3 -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3 class="feature-title">Календарь практики</h3>
+            <p class="feature-desc">
+              Отслеживание ежедневной активности, пропущенных дней и
+              формирование полезных привычек.
+            </p>
+          </div>
+
+          <!-- Особенность 4 -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3 class="feature-title">Цели</h3>
+            <p class="feature-desc">
+              Настройка индивидуальных целей обучения и отслеживание прогресса в
+              их достижении.
+            </p>
+          </div>
+        </div>
+
+        <!-- Кнопки навигации -->
+        <div class="nav-buttons">
+          <a href="dashboard.html" class="nav-btn btn-primary">
+            <i class="fas fa-arrow-left"></i>
+            Вернуться в кабинет
+          </a>
+          <a href="koran.html" class="nav-btn btn-secondary">
+            <i class="fas fa-book-quran"></i>
+            Перейти в библиотеку
+          </a>
+          <a href="study.html" class="nav-btn btn-secondary">
+            <i class="fas fa-book-open"></i>
+            Продолжить обучение
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Футер 
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <span class="footer-arabic">مَعْرِفَة</span>
+          <span class="footer-latin">MA'RIFA</span>
+        </div>
+        <div class="footer-text">
+          <p>Совершенствуйтесь в знании и поклонении</p>
+        </div>
+        <div class="footer-divider">
+          <div class="footer-line"></div>
+          <div class="footer-dot"></div>
+          <div class="footer-line"></div>
+        </div>
+        <div class="footer-copyright">
+          © 2024 MA'RIFA. Искусство Таджвида. Все права сохранены.
+        </div>
+      </div>
+    </footer>-->
+
+    <!-- Скрипт для анимации прогресс-бара -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("📊 Страница прогресса загружена");
+
+        // Анимация элементов при прокрутке
+        const observerOptions = {
+          threshold: 0.2,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animated");
+            }
+          });
+        }, observerOptions); // Наблюдаем за всеми элементами с анимацией
+        document
+          .querySelectorAll(".feature-item, .progress-section")
+          .forEach((el) => {
+            observer.observe(el);
+          });
+
+        // Плавный скролл для кнопок
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId !== "#") {
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }
+          });
+        });
+
+        // Интерактивность для кнопки "Вернуться"
+        const backButton = document.querySelector(".btn-primary");
+        if (backButton) {
+          backButton.addEventListener("mouseenter", function () {
+            this.querySelector("i").style.transform = "translateX(-5px)";
+          });
+
+          backButton.addEventListener("mouseleave", function () {
+            this.querySelector("i").style.transform = "translateX(0)";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

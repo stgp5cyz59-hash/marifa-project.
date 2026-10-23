@@ -1,0 +1,3056 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Учебный раздел</title>
+
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Иконки -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Стили учебного раздела -->
+    <style>
+      /* ===== ОСНОВНЫЕ СТИЛИ УЧЕБНОГО РАЗДЕЛА ===== */
+
+      /* ФОН И ОСНОВНОЙ КОНТЕЙНЕР */
+      .study-page {
+        min-height: 100vh;
+        padding: 30px 20px;
+        position: relative;
+      }
+
+      .study-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* ШАПКА РАЗДЕЛА */
+      .study-header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 40px 0;
+        position: relative;
+      }
+
+      .study-header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #d4a574, transparent);
+      }
+
+      .study-title-arabic {
+        font-family: "Amiri", serif;
+        font-size: 4rem;
+        color: #2d1b4e;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .study-title-latin {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        color: #8a4a5f;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+      }
+
+      .study-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      /* НАВИГАЦИЯ-ВКЛАДКИ */
+      .study-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+      }
+
+      .tab {
+        padding: 15px 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(138, 74, 95, 0.2);
+        border-radius: 50px;
+        color: #4a4048;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tab:hover {
+        background: rgba(138, 74, 95, 0.1);
+        border-color: #8a4a5f;
+        transform: translateY(-3px);
+      }
+
+      .tab.active {
+        background: linear-gradient(135deg, #8a4a5f, #6d394a);
+        color: white;
+        border-color: #8a4a5f;
+        box-shadow: 0 10px 25px rgba(138, 74, 95, 0.2);
+      }
+
+      .tab i {
+        font-size: 1.1rem;
+      }
+
+      /* КОНТЕЙНЕР КОНТЕНТА */
+      .content-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 25px;
+        padding: 40px;
+        box-shadow: 0 20px 50px rgba(138, 74, 95, 0.15);
+        border: 1px solid rgba(138, 74, 95, 0.1);
+        backdrop-filter: blur(15px);
+        min-height: 500px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* СТРАНИЦЫ КОНТЕНТА */
+      .content-page {
+        display: none;
+      }
+
+      .content-page.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* СТИЛИ ДЛЯ ВСЕХ СТРАНИЦ */
+      .page-header {
+        margin-bottom: 30px;
+      }
+
+      .page-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        color: #6d394a;
+        margin-bottom: 10px;
+      }
+
+      .page-description {
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      /* КНОПКА НАЗАД */
+      .back-to-dashboard {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        z-index: 100;
+      }
+
+      .back-btn {
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(138, 74, 95, 0.3);
+        border-radius: 50px;
+        color: #8a4a5f;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .back-btn:hover {
+        background: rgba(138, 74, 95, 0.1);
+        transform: translateX(-5px);
+      }
+
+      /* ===== СТРАНИЦА 1: АЛФАВИТ ===== */
+      .alphabet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .letter-card {
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(138, 74, 95, 0.1);
+        border-radius: 15px;
+        padding: 20px 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: visible;
+      }
+
+      .letter-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(138, 74, 95, 0.1);
+        border-color: #8a4a5f;
+        background: rgba(138, 74, 95, 0.05);
+      }
+
+      .letter-card.studied {
+        border-color: #4caf50;
+        background: rgba(76, 175, 80, 0.05);
+      }
+
+      .letter-card.favorite {
+        border-color: #ffc107;
+        background: rgba(255, 193, 7, 0.05);
+      }
+
+      .letter-display {
+        font-family: "Amiri", serif;
+        font-size: 3.5rem;
+        color: #8a4a5f;
+        margin-bottom: 8px;
+        line-height: 1;
+      }
+
+      .letter-name {
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        color: #4a4048;
+        margin-bottom: 5px;
+        font-size: 1rem;
+      }
+
+      .letter-trans {
+        font-family: "Inter", sans-serif;
+        color: #d4a574;
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+
+      .sound-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(138, 74, 95, 0.1);
+        border: none;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        color: #8a4a5f;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 101;
+      }
+
+      .sound-btn:hover {
+        background: #8a4a5f;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      /* ===== КАРТОЧКИ ПРИ НАВЕДЕНИИ ===== */
+      .letter-hover-card {
+        position: absolute;
+        bottom: calc(100% + 15px);
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        width: 320px;
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 25px 60px rgba(138, 74, 95, 0.25);
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(138, 74, 95, 0.1);
+        backdrop-filter: blur(15px);
+      }
+
+      .letter-card:hover .letter-hover-card {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+      }
+
+      /* Стрелочка снизу */
+      .letter-hover-card::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid white;
+      }
+
+      /* Заголовок карточки */
+      .hover-letter-display {
+        font-family: "Amiri", serif;
+        font-size: 4rem;
+        color: #8a4a5f;
+        text-align: center;
+        margin-bottom: 15px;
+        line-height: 1;
+      }
+
+      .hover-letter-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+        color: #6d394a;
+        text-align: center;
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+
+      .hover-letter-trans {
+        font-family: "Inter", sans-serif;
+        color: #d4a574;
+        text-align: center;
+        font-weight: 500;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+      }
+
+      /* Тип буквы */
+      .letter-type {
+        display: inline-block;
+        padding: 5px 12px;
+        background: rgba(138, 74, 95, 0.1);
+        color: #8a4a5f;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+      }
+
+      /* Описание */
+      .letter-description {
+        font-family: "Inter", sans-serif;
+        color: #4a4048;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+        text-align: center;
+      }
+
+      /* Виды написания */
+      .writing-styles {
+        background: rgba(138, 74, 95, 0.05);
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+
+      .writing-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        color: #8a4a5f;
+        margin-bottom: 10px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .writing-examples {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        font-family: "Amiri", serif;
+        font-size: 2.2rem;
+        direction: rtl;
+      }
+
+      .writing-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        font-size: 0.75rem;
+        color: #888;
+        text-align: center;
+      }
+
+      .writing-label {
+        flex: 1;
+      }
+
+      /* Махрадж и детали */
+      .letter-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .detail-item {
+        background: rgba(138, 74, 95, 0.05);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .detail-label {
+        font-size: 0.75rem;
+        color: #8a4a5f;
+        margin-bottom: 4px;
+        font-weight: 500;
+      }
+
+      .detail-value {
+        font-size: 0.85rem;
+        color: #4a4048;
+        font-weight: 600;
+      }
+
+      /* Кнопка деталей */
+      .hover-details-btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #8a4a5f, #6d394a);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .hover-details-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(138, 74, 95, 0.2);
+      }
+
+      .loading-text {
+        text-align: center;
+        padding: 60px 20px;
+        color: #999;
+        grid-column: 1 / -1;
+      }
+
+      .loading-text i {
+        margin-bottom: 15px;
+      }
+
+      /* ===== СТРАНИЦА 2: СЫФАТ ===== */
+      .sifat-tabs {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .sifat-tab {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .sifat-tab.active {
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .sifat-tab[data-type="heavy"] {
+        background: #8a4a5f;
+        color: white;
+      }
+
+      .sifat-tab[data-type="light"] {
+        background: #d4a574;
+        color: #2d1b4e;
+      }
+
+      .sifat-content {
+        display: none;
+      }
+
+      .sifat-content.active {
+        display: block;
+      }
+
+      .sifat-subtitle {
+        color: #8a4a5f;
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .sifat-subtitle i {
+        font-size: 1.1rem;
+      }
+
+      #light-letters .sifat-subtitle {
+        color: #d4a574;
+      }
+
+      .letters-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 15px;
+        margin: 20px 0 25px;
+      }
+
+      .sifat-badge {
+        background: #8a4a5f;
+        color: white;
+        padding: 12px;
+        border-radius: 12px;
+        text-align: center;
+        font-family: "Amiri", serif;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .sifat-badge:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .sifat-badge.light {
+        background: #d4a574;
+        color: #2d1b4e;
+      }
+
+      .sifat-badge-name {
+        font-family: "Inter", sans-serif;
+        font-size: 0.8rem;
+        margin-top: 5px;
+      }
+
+      .sifat-note {
+        margin-top: 20px;
+        color: #666;
+        font-style: italic;
+        font-size: 0.9rem;
+      }
+
+      .comparison-table {
+        margin-top: 40px;
+        background: rgba(138, 74, 95, 0.05);
+        padding: 25px;
+        border-radius: 15px;
+      }
+
+      .comparison-table h4 {
+        color: #6d394a;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .comparison-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+      }
+
+      .comparison-grid ul {
+        color: #666;
+        line-height: 1.6;
+        padding-left: 20px;
+        font-size: 0.9rem;
+      }
+
+      .comparison-grid li {
+        margin-bottom: 6px;
+      }
+
+      .heavy-title {
+        color: #8a4a5f;
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+
+      .light-title {
+        color: #d4a574;
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+
+      /* ===== СТРАНИЦА 3: МАХРАДЖ ===== */
+      .makhraj-areas {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .makhraj-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        border-radius: 15px;
+        border-left: 5px solid #8a4a5f;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .makhraj-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .makhraj-card[data-area="tongue"] {
+        border-left-color: #d4a574;
+      }
+
+      .makhraj-card[data-area="lips"] {
+        border-left-color: #a86c82;
+      }
+
+      .makhraj-card[data-area="nose"] {
+        border-left-color: #4a2c7a;
+      }
+
+      .makhraj-card[data-area="mouth"] {
+        border-left-color: #c1955e;
+      }
+
+      .makhraj-card h4 {
+        color: #8a4a5f;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1.1rem;
+      }
+
+      .makhraj-card[data-area="tongue"] h4 {
+        color: #d4a574;
+      }
+
+      .makhraj-card[data-area="lips"] h4 {
+        color: #a86c82;
+      }
+
+      .makhraj-card[data-area="nose"] h4 {
+        color: #4a2c7a;
+      }
+
+      .makhraj-card[data-area="mouth"] h4 {
+        color: #c1955e;
+      }
+
+      .makhraj-card p {
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.5;
+        font-size: 0.9rem;
+      }
+
+      .makhraj-card .letters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .letter-badge {
+        background: #8a4a5f;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-family: "Amiri", serif;
+      }
+
+      .makhraj-card[data-area="tongue"] .letter-badge {
+        background: #d4a574;
+        color: #2d1b4e;
+      }
+
+      .makhraj-card[data-area="lips"] .letter-badge {
+        background: #a86c82;
+        color: white;
+      }
+
+      .makhraj-card[data-area="nose"] .letter-badge {
+        background: #4a2c7a;
+        color: white;
+      }
+
+      .makhraj-card[data-area="mouth"] .letter-badge {
+        background: #c1955e;
+        color: #2d1b4e;
+      }
+
+      .makhraj-diagram {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        margin-top: 30px;
+      }
+
+      .makhraj-diagram h4 {
+        color: #6d394a;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .diagram-placeholder {
+        position: relative;
+        height: 200px;
+        background: linear-gradient(135deg, #f8f5f0, #f0e6d6);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #999;
+      }
+
+      .diagram-placeholder p {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      .diagram-placeholder small {
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+
+      /* ===== СТРАНИЦА 4: ПРАВИЛА ===== */
+      .rules-filters {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .rule-filter {
+        padding: 8px 20px;
+        background: rgba(138, 74, 95, 0.1);
+        color: #8a4a5f;
+        border: 2px solid #8a4a5f;
+        border-radius: 20px;
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+      }
+
+      .rule-filter.active {
+        background: #8a4a5f;
+        color: white;
+      }
+
+      .rule-filter[data-filter="advanced"] {
+        border-color: #d4a574;
+        color: #d4a574;
+        background: rgba(212, 165, 116, 0.1);
+      }
+
+      .rule-filter[data-filter="advanced"].active {
+        background: #d4a574;
+        color: #2d1b4e;
+      }
+
+      .rule-filter[data-filter="practice"] {
+        border-color: #4a2c7a;
+        color: #4a2c7a;
+        background: rgba(74, 44, 122, 0.1);
+      }
+
+      .rule-filter[data-filter="practice"].active {
+        background: #4a2c7a;
+        color: white;
+      }
+
+      .rules-accordion {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .rule-item {
+        border-bottom: 1px solid rgba(138, 74, 95, 0.1);
+      }
+
+      .rule-item:last-child {
+        border-bottom: none;
+      }
+
+      .rule-header {
+        width: 100%;
+        padding: 20px 25px;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s ease;
+      }
+
+      .rule-header:hover {
+        background: rgba(138, 74, 95, 0.03);
+      }
+
+      .rule-number {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #8a4a5f, #a86c82);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .rule-header-content {
+        flex: 1;
+        margin-left: 15px;
+      }
+
+      .rule-title {
+        color: #6d394a;
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .rule-subtitle {
+        color: #666;
+        font-size: 0.85rem;
+      }
+
+      .rule-chevron {
+        color: #8a4a5f;
+        transition: transform 0.3s ease;
+        font-size: 0.9rem;
+      }
+
+      .rule-item.active .rule-chevron {
+        transform: rotate(180deg);
+      }
+
+      .rule-content {
+        display: none;
+        padding: 0 25px 25px;
+      }
+
+      .rule-item.active .rule-content {
+        display: block;
+      }
+
+      .sub-rules-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .sub-rule {
+        background: rgba(138, 74, 95, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+      }
+
+      .sub-rule h5 {
+        color: #8a4a5f;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+      }
+
+      .sub-rule p {
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 10px;
+        font-size: 0.85rem;
+      }
+
+      .arabic-example {
+        background: white;
+        padding: 12px;
+        border-radius: 8px;
+        font-family: "Amiri", serif;
+        font-size: 1.3rem;
+        text-align: center;
+        color: #2d1b4e;
+        direction: rtl;
+        margin-bottom: 10px;
+      }
+
+      .practice-btn-container {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .practice-btn {
+        padding: 10px 25px;
+        background: #8a4a5f;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+      }
+
+      .practice-btn:hover {
+        background: #6d394a;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(138, 74, 95, 0.2);
+      }
+
+      /* Быстрые ссылки */
+      .quick-links {
+        margin-top: 40px;
+        background: linear-gradient(
+          135deg,
+          rgba(138, 74, 95, 0.05),
+          rgba(212, 165, 116, 0.05)
+        );
+        padding: 25px;
+        border-radius: 15px;
+      }
+
+      .quick-links h4 {
+        color: #6d394a;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+      }
+
+      .quick-link {
+        padding: 12px;
+        background: white;
+        border: 2px solid #8a4a5f;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .quick-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(138, 74, 95, 0.1);
+      }
+
+      .quick-link i {
+        color: #8a4a5f;
+        font-size: 1.3rem;
+      }
+
+      .quick-link span {
+        color: #6d394a;
+        font-weight: 500;
+        font-size: 0.85rem;
+      }
+
+      .quick-link[data-action="tests"] {
+        border-color: #d4a574;
+      }
+
+      .quick-link[data-action="tests"] i {
+        color: #d4a574;
+      }
+
+      .quick-link[data-action="pdf"] {
+        border-color: #4a2c7a;
+      }
+
+      .quick-link[data-action="pdf"] i {
+        color: #4a2c7a;
+      }
+
+      /* ПРОГРЕСС В ФУТЕРЕ */
+      .study-footer {
+        margin-top: 40px;
+        text-align: center;
+        padding: 25px;
+        .modal-footer {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .modal-btn {
+          padding: 10px 20px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-family: "Inter", sans-serif;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.3s ease;
+          min-width: 140px;
+          justify-content: center;
+          font-size: 0.9rem;
+        }
+
+        .sound-btn {
+          background: #8a4a5f;
+          color: white;
+        }
+
+        .sound-btn:hover {
+          background: #6d394a;
+          transform: translateY(-2px);
+        }
+
+        .favorite-btn {
+          background: #d4a574;
+          color: #2d1b4e;
+        }
+
+        .favorite-btn:hover {
+          background: #c1955e;
+          transform: translateY(-2px);
+        }
+
+        .favorite-btn.active {
+          background: #ffc107;
+          color: #2d1b4e;
+        }
+
+        .studied-btn {
+          background: #4caf50;
+          color: white;
+        }
+
+        .studied-btn:hover {
+          background: #388e3c;
+          transform: translateY(-2px);
+        }
+
+        .studied-btn.active {
+          background: #2e7d32;
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+          .study-tabs {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .tab {
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+          }
+
+          .content-container {
+            padding: 25px 20px;
+          }
+
+          .study-title-arabic {
+            font-size: 3rem;
+          }
+
+          .study-title-latin {
+            font-size: 1.8rem;
+          }
+
+          .back-to-dashboard {
+            top: 20px;
+            left: 20px;
+          }
+
+          .back-btn span {
+            display: none;
+          }
+
+          .back-btn {
+            padding: 8px;
+            width: 35px;
+            height: 35px;
+            justify-content: center;
+          }
+
+          .modal-footer {
+            flex-direction: column;
+          }
+
+          .modal-btn {
+            width: 100%;
+          }
+
+          .sifat-tabs {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .sifat-tab {
+            width: 100%;
+            max-width: 220px;
+            justify-content: center;
+          }
+
+          .rules-filters {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .rule-filter {
+            width: 100%;
+            max-width: 180px;
+            text-align: center;
+          }
+
+          .links-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .alphabet-grid {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          }
+
+          .letters-grid {
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+          }
+
+          .makhraj-areas {
+            grid-template-columns: 1fr;
+          }
+
+          .letter-hover-card {
+            width: 280px;
+            padding: 20px;
+            left: 50%;
+          }
+
+          .letter-details {
+            grid-template-columns: 1fr;
+            gap: 8px;
+          }
+
+          .hover-letter-display {
+            font-size: 3rem;
+          }
+
+          .writing-examples {
+            font-size: 1.8rem;
+            gap: 10px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .study-header {
+            padding: 25px 0;
+          }
+
+          .study-title-arabic {
+            font-size: 2.5rem;
+          }
+
+          .study-title-latin {
+            font-size: 1.6rem;
+          }
+
+          .study-subtitle {
+            font-size: 0.95rem;
+          }
+
+          .page-title {
+            font-size: 1.8rem;
+          }
+
+          .letter-display {
+            font-size: 2.8rem;
+          }
+
+          .modal-content {
+            padding: 25px 15px;
+          }
+
+          .modal-letter {
+            font-size: 3.5rem;
+          }
+
+          .modal-header h3 {
+            font-size: 1.6rem;
+          }
+
+          .letter-hover-card {
+            width: 260px;
+            padding: 15px;
+          }
+
+          .hover-letter-display {
+            font-size: 2.5rem;
+          }
+
+          .hover-letter-name {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            border: 1px solid rgba(138, 74, 95, 0.1);
+          }
+
+          .progress-info {
+            font-family: "Inter", sans-serif;
+            color: #4a4048;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+          }
+
+          .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(138, 74, 95, 0.1);
+            border-radius: 5px;
+            margin: 15px auto;
+            max-width: 400px;
+            overflow: hidden;
+          }
+
+          .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8a4a5f, #d4a574);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease;
+          }
+
+          .progress-note {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 10px;
+          }
+
+          /* ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ */
+          .study-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+          }
+
+          .decoration-star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #d4a574;
+            border-radius: 50%;
+            animation: starTwinkle 3s infinite;
+          }
+
+          @keyframes starTwinkle {
+            0%,
+            100% {
+              opacity: 0.3;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.6;
+              transform: scale(1.3);
+            }
+          }
+
+          /* МОДАЛЬНОЕ ОКНО */
+          .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+          }
+
+          .modal.active {
+            display: flex;
+          }
+
+          .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.3s ease;
+          }
+
+          @keyframes slideUp {
+            from {
+              transform: translateY(30px);
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
+
+          .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #666;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+          }
+
+          .modal-close:hover {
+            background: rgba(138, 74, 95, 0.1);
+            color: #8a4a5f;
+          }
+
+          .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+
+          .modal-letter {
+            font-family: "Amiri", serif;
+            font-size: 4rem;
+            color: #8a4a5f;
+            margin-bottom: 15px;
+            line-height: 1;
+          }
+
+          .modal-header h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.8rem;
+            color: #6d394a;
+            margin-bottom: 8px;
+          }
+
+          .modal-transcription {
+            color: #d4a574;
+            font-size: 1.1rem;
+            font-weight: 500;
+          }
+
+          .modal-body {
+            background: rgba(138, 74, 95, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+          }
+
+          .modal-body p {
+            color: #4a4048;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+          }
+
+          .modal-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+          }
+
+          .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+          }
+
+          .detail-label {
+            color: #8a4a5f;
+            font-weight: 500;
+            font-size: 0.8rem;
+          }
+
+          .detail-value {
+            color: #4a4048;
+            font-weight: 600;
+            font-size: 0.9rem;
+          }
+          font-size: 1.5rem;
+        }
+
+        .writing-examples {
+          font-size: 1.5rem;
+        }
+      }
+      /* ПРОСТОЙ ФИКС ДЛЯ КАРТОЧЕК */
+      .letter-card {
+        position: relative;
+        z-index: 100;
+      }
+
+      .letter-hover-card {
+        z-index: 99999 !important;
+      }
+
+      .content-container {
+        overflow: visible !important;
+      }
+
+      .alphabet-grid {
+        overflow: visible !important;
+      }
+
+      /* Если карточка выходит за экран слева/справа */
+      .letter-hover-card {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+      }
+
+      /* Для крайних букв слева */
+      .alphabet-grid .letter-card:first-child .letter-hover-card {
+        left: 0 !important;
+        transform: none !important;
+      }
+
+      /* Для крайних букв справа */
+      .alphabet-grid .letter-card:last-child .letter-hover-card {
+        left: auto !important;
+        right: 0 !important;
+        transform: none !important;
+      }
+
+      /* Стрелочка должна быть всегда по центру */
+      .letter-hover-card::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+      }
+      /* ФИКС: Скрыть модалку по умолчанию */
+      #letterModal {
+        display: none !important;
+      }
+
+      #letterModal.active {
+        display: flex !important;
+      }
+
+      /* Убедиться, что модалка поверх всего */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      /* Скрыть текст, который торчит на фоне */
+      body > div:last-child {
+        display: none;
+      }
+
+      /* Если всё равно видно, скрыть всё кроме нужного */
+      .study-container
+        > *:not(.study-header):not(.study-tabs):not(.content-container):not(
+          .study-footer
+        ) {
+        display: none;
+      }
+      /* Стили для навигационных ссылок в quick-links */
+      .quick-link[href] {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+
+      .quick-link[href]:hover {
+        text-decoration: none;
+      }
+
+      /* Добавим бейджи для уведомлений (опционально) */
+      .quick-link[href="homework.html"] {
+        position: relative;
+      }
+
+      .quick-link[href="class.html"] {
+        position: relative;
+      }
+
+      /* Бейдж с количеством */
+      .link-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #8a4a5f;
+        color: white;
+        font-size: 0.7rem;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        animation: pulse 2s infinite;
+      }
+
+      .quick-link[href="class.html"] .link-badge {
+        background: #d4a574;
+        color: #2d1b4e;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Фон -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Кнопка назад -->
+    <div class="back-to-dashboard">
+      <a href="dashboard.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        <span>В кабинет</span>
+      </a>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="study-page">
+      <div class="study-container">
+        <!-- Шапка -->
+        <header class="study-header">
+          <h1 class="study-title-arabic">مَقْصِدُ الْعِلْمِ</h1>
+          <h2 class="study-title-latin">Учебный раздел</h2>
+          <p class="study-subtitle">
+            Изучайте арабский алфавит, правила таджвида и совершенствуйте своё
+            чтение Корана
+          </p>
+        </header>
+
+        <!-- Навигация вкладками -->
+        <nav class="study-tabs">
+          <button class="tab active" data-tab="alphabet">
+            <i class="fas fa-font"></i>
+            <span>Арабский алфавит</span>
+          </button>
+          <button class="tab" data-tab="sifat">
+            <i class="fas fa-weight-hanging"></i>
+            <span>Сыфат (атрибуты)</span>
+          </button>
+          <button class="tab" data-tab="makhraj">
+            <i class="fas fa-microphone-alt"></i>
+            <span>Махрадж (произношение)</span>
+          </button>
+          <button class="tab" data-tab="rules">
+            <i class="fas fa-book-open"></i>
+            <span>Правила таджвида</span>
+          </button>
+        </nav>
+
+        <!-- Контейнер для контента -->
+        <main class="content-container">
+          <!-- СТРАНИЦА 1: АЛФАВИТ -->
+          <section class="content-page active" id="alphabet-page">
+            <div class="page-header">
+              <h3 class="page-title">Арабский алфавит: 28 букв</h3>
+              <p class="page-description">
+                Изучите каждую букву: наведите для информации, кликните для
+                деталей
+              </p>
+            </div>
+
+            <!-- Сетка букв -->
+            <div class="alphabet-grid" id="alphabetGrid">
+              <div class="loading-text">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                <p>Загружаем алфавит...</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- СТРАНИЦА 2: СЫФАТ -->
+          <section class="content-page" id="sifat-page">
+            <div class="page-header">
+              <h3 class="page-title">Сыфат (атрибуты букв)</h3>
+              <p class="page-description">
+                Атрибуты определяют, как произносится каждая буква. Изучите
+                тяжёлые и лёгкие буквы.
+              </p>
+            </div>
+
+            <!-- Табы для тяжёлых/лёгких -->
+            <div class="sifat-tabs">
+              <button class="sifat-tab active" data-type="heavy">
+                <i class="fas fa-weight-hanging"></i> Тяжёлые буквы (7)
+              </button>
+              <button class="sifat-tab" data-type="light">
+                <i class="fas fa-feather-alt"></i> Лёгкие буквы (21)
+              </button>
+            </div>
+
+            <!-- Тяжёлые буквы -->
+            <div id="heavy-letters" class="sifat-content active">
+              <h4 class="sifat-subtitle">
+                <i class="fas fa-weight-hanging"></i> Хурӯф исти‘ля
+                (Поднимающиеся)
+              </h4>
+              <div class="letters-grid" id="heavyGrid"></div>
+              <p class="sifat-note">
+                Эти буквы имеют полноту звучания и произносятся с напряжением
+                языка к нёбу.
+              </p>
+            </div>
+
+            <!-- Лёгкие буквы -->
+            <div id="light-letters" class="sifat-content">
+              <h4 class="sifat-subtitle">
+                <i class="fas fa-feather-alt"></i> Хурӯф истифаль (Опускающиеся)
+              </h4>
+              <div class="letters-grid" id="lightGrid"></div>
+              <p class="sifat-note">
+                Эти буквы произносятся легко, без напряжения языка.
+              </p>
+            </div>
+
+            <!-- Таблица сравнения -->
+            <div class="comparison-table">
+              <h4>Сравнение атрибутов</h4>
+              <div class="comparison-grid">
+                <div>
+                  <h5 class="heavy-title">Тяжёлые буквы</h5>
+                  <ul>
+                    <li>Язык поднимается к нёбу</li>
+                    <li>Звук более полный и глубокий</li>
+                    <li>7 букв: خ ص ض غ ط ظ ق</li>
+                    <li>Произносятся с напряжением</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 class="light-title">Лёгкие буквы</h5>
+                  <ul>
+                    <li>Язык остаётся внизу</li>
+                    <li>Звук более лёгкий и мягкий</li>
+                    <li>21 буква (остальные)</li>
+                    <li>Произносятся без напряжения</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- СТРАНИЦА 3: МАХРАДЖ -->
+          <section class="content-page" id="makhraj-page">
+            <div class="page-header">
+              <h3 class="page-title">Махрадж (места выхода звуков)</h3>
+              <p class="page-description">
+                5 основных областей произношения арабских букв. Кликните на
+                область, чтобы увидеть соответствующие буквы.
+              </p>
+            </div>
+
+            <!-- Области произношения -->
+            <div class="makhraj-areas">
+              <!-- Горло -->
+              <div class="makhraj-card" data-area="throat">
+                <h4><i class="fas fa-lungs"></i> Горло (Халк)</h4>
+                <p>Буквы, выходящие из разных частей горла</p>
+                <div class="letters">
+                  <span class="letter-badge">ء</span>
+                  <span class="letter-badge">ه</span>
+                  <span class="letter-badge">ح</span>
+                  <span class="letter-badge">ع</span>
+                  <span class="letter-badge">غ</span>
+                  <span class="letter-badge">خ</span>
+                </div>
+              </div>
+
+              <!-- Язык -->
+              <div class="makhraj-card" data-area="tongue">
+                <h4><i class="fas fa-tooth"></i> Язык (Лисан)</h4>
+                <p>Разные части языка: корень, середина, кончик</p>
+                <div class="letters">
+                  <span class="letter-badge">ق</span>
+                  <span class="letter-badge">ك</span>
+                  <span class="letter-badge">ج</span>
+                  <span class="letter-badge">ش</span>
+                  <span class="letter-badge">ي</span>
+                  <span class="letter-badge">ض</span>
+                </div>
+              </div>
+
+              <!-- Губы -->
+              <div class="makhraj-card" data-area="lips">
+                <h4><i class="fas fa-kiss-wink-heart"></i> Губы (Шафатайн)</h4>
+                <p>Буквы, произносимые губами</p>
+                <div class="letters">
+                  <span class="letter-badge">ب</span>
+                  <span class="letter-badge">م</span>
+                  <span class="letter-badge">و</span>
+                  <span class="letter-badge">ف</span>
+                </div>
+              </div>
+
+              <!-- Нос -->
+              <div class="makhraj-card" data-area="nose">
+                <h4><i class="fas fa-wind"></i> Нос (Хайшаум)</h4>
+                <p>Гуна (носовое произношение)</p>
+                <div class="letters">
+                  <span class="letter-badge">ن</span>
+                  <span class="letter-badge">م</span>
+                  <span class="letter-badge">ء</span>
+                </div>
+              </div>
+
+              <!-- Полость рта -->
+              <div class="makhraj-card" data-area="mouth">
+                <h4><i class="fas fa-teeth-open"></i> Полость рта (Джавф)</h4>
+                <p>Буквы растяжения (мадд)</p>
+                <div class="letters">
+                  <span class="letter-badge">ا</span>
+                  <span class="letter-badge">و</span>
+                  <span class="letter-badge">ي</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Схематическое изображение -->
+            <div class="makhraj-diagram">
+              <h4>
+                <i class="fas fa-project-diagram"></i> Схема речевого аппарата
+              </h4>
+              <div class="diagram-placeholder">
+                <p>Схематическое изображение речевого аппарата</p>
+                <small>(Здесь будет интерактивная SVG-схема)</small>
+              </div>
+            </div>
+          </section>
+
+          <!-- СТРАНИЦА 4: ПРАВИЛА -->
+          <section class="content-page" id="rules-page">
+            <div class="page-header">
+              <h3 class="page-title">Правила таджвида</h3>
+              <p class="page-description">
+                Основные правила чтения Корана. Изучайте по порядку и
+                практикуйтесь на примерах.
+              </p>
+            </div>
+
+            <!-- Фильтры правил -->
+            <div class="rules-filters">
+              <button class="rule-filter active" data-filter="all">
+                Все правила
+              </button>
+              <button class="rule-filter" data-filter="basic">Основные</button>
+              <button class="rule-filter" data-filter="advanced">
+                Продвинутые
+              </button>
+              <button class="rule-filter" data-filter="practice">
+                Для практики
+              </button>
+            </div>
+
+            <!-- Аккордеон правил -->
+            <div class="rules-accordion" id="rulesAccordion">
+              <div class="loading-text">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Загружаем правила таджвида...</p>
+              </div>
+            </div>
+
+            <!-- Быстрые ссылки -->
+            <div class="quick-links">
+              <h4><i class="fas fa-bolt"></i> Быстрый доступ</h4>
+              <div class="links-grid">
+                <a
+                  href="homework.html"
+                  class="quick-link"
+                  title="Домашние задания"
+                >
+                  <i class="fas fa-book"></i>
+                  <span>Домашние задания</span>
+                </a>
+
+                <a href="class.html" class="quick-link" title="Чат с учителем">
+                  <i class="fas fa-comments"></i>
+                  <span>Чат с учителем</span>
+                </a>
+                <button class="quick-link" data-action="audio">
+                  <i class="fas fa-microphone-alt"></i>
+                  <span>Аудио-примеры</span>
+                </button>
+                <button class="quick-link" data-action="tests">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Тесты</span>
+                </button>
+                <button class="quick-link" data-action="pdf">
+                  <i class="fas fa-book-open"></i>
+                  <span>Скачать PDF</span>
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <!-- Футер с прогрессом -->
+        <footer class="study-footer">
+          <div class="progress-info">
+            <span id="progressText">Изучено: 0 из 28 букв</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p class="progress-note">
+            Продолжайте изучение для достижения совершенства в чтении
+          </p>
+        </footer>
+      </div>
+
+      <!-- Декоративные элементы -->
+      <div class="study-decoration" id="decoration"></div>
+    </div>
+
+    <!-- Модальное окно для букв -->
+    <div id="letterModal" class="modal">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <div class="modal-header">
+          <div class="modal-letter" id="modalLetter">ا</div>
+          <h3 id="modalName">Алиф</h3>
+          <div class="modal-transcription" id="modalTrans">[aː]</div>
+        </div>
+        <div class="modal-body">
+          <p id="modalDesc">Описание буквы...</p>
+          <div class="modal-details">
+            <div class="detail-item">
+              <span class="detail-label">Тип:</span>
+              <span class="detail-value" id="modalType">Лёгкая</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Махрадж:</span>
+              <span class="detail-value" id="modalMakhraj">Горло</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Изучено:</span>
+              <span class="detail-value" id="modalStudied">Нет</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-btn sound-btn" id="modalSoundBtn">
+            <i class="fas fa-volume-up"></i> Прослушать
+          </button>
+          <button class="modal-btn favorite-btn" id="modalFavoriteBtn">
+            <i class="far fa-star"></i> В избранное
+          </button>
+          <button class="modal-btn studied-btn" id="modalStudiedBtn">
+            <i class="fas fa-check"></i> Отметить изученным
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Скрипт учебного раздела -->
+    <script>
+      console.log("=== УЧЕБНЫЙ РАЗДЕЛ - УЛУЧШЕННАЯ ВЕРСИЯ ===");
+
+      // Данные алфавита с полной информацией
+      const arabicAlphabet = [
+        {
+          letter: "ا",
+          name: "Алиф",
+          trans: "aː",
+          desc: "Самая первая буква арабского алфавита. Произносится как долгое 'а' из глубины горла. Является буквой растяжения (мадд).",
+          heavy: false,
+          makhraj: "Полость рта (джавф)",
+          sifat: "Лёгкая",
+          examples: ["أَحْمَد", "إِسْلاَم", "أُمَّة"],
+        },
+        {
+          letter: "ب",
+          name: "Ба",
+          trans: "b",
+          desc: "Произносится при смыкании губ, как русское 'б'. Относится к губным буквам. Часто используется в начале слов.",
+          heavy: true,
+          makhraj: "Губы (шафатайн)",
+          sifat: "Тяжёлая",
+          examples: ["بَيْت", "كِتَاب", "أَب"],
+        },
+        {
+          letter: "ت",
+          name: "Та",
+          trans: "t",
+          desc: "Произносится кончиком языка у основания верхних зубов. Легкая буква. Используется в женском окончании ة.",
+          heavy: false,
+          makhraj: "Кончик языка у зубов",
+          sifat: "Лёгкая",
+          examples: ["تَاج", "مَدِينَة", "وَلَدَتْ"],
+        },
+        {
+          letter: "ث",
+          name: "Са",
+          trans: "θ",
+          desc: "Межзубная буква. Произносится как английское 'th' в слове 'think'. Кончик языка между зубами.",
+          heavy: false,
+          makhraj: "Кончик языка между зубами",
+          sifat: "Лёгкая",
+          examples: ["ثَوْب", "مِثْل", "أَثَر"],
+        },
+        {
+          letter: "ج",
+          name: "Джим",
+          trans: "ʤ",
+          desc: "Произносится серединой языка. Звук похож на английское 'j' в 'jam'. Тяжёлая буква.",
+          heavy: true,
+          makhraj: "Середина языка",
+          sifat: "Тяжёлая",
+          examples: ["جَمِيل", "حَجّ", "جَنَّة"],
+        },
+        {
+          letter: "ح",
+          name: "Ха",
+          trans: "ħ",
+          desc: "Гортанный звук из середины горла. Более мягкий, чем обычное 'х'. Произносится с напряжением в горле.",
+          heavy: false,
+          makhraj: "Середина горла",
+          sifat: "Лёгкая",
+          examples: ["حَجّ", "مُحَمَّد", "أَحْسَن"],
+        },
+        {
+          letter: "خ",
+          name: "Ха",
+          trans: "x",
+          desc: "Произносится из задней части горла, как 'х' в слове 'хлеб', но более глубоко и с придыханием.",
+          heavy: true,
+          makhraj: "Задняя часть горла",
+          sifat: "Тяжёлая",
+          examples: ["خَيْر", "أَخ", "ذُو الْخُرُّ"],
+        },
+        {
+          letter: "د",
+          name: "Даль",
+          trans: "d",
+          desc: "Легкая буква, произносится кончиком языка у верхних зубов. Не соединяется с следующей буквой.",
+          heavy: false,
+          makhraj: "Кончик языка у зубов",
+          sifat: "Лёгкая",
+          examples: ["دِين", "يَوْم", "أَحْمَد"],
+        },
+        {
+          letter: "ذ",
+          name: "Заль",
+          trans: "ð",
+          desc: "Межзубная звонкая буква. Как английское 'th' в 'this'. Кончик языка между зубами.",
+          heavy: false,
+          makhraj: "Кончик языка между зубами",
+          sifat: "Лёгкая",
+          examples: ["ذَهَب", "أَذَان", "يَذْهَب"],
+        },
+        {
+          letter: "ر",
+          name: "Ра",
+          trans: "r",
+          desc: "Дрожащая буква. Кончик языка вибрирует у верхних зубов. Может быть раскатистой или мягкой.",
+          heavy: false,
+          makhraj: "Кончик языка",
+          sifat: "Лёгкая",
+          examples: ["رَبّ", "كَبِير", "رَحْمَة"],
+        },
+        {
+          letter: "ز",
+          name: "За",
+          trans: "z",
+          desc: "Звонкая свистящая буква. Похожа на русское 'з'. Произносится кончиком языка у зубов.",
+          heavy: false,
+          makhraj: "Кончик языка у зубов",
+          sifat: "Лёгкая",
+          examples: ["زَيْن", "حَزِين", "مَزِيد"],
+        },
+        {
+          letter: "س",
+          name: "Син",
+          trans: "s",
+          desc: "Глухая свистящая буква. Как русское 'с', но кончик языка у зубов. Очень распространенная буква.",
+          heavy: false,
+          makhraj: "Кончик языка у зубов",
+          sifat: "Лёгкая",
+          examples: ["سَلاَم", "مُسْلِم", "سَمَاء"],
+        },
+        {
+          letter: "ش",
+          name: "Шин",
+          trans: "ʃ",
+          desc: "Шипящая буква. Произносится серединой языка, как русское 'ш'. Тяжёлая буква.",
+          heavy: true,
+          makhraj: "Середина языка",
+          sifat: "Тяжёлая",
+          examples: ["شَمْس", "إِنْشَاء", "مَشْهُور"],
+        },
+        {
+          letter: "ص",
+          name: "Сад",
+          trans: "sˁ",
+          desc: "Тяжелая глухая свистящая буква. Произносится с напряжением языка и приподнятым нёбом.",
+          heavy: true,
+          makhraj: "Кончик языка",
+          sifat: "Тяжёлая",
+          examples: ["صَلاَة", "صَبْر", "مُصْطَفَى"],
+        },
+        {
+          letter: "ض",
+          name: "Дад",
+          trans: "dˁ",
+          desc: "Самая тяжелая буква арабского алфавита. Произносится боковой частью языка. Уникальная для арабского.",
+          heavy: true,
+          makhraj: "Боковая часть языка",
+          sifat: "Тяжёлая",
+          examples: ["ضَرْب", "رَمَضَان", "أَضْحَى"],
+        },
+        {
+          letter: "ط",
+          name: "Та",
+          trans: "tˁ",
+          desc: "Тяжелая буква. Произносится с поднятием задней части языка и напряжением гортани.",
+          heavy: true,
+          makhraj: "Задняя часть языка",
+          sifat: "Тяжёлая",
+          examples: ["طَهَ", "طَيِّب", "يَطْهُر"],
+        },
+        {
+          letter: "ظ",
+          name: "За",
+          trans: "ðˁ",
+          desc: "Тяжелая межзубная буква. Сочетание межзубности и напряжения. Более звонкая, чем ث.",
+          heavy: true,
+          makhraj: "Кончик языка между зубами",
+          sifat: "Тяжёлая",
+          examples: ["ظُلْم", "حَظّ", "مَظْلُوم"],
+        },
+        {
+          letter: "ع",
+          name: "Айн",
+          trans: "ʕ",
+          desc: "Гортанный звонкий звук. Одна из самых сложных для произношения букв. Глубокий гортанный звук.",
+          heavy: false,
+          makhraj: "Середина горла",
+          sifat: "Лёгкая",
+          examples: ["عَلِيم", "مَعْرِفَة", "أَعْظَم"],
+        },
+        {
+          letter: "غ",
+          name: "Гайн",
+          trans: "ɣ",
+          desc: "Тяжелый гортанный звук. Похож на французское 'r' в 'Paris'. Произносится с вибрацией в горле.",
+          heavy: true,
+          makhraj: "Задняя часть горла",
+          sifat: "Тяжёлая",
+          examples: ["غَفُور", "مَغْرِب", "أَغْنَى"],
+        },
+        {
+          letter: "ف",
+          name: "Фа",
+          trans: "f",
+          desc: "Губно-зубная буква. Произносится как русское 'ф'. Верхние зубы касаются нижней губы.",
+          heavy: false,
+          makhraj: "Губы и зубы",
+          sifat: "Лёгкая",
+          examples: ["فَاتِحَة", "مُفْتِي", "كَافِر"],
+        },
+        {
+          letter: "ق",
+          name: "Каф",
+          trans: "q",
+          desc: "Тяжелая буква из задней части нёба. Звук похож на 'к', но глубже и с поднятым языком.",
+          heavy: true,
+          makhraj: "Задняя часть нёба",
+          sifat: "Тяжёлая",
+          examples: ["قُرْآن", "تَقْوَى", "يَقُول"],
+        },
+        {
+          letter: "ك",
+          name: "Каф",
+          trans: "k",
+          desc: "Легкая буква. Произносится как русское 'к', но ближе к зубам. Язык касается нёба.",
+          heavy: false,
+          makhraj: "Передняя часть нёба",
+          sifat: "Лёгкая",
+          examples: ["كِتَاب", "مَكَّة", "أَكْبَر"],
+        },
+        {
+          letter: "ل",
+          name: "Лям",
+          trans: "l",
+          desc: "Боковая буква. Произносится как русское 'л', но кончик языка у зубов. Может быть солнечной или лунной.",
+          heavy: false,
+          makhraj: "Кончик языка",
+          sifat: "Лёгкая",
+          examples: ["لَيْلَة", "قَلْب", "اللَّه"],
+        },
+        {
+          letter: "م",
+          name: "Мим",
+          trans: "m",
+          desc: "Губная носовая буква. Произносится с сомкнутыми губами. Воздух выходит через нос.",
+          heavy: true,
+          makhraj: "Губы (носовая)",
+          sifat: "Тяжёлая",
+          examples: ["مُحَمَّد", "أُمَّة", "رَحْم"],
+        },
+        {
+          letter: "ن",
+          name: "Нун",
+          trans: "n",
+          desc: "Носовая буква. Произносится кончиком языка у зубов. Воздух частично выходит через нос.",
+          heavy: true,
+          makhraj: "Кончик языка (носовая)",
+          sifat: "Тяжёлая",
+          examples: ["نُور", "إِنَّا", "يُنْفِق"],
+        },
+        {
+          letter: "ه",
+          name: "Ха",
+          trans: "h",
+          desc: "Легкий гортанный звук. Как английское 'h' в 'hello'. Произносится с лёгким выдохом.",
+          heavy: false,
+          makhraj: "Горло",
+          sifat: "Лёгкая",
+          examples: ["هَدَى", "مَهْدِيّ", "تَوْبَة"],
+        },
+        {
+          letter: "و",
+          name: "Вав",
+          trans: "w",
+          desc: "Губная буква. Может быть согласной ('в') или гласной ('у'). Произносится округленными губами.",
+          heavy: false,
+          makhraj: "Губы",
+          sifat: "Лёгкая",
+          examples: ["وَحْي", "يَقُول", "نُور"],
+        },
+        {
+          letter: "ي",
+          name: "Йа",
+          trans: "j",
+          desc: "Может быть согласной ('й') или гласной ('и'). Произносится серединой языка, близко к нёбу.",
+          heavy: false,
+          makhraj: "Середина языка",
+          sifat: "Лёгкая",
+          examples: ["يَوْم", "نَبِيّ", "حَيَاة"],
+        },
+      ];
+
+      // Данные о видах написания для каждой буквы
+      const writingStyles = {
+        ا: ["ا", "ـا", "ـا", "ا"],
+        ب: ["ب", "ـب", "ـبـ", "بـ"],
+        ت: ["ت", "ـت", "ـتـ", "تـ"],
+        ث: ["ث", "ـث", "ـثـ", "ثـ"],
+        ج: ["ج", "ـج", "ـجـ", "جـ"],
+        ح: ["ح", "ـح", "ـحـ", "حـ"],
+        خ: ["خ", "ـخ", "ـخـ", "خـ"],
+        د: ["د", "ـد", "ـد", "د"],
+        ذ: ["ذ", "ـذ", "ـذ", "ذ"],
+        ر: ["ر", "ـر", "ـر", "ر"],
+        ز: ["ز", "ـز", "ـز", "ز"],
+        س: ["س", "ـس", "ـسـ", "سـ"],
+        ش: ["ش", "ـش", "ـشـ", "شـ"],
+        ص: ["ص", "ـص", "ـصـ", "صـ"],
+        ض: ["ض", "ـض", "ـضـ", "ضـ"],
+        ط: ["ط", "ـط", "ـطـ", "طـ"],
+        ظ: ["ظ", "ـظ", "ـظـ", "ظـ"],
+        ع: ["ع", "ـع", "ـعـ", "عـ"],
+        غ: ["غ", "ـغ", "ـغـ", "غـ"],
+        ف: ["ف", "ـف", "ـفـ", "فـ"],
+        ق: ["ق", "ـق", "ـقـ", "قـ"],
+        ك: ["ك", "ـك", "ـكـ", "كـ"],
+        ل: ["ل", "ـل", "ـلـ", "لـ"],
+        م: ["م", "ـم", "ـمـ", "مـ"],
+        ن: ["ن", "ـن", "ـنـ", "نـ"],
+        ه: ["ه", "ـه", "ـهـ", "هـ"],
+        و: ["و", "ـو", "ـو", "و"],
+        ي: ["ي", "ـي", "ـيـ", "يـ"],
+      };
+
+      // При загрузке страницы
+      window.addEventListener("load", function () {
+        console.log("✅ Страница полностью загружена");
+
+        // Дайте небольшую задержку для полной загрузки DOM
+        setTimeout(() => {
+          // Инициализируем всё
+          initTabs();
+          initAlphabet();
+          initSifat();
+          initMakhraj();
+          initRules();
+          initProgress();
+
+          console.log("✅ Всё инициализировано");
+        }, 100);
+      });
+
+      // 1. ВКЛАДКИ
+      function initTabs() {
+        console.log("Инициализация вкладок...");
+        const tabs = document.querySelectorAll(".tab");
+        console.log("Найдено вкладок:", tabs.length);
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            const tabId = this.getAttribute("data-tab");
+
+            // Убираем активный класс у всех
+            tabs.forEach((t) => t.classList.remove("active"));
+            // Добавляем текущей
+            this.classList.add("active");
+
+            // Скрываем все страницы
+            document.querySelectorAll(".content-page").forEach((page) => {
+              page.classList.remove("active");
+            });
+
+            // Показываем нужную страницу
+            const page = document.getElementById(tabId + "-page");
+            if (page) {
+              page.classList.add("active");
+            }
+          });
+        });
+      }
+
+      // 2. АЛФАВИТ С КАРТОЧКАМИ ПРИ НАВЕДЕНИИ
+      function initAlphabet() {
+        console.log("Инициализация алфавита...");
+        const grid = document.getElementById("alphabetGrid");
+
+        if (!grid) {
+          console.error("❌ Не найден alphabetGrid!");
+          return;
+        }
+
+        console.log(
+          "alphabetGrid найден, элементов внутри:",
+          grid.children.length
+        );
+
+        // Очищаем "Загружаем алфавит..."
+        grid.innerHTML = "";
+
+        // Загружаем сохранённый прогресс
+        const progress = JSON.parse(
+          localStorage.getItem("marifa_study_progress") || "{}"
+        );
+        console.log("Загружен прогресс:", progress);
+
+        // Добавляем буквы
+        arabicAlphabet.forEach((letter, index) => {
+          const card = document.createElement("div");
+          card.className = "letter-card";
+
+          // Проверяем прогресс
+          const isStudied = progress[letter.letter]?.studied || false;
+          const isFavorite = progress[letter.letter]?.favorite || false;
+
+          if (isStudied) card.classList.add("studied");
+          if (isFavorite) card.classList.add("favorite");
+
+          // Получаем виды написания для этой буквы
+          const styles = writingStyles[letter.letter] || [
+            letter.letter,
+            letter.letter,
+            letter.letter,
+            letter.letter,
+          ];
+
+          // Основное содержимое карточки
+          card.innerHTML =
+            '<div class="letter-display">' +
+            letter.letter +
+            "</div>" +
+            '<div class="letter-name">' +
+            letter.name +
+            "</div>" +
+            '<div class="letter-trans">[' +
+            letter.trans +
+            "]</div>" +
+            '<button class="sound-btn"><i class="fas fa-volume-up"></i></button>' +
+            "<!-- Карточка при наведении -->" +
+            '<div class="letter-hover-card">' +
+            '<div class="hover-letter-display">' +
+            letter.letter +
+            "</div>" +
+            '<div class="hover-letter-name">' +
+            letter.name +
+            "</div>" +
+            '<div class="hover-letter-trans">[' +
+            letter.trans +
+            "]</div>" +
+            '<div class="letter-type">' +
+            '<i class="fas ' +
+            (letter.heavy ? "fa-weight-hanging" : "fa-feather-alt") +
+            '"></i> ' +
+            (letter.heavy ? "Тяжёлая буква" : "Лёгкая буква") +
+            "</div>" +
+            '<div class="letter-description">' +
+            letter.desc +
+            "</div>" +
+            "<!-- Детали -->" +
+            '<div class="letter-details">' +
+            '<div class="detail-item">' +
+            '<div class="detail-label">Сыфат</div>' +
+            '<div class="detail-value">' +
+            letter.sifat +
+            "</div>" +
+            "</div>" +
+            '<div class="detail-item">' +
+            '<div class="detail-label">Махрадж</div>' +
+            '<div class="detail-value">' +
+            letter.makhraj +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "<!-- Виды написания -->" +
+            '<div class="writing-styles">' +
+            '<div class="writing-title">Виды написания:</div>' +
+            '<div class="writing-examples">' +
+            "<div>" +
+            styles[0] +
+            "</div>" +
+            "<div>" +
+            styles[1] +
+            "</div>" +
+            "<div>" +
+            styles[2] +
+            "</div>" +
+            "<div>" +
+            styles[3] +
+            "</div>" +
+            "</div>" +
+            '<div class="writing-labels">' +
+            '<div class="writing-label">Изолированная</div>' +
+            '<div class="writing-label">Начальная</div>' +
+            '<div class="writing-label">Срединная</div>' +
+            '<div class="writing-label">Конечная</div>' +
+            "</div>" +
+            "</div>" +
+            '<button class="hover-details-btn">' +
+            '<i class="fas fa-info-circle"></i> Подробнее' +
+            "</button>" +
+            "</div>";
+
+          // Клик по основной карточке
+          card.addEventListener("click", function (e) {
+            // Проверяем, не кликнули ли мы по кнопке звука или деталей
+            if (
+              !e.target.closest(".sound-btn") &&
+              !e.target.closest(".hover-details-btn")
+            ) {
+              openLetterModal(index);
+            }
+          });
+
+          // Звук
+          const soundBtn = card.querySelector(".sound-btn");
+          if (soundBtn) {
+            soundBtn.addEventListener("click", function (e) {
+              e.stopPropagation();
+              playLetterSound(index);
+            });
+          }
+
+          // Кнопка "Подробнее" в карточке при наведении
+          const detailsBtn = card.querySelector(".hover-details-btn");
+          if (detailsBtn) {
+            detailsBtn.addEventListener("click", function (e) {
+              e.stopPropagation();
+              openLetterModal(index);
+            });
+          }
+
+          grid.appendChild(card);
+        });
+
+        console.log("Добавлено букв:", arabicAlphabet.length);
+
+        // Анимация появления букв
+        setTimeout(() => {
+          const cards = document.querySelectorAll(".letter-card");
+          console.log("Карточек найдено для анимации:", cards.length);
+
+          cards.forEach((card, i) => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            setTimeout(() => {
+              card.style.transition = "all 0.4s ease";
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            }, i * 30);
+          });
+        }, 300);
+      }
+
+      // 3. СЫФАТ
+      function initSifat() {
+        console.log("Инициализация сыфат...");
+
+        // Тяжёлые буквы
+        const heavyGrid = document.getElementById("heavyGrid");
+        const lightGrid = document.getElementById("lightGrid");
+
+        if (heavyGrid && lightGrid) {
+          // Очищаем
+          heavyGrid.innerHTML = "";
+          lightGrid.innerHTML = "";
+
+          // Заполняем
+          arabicAlphabet.forEach((letter) => {
+            const badge = document.createElement("div");
+            badge.className = "sifat-badge " + (letter.heavy ? "" : "light");
+
+            badge.innerHTML =
+              "<div>" +
+              letter.letter +
+              "</div>" +
+              '<div class="sifat-badge-name">' +
+              letter.name +
+              "</div>";
+
+            badge.addEventListener("click", function () {
+              const index = arabicAlphabet.findIndex(
+                (l) => l.letter === letter.letter
+              );
+              if (index !== -1) {
+                openLetterModal(index);
+              }
+            });
+
+            if (letter.heavy) {
+              heavyGrid.appendChild(badge);
+            } else {
+              lightGrid.appendChild(badge);
+            }
+          });
+        }
+
+        // Вкладки сыфат
+        const sifatTabs = document.querySelectorAll(".sifat-tab");
+        const sifatContents = document.querySelectorAll(".sifat-content");
+
+        sifatTabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            const type = this.getAttribute("data-type");
+
+            // Обновляем активную вкладку
+            sifatTabs.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+
+            // Показываем соответствующий контент
+            sifatContents.forEach((content) => {
+              if (content.id === type + "-letters") {
+                content.classList.add("active");
+              } else {
+                content.classList.remove("active");
+              }
+            });
+          });
+        });
+      }
+
+      // 4. МАХРАДЖ
+      function initMakhraj() {
+        console.log("Инициализация махрадж...");
+        const cards = document.querySelectorAll(".makhraj-card");
+
+        cards.forEach((card) => {
+          card.addEventListener("click", function () {
+            const area = this.getAttribute("data-area");
+            const letterBadges = this.querySelectorAll(".letter-badge");
+
+            // Находим первую букву в области
+            if (letterBadges.length > 0) {
+              const firstLetter = letterBadges[0].textContent;
+              const index = arabicAlphabet.findIndex(
+                (l) => l.letter === firstLetter
+              );
+              if (index !== -1) {
+                openLetterModal(index);
+              }
+            }
+          });
+        });
+      }
+
+      // 5. ПРАВИЛА
+      function initRules() {
+        console.log("Инициализация правил...");
+        const rules = [
+          {
+            id: 1,
+            title: "Нун Сакина и Танвин",
+            subtitle: "4 правила: Идгам, Икфá, Ихфá, Изхар",
+            description: "Правила чтения буквы Нун с сукуном и танвина.",
+            details: [
+              {
+                title: "Идгам (слияние)",
+                desc: "Нун сливается с последующей буквой",
+              },
+              {
+                title: "Икфá (сокрытие)",
+                desc: "Нун читается с носовым звуком",
+              },
+              {
+                title: "Ихфá (частичное сокрытие)",
+                desc: "Среднее между сокрытием и явностью",
+              },
+              {
+                title: "Изхар (явность)",
+                desc: "Нун читается явно, без изменений",
+              },
+            ],
+          },
+          {
+            id: 2,
+            title: "Мим Сакина",
+            subtitle: "3 правила",
+            description: "Правила чтения буквы Мим с сукуном.",
+            details: [
+              {
+                title: "Идгам Шафави",
+                desc: "Мим сливается с последующей Мим",
+              },
+              { title: "Ихфá Шафави", desc: "Мим читается с носовым звуком" },
+              { title: "Изхар Шафави", desc: "Мим читается явно" },
+            ],
+          },
+          {
+            id: 3,
+            title: "Мадд (Растяжение)",
+            subtitle: "6 видов растяжения",
+            description: "Правила удлинения гласных звуков.",
+            details: [
+              {
+                title: "Мадд Табии",
+                desc: "Естественное растяжение (2 харката)",
+              },
+              { title: "Мадд Бадль", desc: "Растяжение вместо хамзы" },
+              { title: "Мадд Ивад", desc: "Растяжение в конце слов" },
+              { title: "Мадд Лязым", desc: "Обязательное растяжение" },
+              { title: "Мадд Ваджиб", desc: "Необходимое растяжение" },
+              { title: "Мадд Джаиз", desc: "Допустимое растяжение" },
+            ],
+          },
+          {
+            id: 4,
+            title: "Хамзат аль-Васыль",
+            subtitle: "Хамза соединения",
+            description: "Правила чтения соединительной хамзы.",
+            details: [
+              { title: "С хамзатой аль-кáта'", desc: "Читается в начале речи" },
+              {
+                title: "Без хамзаты аль-кáта'",
+                desc: "Не читается в продолжении речи",
+              },
+            ],
+          },
+          {
+            id: 5,
+            title: "Вакф и Ибтида",
+            subtitle: "Остановка и начало",
+            description:
+              "Правила остановки при чтении и начала с нового места.",
+            details: [
+              { title: "Вакф аль-Хасан", desc: "Хорошая остановка" },
+              { title: "Вакф аль-Кафи", desc: "Достаточная остановка" },
+              { title: "Вакф ат-Таам", desc: "Полная остановка" },
+              {
+                title: "Вакф аль-Кабих",
+                desc: "Плохая остановка (не рекомендуется)",
+              },
+            ],
+          },
+        ];
+
+        const container = document.getElementById("rulesAccordion");
+        if (!container) {
+          console.error("❌ Не найден rulesAccordion!");
+          return;
+        }
+
+        container.innerHTML = "";
+
+        rules.forEach((rule) => {
+          const ruleElement = document.createElement("div");
+          ruleElement.className = "rule-item";
+
+          ruleElement.innerHTML =
+            '<button class="rule-header">' +
+            '<div class="rule-number">' +
+            rule.id +
+            "</div>" +
+            '<div class="rule-header-content">' +
+            '<h4 class="rule-title">' +
+            rule.title +
+            "</h4>" +
+            '<p class="rule-subtitle">' +
+            rule.subtitle +
+            "</p>" +
+            "</div>" +
+            '<i class="fas fa-chevron-down rule-chevron"></i>' +
+            "</button>" +
+            '<div class="rule-content">' +
+            "<p>" +
+            rule.description +
+            "</p>" +
+            '<div class="sub-rules-grid">' +
+            rule.details
+              .map(
+                (detail) =>
+                  '<div class="sub-rule">' +
+                  '<h5><i class="fas fa-star"></i> ' +
+                  detail.title +
+                  "</h5>" +
+                  "<p>" +
+                  detail.desc +
+                  "</p>" +
+                  "</div>"
+              )
+              .join("") +
+            "</div>" +
+            '<div class="practice-btn-container">' +
+            '<button class="practice-btn">' +
+            '<i class="fas fa-play-circle"></i> Практиковать правило' +
+            "</button>" +
+            "</div>" +
+            "</div>";
+
+          const header = ruleElement.querySelector(".rule-header");
+          const chevron = ruleElement.querySelector(".rule-chevron");
+          const practiceBtn = ruleElement.querySelector(".practice-btn");
+          const content = ruleElement.querySelector(".rule-content");
+
+          header.addEventListener("click", function () {
+            const isActive = ruleElement.classList.contains("active");
+
+            // Закрываем все другие
+            document.querySelectorAll(".rule-item").forEach((item) => {
+              item.classList.remove("active");
+            });
+
+            // Открываем/закрываем текущее
+            if (!isActive) {
+              ruleElement.classList.add("active");
+            }
+          });
+
+          practiceBtn.addEventListener("click", function () {
+            alert(
+              "Практика правила: " +
+                rule.title +
+                "\n\nЗдесь будут упражнения для отработки этого правила."
+            );
+          });
+
+          container.appendChild(ruleElement);
+        });
+      }
+
+      // 6. ПРОГРЕСС
+      function initProgress() {
+        console.log("Инициализация прогресса...");
+        const progress = JSON.parse(
+          localStorage.getItem("marifa_study_progress") || "{}"
+        );
+
+        // Считаем изученные буквы
+        let studiedCount = 0;
+        Object.values(progress).forEach((item) => {
+          if (item.studied) studiedCount++;
+        });
+
+        // Обновляем прогресс
+        const progressText = document.getElementById("progressText");
+        const progressFill = document.getElementById("progressFill");
+
+        if (progressText) {
+          progressText.textContent = `Изучено: ${studiedCount} из 28 букв`;
+        }
+
+        if (progressFill) {
+          const percentage = (studiedCount / 28) * 100;
+          progressFill.style.width = percentage + "%";
+        }
+      }
+
+      // ВОСПРОИЗВЕДЕНИЕ ЗВУКА БУКВЫ
+      function playLetterSound(index) {
+        const letter = arabicAlphabet[index];
+
+        // Создаём аудио элемент
+        const audio = new Audio();
+
+        // Для демо используем SpeechSynthesis API
+        if ("speechSynthesis" in window) {
+          const utterance = new SpeechSynthesisUtterance(letter.letter);
+          utterance.lang = "ar-SA"; // Арабский (Саудовская Аравия)
+          utterance.rate = 0.8;
+          speechSynthesis.speak(utterance);
+        } else {
+          // ИСПРАВЛЕННАЯ СТРОКА 2575:
+          alert(
+            `Звук буквы ${letter.name} (${letter.letter}): [${letter.trans}]`
+          );
+        }
+      }
+
+      // ОТКРЫТИЕ МОДАЛЬНОГО ОКНА БУКВЫ
+      function openLetterModal(index) {
+        const letter = arabicAlphabet[index];
+        const progress = JSON.parse(
+          localStorage.getItem("marifa_study_progress") || "{}"
+        );
+        const letterProgress = progress[letter.letter] || {};
+
+        // Заполняем модальное окно
+        document.getElementById("modalLetter").textContent = letter.letter;
+        document.getElementById("modalName").textContent = letter.name;
+        document.getElementById("modalTrans").textContent = "[${letter.trans}]";
+        document.getElementById("modalDesc").textContent = letter.desc;
+        document.getElementById("modalType").textContent = letter.sifat;
+        document.getElementById("modalMakhraj").textContent = letter.makhraj;
+        document.getElementById("modalStudied").textContent =
+          letterProgress.studied ? "Да" : "Нет";
+
+        // Обновляем кнопки
+        const favoriteBtn = document.getElementById("modalFavoriteBtn");
+        const studiedBtn = document.getElementById("modalStudiedBtn");
+
+        if (letterProgress.favorite) {
+          favoriteBtn.innerHTML = '<i class="fas fa-star"></i> В избранном';
+          favoriteBtn.classList.add("active");
+        } else {
+          favoriteBtn.innerHTML = '<i class="far fa-star"></i> В избранное';
+          favoriteBtn.classList.remove("active");
+        }
+
+        if (letterProgress.studied) {
+          studiedBtn.innerHTML = '<i class="fas fa-check-double"></i> Изучена';
+          studiedBtn.classList.add("active");
+        } else {
+          studiedBtn.innerHTML =
+            '<i class="fas fa-check"></i> Отметить изученной';
+          studiedBtn.classList.remove("active");
+        }
+
+        // Добавляем обработчики
+        const soundBtn = document.getElementById("modalSoundBtn");
+        if (soundBtn) {
+          soundBtn.onclick = function () {
+            playLetterSound(index);
+          };
+        }
+
+        if (favoriteBtn) {
+          favoriteBtn.onclick = function () {
+            toggleFavorite(letter.letter, index);
+          };
+        }
+
+        if (studiedBtn) {
+          studiedBtn.onclick = function () {
+            toggleStudied(letter.letter, index);
+          };
+        }
+
+        // Показываем модальное окно
+        const modal = document.getElementById("letterModal");
+        if (modal) {
+          modal.classList.add("active");
+
+          // Закрытие модального окна
+          const closeBtn = modal.querySelector(".modal-close");
+          if (closeBtn) {
+            closeBtn.onclick = function () {
+              modal.classList.remove("active");
+            };
+          }
+
+          // Закрытие при клике вне окна
+          modal.addEventListener("click", function (e) {
+            if (e.target === modal) {
+              modal.classList.remove("active");
+            }
+          });
+
+          // Закрытие на Escape
+          document.addEventListener("keydown", function closeOnEscape(e) {
+            if (e.key === "Escape") {
+              modal.classList.remove("active");
+              document.removeEventListener("keydown", closeOnEscape);
+            }
+          });
+        }
+      }
+
+      // ПЕРЕКЛЮЧЕНИЕ ИЗБРАННОГО
+      function toggleFavorite(letter, index) {
+        const progress = JSON.parse(
+          localStorage.getItem("marifa_study_progress") || "{}"
+        );
+
+        if (!progress[letter]) {
+          progress[letter] = {};
+        }
+
+        progress[letter].favorite = !progress[letter].favorite;
+        localStorage.setItem("marifa_study_progress", JSON.stringify(progress));
+
+        // Обновляем кнопку в модальном окне
+        const favoriteBtn = document.getElementById("modalFavoriteBtn");
+        if (favoriteBtn) {
+          if (progress[letter].favorite) {
+            favoriteBtn.innerHTML = '<i class="fas fa-star"></i> В избранном';
+            favoriteBtn.classList.add("active");
+          } else {
+            favoriteBtn.innerHTML = '<i class="far fa-star"></i> В избранное';
+            favoriteBtn.classList.remove("active");
+          }
+        }
+
+        // Обновляем карточкуconst cards = document.querySelectorAll('.letter-card');
+        if (cards[index]) {
+          if (progress[letter].favorite) {
+            cards[index].classList.add("favorite");
+          } else {
+            cards[index].classList.remove("favorite");
+          }
+        }
+      }
+
+      // ПЕРЕКЛЮЧЕНИЕ ИЗУЧЕННОСТИ
+      function toggleStudied(letter, index) {
+        const progress = JSON.parse(
+          localStorage.getItem("marifa_study_progress") || "{}"
+        );
+
+        if (!progress[letter]) {
+          progress[letter] = {};
+        }
+
+        progress[letter].studied = !progress[letter].studied;
+        localStorage.setItem("marifa_study_progress", JSON.stringify(progress));
+
+        // Обновляем кнопку в модальном окне
+        const studiedBtn = document.getElementById("modalStudiedBtn");
+        if (studiedBtn) {
+          if (progress[letter].studied) {
+            studiedBtn.innerHTML =
+              '<i class="fas fa-check-double"></i> Изучена';
+            studiedBtn.classList.add("active");
+          } else {
+            studiedBtn.innerHTML =
+              '<i class="fas fa-check"></i> Отметить изученной';
+            studiedBtn.classList.remove("active");
+          }
+        }
+
+        // Обновляем статус в модальном окне
+        const modalStudied = document.getElementById("modalStudied");
+        if (modalStudied) {
+          modalStudied.textContent = progress[letter].studied ? "Да" : "Нет";
+        }
+
+        // Обновляем карточку
+        const cards = document.querySelectorAll(".letter-card");
+        if (cards[index]) {
+          if (progress[letter].studied) {
+            cards[index].classList.add("studied");
+          } else {
+            cards[index].classList.remove("studied");
+          }
+        }
+
+        // Обновляем прогресс
+        initProgress();
+      }
+
+      // БЫСТРЫЕ ССЫЛКИ
+      document.querySelectorAll(".quick-link").forEach((link) => {
+        link.addEventListener("click", function () {
+          const action = this.getAttribute("data-action");
+
+          switch (action) {
+            case "audio":
+              alert(
+                "Аудио-примеры правил таджвида\n\nЗдесь будут аудио-примеры правильного чтения."
+              );
+              break;
+            case "tests":
+              alert(
+                "Тесты по правилам таджвида\n\nЗдесь будут тесты для проверки знаний."
+              );
+              break;
+            case "pdf":
+              alert(
+                "Скачать PDF-пособие\n\nЗдесь будет ссылка для скачивания учебного пособия."
+              );
+              break;
+          }
+        });
+      });
+
+      console.log("Скрипт загружен, ожидаем полной загрузки страницы...");
+      // Функция для обновления бейджей на ссылках
+      function updateQuickLinksBadges() {
+        // Проверяем наличие непроверенных заданий (пример)
+        const pendingAssignments = 3; // В реальности это будет с сервера
+
+        // Проверяем непрочитанные сообщения (пример)
+        const unreadMessages = 5; // В реальности это будет с сервера
+
+        // Создаем или обновляем бейджи
+        const hwLink = document.querySelector('a[href="homework.html"]');
+        const chatLink = document.querySelector('a[href="class.html"]');
+
+        if (hwLink && pendingAssignments > 0) {
+          let badge = hwLink.querySelector(".link-badge");
+          if (!badge) {
+            badge = document.createElement("span");
+            badge.className = "link-badge";
+            hwLink.appendChild(badge);
+          }
+          badge.textContent = pendingAssignments;
+        }
+
+        if (chatLink && unreadMessages > 0) {
+          let badge = chatLink.querySelector(".link-badge");
+          if (!badge) {
+            badge = document.createElement("span");
+            badge.className = "link-badge";
+            chatLink.appendChild(badge);
+          }
+          badge.textContent = unreadMessages;
+        }
+      }
+
+      // Вызываем при загрузке страницы
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(updateQuickLinksBadges, 1500);
+
+        // Обновляем каждые 30 секунд
+        setInterval(updateQuickLinksBadges, 30000);
+      });
+    </script>
+  </body>
+</html>

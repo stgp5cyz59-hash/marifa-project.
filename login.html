@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA'RIFA - Вход</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;800&family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .login-container {
+        width: 100%;
+        max-width: 400px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 25px 60px rgba(138, 74, 95, 0.25);
+        backdrop-filter: blur(15px);
+        text-align: center;
+      }
+      .login-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        color: #8a4a5f;
+        margin-bottom: 20px;
+      }
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .login-form input {
+        padding: 15px;
+        border: 2px solid rgba(138, 74, 95, 0.2);
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+      }
+      .login-form input:focus {
+        outline: none;
+        border-color: #8a4a5f;
+      }
+      .login-btn {
+        padding: 15px;
+        background: linear-gradient(135deg, #8a4a5f, #6d394a);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+      }
+      .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(138, 74, 95, 0.3);
+      }
+      .back-link {
+        margin-top: 20px;
+        font-family: "Inter", sans-serif;
+      }
+      .back-link a {
+        color: #8a4a5f;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <div class="login-container">
+      <h1 class="login-title">Вход в систему</h1>
+      <form id="loginForm" class="login-form">
+        <input type="email" id="email" placeholder="Ваш Email" required />
+        <input
+          type="password"
+          id="password"
+          placeholder="Ваш Пароль"
+          required
+        />
+        <button type="submit" class="login-btn" id="submitBtn">Войти</button>
+      </form>
+      <div class="back-link">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> На главную</a>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
+          const btn = document.getElementById("submitBtn");
+
+          btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Вход...';
+          btn.disabled = true;
+
+          // Отправляем данные на сервер для проверки в базе
+          fetch("http://localhost:3000/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success) {
+                // Сохраняем данные пользователя в браузере
+                localStorage.setItem("marifa_user", JSON.stringify(data.user));
+
+                // Перенаправляем в зависимости от роли
+                if (data.user.role === "teacher") {
+                  window.location.href = "teacher-dashboard.html";
+                } else {
+                  window.location.href = "dashboard.html";
+                }
+              } else {
+                alert(data.error || "Неверный email или пароль");
+                btn.innerHTML = "Войти";
+                btn.disabled = false;
+              }
+            })
+            .catch((err) => {
+              alert("Сервер не отвечает. Проверьте, запущен ли node server.js");
+              btn.innerHTML = "Войти";
+              btn.disabled = false;
+            });
+        });
+    </script>
+  </body>
+</html>

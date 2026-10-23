@@ -1,0 +1,1007 @@
+/* homework.css - Стили для страницы домашних заданий */
+
+:root {
+  --hw-primary: #8a4a5f;
+  --hw-primary-light: #a86c82;
+  --hw-primary-dark: #6d394a;
+  --hw-secondary: #d4a574;
+  --hw-secondary-light: #f5d5a6;
+  --hw-text: #4a4048;
+  --hw-text-light: #8e8890;
+  --hw-white: #ffffff;
+  --hw-bg-dark: rgba(31, 21, 33, 0.9);
+  --hw-bg-card: rgba(255, 255, 255, 0.95);
+  --hw-border: rgba(138, 74, 95, 0.2);
+  --hw-shadow: rgba(74, 64, 72, 0.1);
+  --hw-status-checked: #4caf50;
+  --hw-status-pending: #ff9800;
+  --hw-status-resubmit: #2196f3;
+  --hw-status-error: #f44336;
+}
+
+/* ===== ОСНОВНЫЕ СТИЛИ ===== */
+.homework-container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ===== БОКОВАЯ ПАНЕЛЬ ===== */
+.hw-sidebar {
+  width: 300px;
+  background: var(--hw-bg-dark);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 30px;
+  border: 1px solid rgba(245, 213, 166, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  margin-right: 30px;
+  height: calc(100vh - 40px);
+  position: sticky;
+  top: 20px;
+  overflow-y: auto;
+}
+
+/* Шапка боковой панели */
+.sidebar-header {
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-to-dashboard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--hw-secondary-light);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  padding: 8px 15px;
+  border-radius: 12px;
+  background: rgba(245, 213, 166, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.back-to-dashboard:hover {
+  background: rgba(245, 213, 166, 0.2);
+  border-color: var(--hw-secondary);
+  transform: translateX(-5px);
+}
+
+.sidebar-logo {
+  text-align: center;
+}
+
+.arabic-logo {
+  font-family: "Amiri", serif;
+  font-size: 2.5rem;
+  color: var(--hw-secondary-light);
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.latin-logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  color: var(--hw-white);
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+/* Меню */
+.hw-menu {
+  margin-bottom: 30px;
+}
+
+.menu-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  color: var(--hw-secondary-light);
+  margin-bottom: 15px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.8;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+  border-left: 4px solid transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background: rgba(138, 74, 95, 0.2);
+  color: var(--hw-white);
+  border-left-color: var(--hw-primary);
+  transform: translateX(5px);
+}
+
+.menu-item.active {
+  background: rgba(138, 74, 95, 0.3);
+  color: var(--hw-white);
+  border-left-color: var(--hw-primary);
+  font-weight: 600;
+}
+
+.menu-item i {
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+
+.menu-item span {
+  flex: 1;
+}
+
+.menu-badge {
+  background: var(--hw-primary);
+  color: white;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  min-width: 28px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.menu-item.active .menu-badge {
+  background: var(--hw-secondary);
+  color: var(--hw-text);
+}
+
+/* Вдохновляющая заметка */
+.inspiration-note {
+  background: linear-gradient(
+    135deg,
+    rgba(45, 27, 78, 0.6),
+    rgba(138, 74, 95, 0.4)
+  );
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(245, 213, 166, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.inspiration-note::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f5d5a6' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.3;
+}
+
+.note-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  color: rgba(245, 213, 166, 0.2);
+}
+
+.inspiration-note h4 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  color: var(--hw-secondary-light);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.inspiration-note p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.note-arabic {
+  font-family: "Amiri", serif;
+  font-size: 1.3rem;
+  color: var(--hw-secondary);
+  text-align: center;
+  margin: 15px 0;
+  direction: rtl;
+  position: relative;
+  z-index: 1;
+}
+
+.inspiration-note small {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+.hw-main {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(138, 74, 95, 0.1);
+  overflow-y: auto;
+  max-height: calc(100vh - 40px);
+}
+
+/* Шапка */
+.hw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--hw-border);
+}
+
+.header-left {
+  flex: 1;
+}
+
+.arabic-title {
+  font-family: "Amiri", serif;
+  font-size: 2.5rem;
+  color: var(--hw-primary-dark);
+  display: block;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.latin-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  color: var(--hw-primary);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.page-subtitle {
+  font-family: "Inter", sans-serif;
+  color: var(--hw-text-light);
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.stats-card {
+  background: linear-gradient(
+    135deg,
+    var(--hw-primary),
+    var(--hw-primary-light)
+  );
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 200px;
+  box-shadow: 0 10px 25px rgba(138, 74, 95, 0.3);
+}
+
+.stats-card i {
+  font-size: 2rem;
+  opacity: 0.9;
+}
+
+.stats-content {
+  flex: 1;
+}
+
+.stats-value {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.stats-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  background: rgba(138, 74, 95, 0.1);
+  border: 1px solid var(--hw-border);
+  border-radius: 12px;
+  color: var(--hw-text);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: rgba(138, 74, 95, 0.15);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--hw-primary);
+  color: white;
+  border-color: var(--hw-primary);
+}
+
+/* Секция прогресса */
+.progress-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.progress-card {
+  background: rgba(138, 74, 95, 0.05);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(138, 74, 95, 0.1);
+}
+
+.progress-card h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  color: var(--hw-primary-dark);
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.progress-item {
+  text-align: center;
+}
+
+.progress-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px;
+  position: relative;
+  background: conic-gradient(var(--hw-primary) 0% 75%, #eee 75% 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle[data-percent="90"] {
+  background: conic-gradient(var(--hw-primary) 0% 90%, #eee 90% 100%);
+}
+
+.progress-circle[data-percent="60"] {
+  background: conic-gradient(var(--hw-primary) 0% 60%, #eee 60% 100%);
+}
+
+.progress-circle span {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--hw-primary);
+}
+
+.progress-info h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: var(--hw-text);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.progress-info p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--hw-text-light);
+}
+
+.motivation-card {
+  background: linear-gradient(
+    135deg,
+    rgba(212, 165, 116, 0.1),
+    rgba(245, 213, 166, 0.2)
+  );
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  position: relative;
+}
+
+.motivation-card i {
+  font-size: 2.5rem;
+  color: var(--hw-secondary);
+  margin-bottom: 15px;
+  display: block;
+}
+
+.motivation-card h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.4rem;
+  color: var(--hw-primary-dark);
+  margin-bottom: 15px;
+}
+
+.motivation-card p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  color: var(--hw-text);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.teacher-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.teacher-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--hw-secondary);
+}
+
+.teacher-info span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--hw-primary);
+  font-weight: 500;
+}
+
+/* Сетка заданий */
+.assignments-grid {
+  margin-top: 40px;
+}
+
+.section-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  color: var(--hw-primary-dark);
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assignments-count {
+  margin-left: auto;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: var(--hw-text-light);
+  font-weight: normal;
+}
+
+.assignments-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.loading-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--hw-text-light);
+}
+
+.loading-state i {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--hw-primary);
+}
+
+/* Карточка задания */
+.assignment-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid var(--hw-border);
+  box-shadow: 0 10px 30px var(--hw-shadow);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.assignment-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(138, 74, 95, 0.15);
+  border-color: var(--hw-primary-light);
+}
+
+.assignment-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+}
+
+.assignment-card.checked::before {
+  background: var(--hw-status-checked);
+}
+
+.assignment-card.pending::before {
+  background: var(--hw-status-pending);
+}
+
+.assignment-card.resubmit::before {
+  background: var(--hw-status-resubmit);
+}
+
+.assignment-card.error::before {
+  background: var(--hw-status-error);
+}
+
+.assignment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.assignment-type {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.type-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(138, 74, 95, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--hw-primary);
+}
+
+.assignment-card.homework .type-icon {
+  background: rgba(138, 74, 95, 0.1);
+  color: var(--hw-primary);
+}
+
+.assignment-card.test .type-icon {
+  background: rgba(33, 150, 243, 0.1);
+  color: #2196f3;
+}
+
+.assignment-card.exam .type-icon {
+  background: rgba(156, 39, 176, 0.1);
+  color: #9c27b0;
+}
+
+.type-info h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--hw-text-light);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.type-info h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  color: var(--hw-primary-dark);
+  font-weight: 600;
+}
+
+.assignment-status {
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-checked {
+  background: rgba(76, 175, 80, 0.1);
+  color: var(--hw-status-checked);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-pending {
+  background: rgba(255, 152, 0, 0.1);
+  color: var(--hw-status-pending);
+  border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.status-resubmit {
+  background: rgba(33, 150, 243, 0.1);
+  color: var(--hw-status-resubmit);
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.status-error {
+  background: rgba(244, 67, 54, 0.1);
+  color: var(--hw-status-error);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.assignment-details {
+  margin: 20px 0;
+}
+
+.assignment-details p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  color: var(--hw-text);
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.assignment-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  color: var(--hw-text-light);
+  margin-bottom: 20px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.assignment-grade {
+  background: rgba(138, 74, 95, 0.1);
+  border-radius: 12px;
+  padding: 10px 15px;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.grade-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  color: var(--hw-text-light);
+  margin-bottom: 5px;
+}
+
+.grade-value {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  color: var(--hw-primary);
+  font-weight: 600;
+}
+
+.grade-max {
+  font-size: 1rem;
+  color: var(--hw-text-light);
+}
+
+.assignment-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-view {
+  background: rgba(138, 74, 95, 0.1);
+  color: var(--hw-primary);
+  border: 1px solid rgba(138, 74, 95, 0.3);
+}
+
+.btn-view:hover {
+  background: rgba(138, 74, 95, 0.2);
+}
+
+.btn-submit {
+  background: var(--hw-primary);
+  color: white;
+}
+
+.btn-submit:hover {
+  background: var(--hw-primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-redo {
+  background: var(--hw-status-resubmit);
+  color: white;
+}
+
+.btn-redo:hover {
+  background: #0d8bf2;
+  transform: translateY(-2px);
+}
+
+/* Модальное окно */
+.hw-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.hw-modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(138, 74, 95, 0.1);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: var(--hw-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--hw-primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 40px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .homework-container {
+    flex-direction: column;
+  }
+
+  .hw-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .hw-main {
+    max-height: none;
+  }
+
+  .progress-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .homework-container {
+    padding: 10px;
+  }
+
+  .hw-sidebar,
+  .hw-main {
+    padding: 20px;
+  }
+
+  .hw-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .header-right {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .stats-card {
+    min-width: auto;
+  }
+
+  .progress-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .assignments-container {
+    grid-template-columns: 1fr;
+  }
+
+  .arabic-title {
+    font-size: 2rem;
+  }
+
+  .latin-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .assignment-actions {
+    flex-direction: column;
+  }
+
+  .filter-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+/* ===== АВАРИЙНЫЙ МОБИЛЬНЫЙ ФИКС ===== */
+@media (max-width: 768px) {
+  /* САМЫЕ ВАЖНЫЕ ИСПРАВЛЕНИЯ */
+  body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  .dashboard-container {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .dashboard-sidebar {
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+  }
+
+  .hero-section {
+    padding: 60px 15px !important;
+  }
+
+  .arabic-title {
+    font-size: 3rem !important;
+  }
+} /* ===== АВАРИЙНЫЙ МОБИЛЬНЫЙ ФИКС ===== */
+@media (max-width: 768px) {
+  /* САМЫЕ ВАЖНЫЕ ИСПРАВЛЕНИЯ */
+  body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  .dashboard-container {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .dashboard-sidebar {
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+  }
+
+  .hero-section {
+    padding: 60px 15px !important;
+  }
+
+  .arabic-title {
+    font-size: 3rem !important;
+  }
+}
